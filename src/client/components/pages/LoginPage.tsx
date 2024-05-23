@@ -18,28 +18,18 @@ export default function LoginPage(props: {}) {
   }, [googleLogin.succeeded]);
 
   return (
-    <div className="w-full flex flex-col items-center justify-start padding-x overflow-x-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-start padding-x overflow-x-hidden">
       {/* Container */}
-      <div className="max-w-[780px] flex flex-col items-center">
+      <div className="max-w-[780px] flex flex-col items-center justify-start h-full">
         {/* Header Text */}
-        <h1 className="font-serif text-5xl font-medium text-center mt-10 leading-[1.2em]">
-          Stop Searching for the Perfect Journal App, Make One
+        <h1 className="font-serif text-2xl lg:text-4xl font-medium text-center leading-[1.2em] mt-12 lg:mt-24">
+          Login to Papery
         </h1>
 
-        {/* Description */}
-        <div className="font-serif mt-10 max-w-[420px] text-center text-lg">
-          <p>
-            Write diaries in markdown, organize by tags, customize templates,
-            create your own reports, and more.
-          </p>
-        </div>
-
         {/* Login Card */}
-        <div className="relative shadow-md bg-[#f4efe3a3] mt-10 max-w-[450px] w-full rounded-[1rem] flex flex-col items-center p-8">
-          <div className="font-serif text-lg">Start writing your journal</div>
-
+        <div className="relative shadow-md bg-[#f4efe3a3] mt-10 max-w-full w-[350px] rounded-[1rem] flex flex-col items-center p-8">
           {/* Button */}
-          <div className="mt-8 w-full">
+          <div className="w-full">
             <button
               className="btn btn-large btn-white w-full"
               onClick={googleLogin.onClickGoogleLogin}
@@ -62,23 +52,6 @@ export default function LoginPage(props: {}) {
               Try Demo
             </button>
           </div>
-
-          {/* Hand Image */}
-          {/* <img
-            className="absolute right-[-240px] top-[40%] w-[300px] -z-0"
-            src="/img/hand-and-pen.webp"
-          /> */}
-        </div>
-
-        {/* Description */}
-        <div className="font-serif mt-10 max-w-[350px] text-center">
-          <h1 className="font-bold text-xl mb-3">Basic Features:</h1>
-
-          <p>
-            Markdown &#x2022; AES256 Encryption &#x2022; Emoji calendar &#x2022;
-            Data export &#x2022; Custom templates &#x2022; Visual reports
-            &#x2022; Advanced tag capability
-          </p>
         </div>
       </div>
     </div>

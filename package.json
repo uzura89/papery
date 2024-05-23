@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node index.ts",
     "build": "NODE_ENV=production webpack",
-    "watch": "webpack -w",
     "dev": "rimraf public/dist/* && open http://localhost:3000 && nodemon ./webpack-dev-server.ts",
     "demo": "ts-node ./scripts/upsertDemoUser.ts"
   },
