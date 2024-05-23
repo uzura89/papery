@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Papery - Your Personal Journal App</title>
+    <link rel="stylesheet" href="/styles/landing.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <%- include('../partials/header') %>
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="container">
+        <h1>Stop Searching for the Perfect Journal App—Create One</h1>
+        <p>
+          Write flexibly in markdown, organize by tags, customize templates,
+          create your own reports, and more.
+        </p>
+        <div class="cta-buttons">
+          <a href="#features" class="cta-btn">Create Your Journal</a>
+          <a href="/?demo=true" class="cta-btn secondary">Try Demo →</a>
+        </div>
+
+        <div class="hero-image">
+          <img src="/img/landing/screenshot.png" class="hero-image-screen" />
+          <img class="hero-image-hand" src="/img/hand-and-pen.webp" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="examples">
+      <div class="container">
+        <h2 class="section-label">Examples</h2>
+        <h2 class="section-title">It's Not Just a Journal App.</h2>
+        <div class="screen-wrapper">
+          <div class="example-buttons">
+            <div
+              class="example-button example-diary active"
+              data="example-diary"
+            >
+              <span>🗒</span>
+              <h3>Diary</h3>
+            </div>
+            <div class="example-button example-habit" data="example-habit">
+              <span>🏃</span>
+              <h3>Habit</h3>
+            </div>
+            <div class="example-button example-mood" data="example-mood">
+              <span>😊</span>
+              <h3>Mood</h3>
+            </div>
+            <div class="example-button example-goal" data="example-goal">
+              <span>🎯</span>
+              <h3>Goal</h3>
+            </div>
+          </div>
+
+          <div class="example-descriptions">
+            <h4 class="example-description example-diary active">
+              Write your daily thoughts, ideas, and experiences.
+            </h4>
+            <h4 class="example-description example-habit">
+              Track your habits and progress.
+            </h4>
+            <h4 class="example-description example-mood">
+              Record your mood and feelings.
+            </h4>
+            <h4 class="example-description example-goal">
+              Set and track your goals.
+            </h4>
+          </div>
+
+          <div class="example-image-wrapper">
+            <img
+              class="example-image example-diary active"
+              src="/img/landing/examples/diary.png"
+            />
+            <img
+              class="example-image example-habit"
+              src="/img/landing/examples/habit.png"
+            />
+            <img
+              class="example-image example-mood"
+              src="/img/landing/examples/mood.png"
+            />
+            <img
+              class="example-image example-goal"
+              src="/img/landing/examples/goal.png"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+      <div class="container">
+        <h2 class="section-label">Features</h2>
+        <h2 class="section-title">Simple Yet Flexible.</h2>
+        <div class="features">
+          <div class="feature">
+            <span>🗒</span>
+            <h3>Markdown Support</h3>
+          </div>
+          <div class="feature">
+            <span>😊</span>
+            <h3>Emoji Mood</h3>
+          </div>
+          <div class="feature">
+            <span>🏷</span>
+            <h3>Organize by Tags</h3>
+          </div>
+          <div class="feature">
+            <span>⚙️</span>
+            <h3>Custom Templates</h3>
+          </div>
+          <div class="feature">
+            <span>💭</span>
+            <h3>Reflections</h3>
+          </div>
+          <div class="feature">
+            <span>📊</span>
+            <h3>Flexible Reports</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing">
+      <div class="container">
+        <h2 class="section-label">Pricing</h2>
+        <h2 class="section-title">Get Early Access.</h2>
+        <div class="pricing-plan">
+          <h3>Free</h3>
+          <p>
+            We may add paid features in the future, but all existing users will
+            have privileged access to them :)
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="mission">
+      <div class="container">
+        <h2 class="section-label">Mission</h2>
+        <h2 class="section-title">You Own Your Journal, Not Us.</h2>
+        <div class="missions">
+          <div class="mission-item">
+            <img
+              src="https://unpkg.com/lucide-static@latest/icons/file-down.svg"
+            />
+            <h3>Download Entries</h3>
+            <p>
+              You can download your data anytime in CSV format, so you will
+              always have options to move your data to other platforms.
+            </p>
+          </div>
+          <div class="mission-item">
+            <img src="https://unpkg.com/lucide-static@latest/icons/lock.svg" />
+            <h3>Privacy</h3>
+            <p>
+              We use AES-256 encryption to protect your data, meaning we only
+              store encrypted data on our servers.
+            </p>
+          </div>
+          <div class="mission-item">
+            <img
+              src="https://unpkg.com/lucide-static@latest/icons/code-xml.svg"
+            />
+            <h3>Open Source</h3>
+            <p>
+              Papery is
+              <a
+                href="https://github.com/uzura89/papery"
+                target="_blank"
+                rel="noopener noreferrer"
+                >open source</a
+              >, so you have the option to host your own instance of Papery and
+              have full control over your data.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta-bottom">
+      <div class="container">
+        <h2 class="section-label"></h2>
+        <h2 class="section-title">Start Creating Your Journal.</h2>
+        <div class="cta-buttons">
+          <a href="#features" class="cta-btn">Create Your Journal</a>
+          <a href="/?demo=true" class="cta-btn secondary">Try Demo →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+  </body>
+
+  <script>
+    // Add .scrolled to header when user scrolls down
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector("header");
+      if (window.scrollY > 0) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    // Add active class to example buttons
+    const exampleButtons = document.querySelectorAll(".example-button");
+    const exampleDescriptions = document.querySelectorAll(
+      ".example-description"
+    );
+    const exampleImages = document.querySelectorAll(".example-image");
+
+    exampleButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const exampleType = button.getAttribute("data");
+        // remove active class
+        exampleButtons.forEach((b) => b.classList.remove("active"));
+        exampleDescriptions.forEach((desc) => desc.classList.remove("active"));
+        exampleImages.forEach((img) => img.classList.remove("active"));
+        // add active class to the clicked button, description, and image
+        button.classList.add("active");
+        document
+          .querySelector(`.example-description.${exampleType}`)
+          .classList.add("active");
+        setTimeout(() => {
+          document
+            .querySelector(`.example-image.${exampleType}`)
+            .classList.add("active");
+        }, 200);
+      });
+    });
+  </script>
+</html>

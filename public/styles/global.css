@@ -1,0 +1,47 @@
+body {
+  background-color: #ddd5bd;
+}
+
+/** Fadein animation **/
+.fadein {
+  animation: fadein 1s;
+}
+
+.fadein-up {
+  animation: fadein-up 0.5s;
+}
+
+.fadein-down {
+  animation: fadein-down 0.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadein-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

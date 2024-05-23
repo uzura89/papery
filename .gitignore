@@ -1,0 +1,6 @@
+# Ignore node_modules folder
+node_modules/
+
+# Everything ends with .env
+.local.env
+.production.env

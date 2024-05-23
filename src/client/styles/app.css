@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+
+/* define theme colors */
+
+:root {
+  --fore-rgb: 41, 40, 37;
+  --fore-secondary-rgb: 82, 77, 65;
+  --fore-entry-rgb: 81, 78, 71;
+  --fore-light-rgb: 131, 125, 110;
+  --fore-lighter-rgb: 175, 165, 141;
+  --fore-danger-rgb: 228, 91, 14;
+  --fore-gray-rgb: 132, 130, 126;
+  --fore-gray-light-rgb: 174, 171, 163;
+  --back-danger-rgb: 246, 217, 193, 0.36;
+  --link-rgb: 212, 106, 68;
+  --text-hover-bg-rgb: 0, 0, 0, 0.05;
+  /* --back-rgb: 255, 252, 245; */
+  --back-rgb: 243, 233, 208;
+  --back-dim-rgb: 237, 225, 196;
+  --back-dark-rgb: 226, 214, 180;
+  --back-light-rgb: 248, 246, 238;
+  --back-lightest-rgb: 245, 243, 237;
+  --back-active-rgb: 235, 88, 88, 0.55;
+  --border-rgb: 213, 206, 190;
+  --border-light-rgb: 229, 226, 216;
+  --border-gray-rgb: 238, 238, 238;
+  --card-rgb: 255, 254, 252;
+  --fill-positive-rgb: 92, 213, 133, 0.9;
+  --fill-light-gray-rgb: 233, 231, 226;
+  --fill-primary-light-rgb: 220, 155, 88, 0.92;
+}
+
+@layer components {
+  .padding-x-sm {
+    @apply px-4 lg:px-5;
+  }
+  .padding-x {
+    @apply px-5 lg:px-10;
+  }
+  .container-full {
+    @apply padding-x;
+  }
+  .container-tiny {
+    @apply max-w-screen-sm mx-auto padding-x;
+  }
+  .container-narrow {
+    @apply max-w-screen-lg mx-auto padding-x;
+  }
+  .container-wide {
+    @apply max-w-screen-xl mx-auto padding-x;
+  }
+  .clickable-opacity {
+    @apply cursor-pointer hover:opacity-90 active:opacity-80 transition-all duration-75 ease-out;
+  }
+  .clickable {
+    @apply clickable-opacity active:scale-95;
+  }
+  .clickable-text {
+    @apply cursor-pointer hover:bg-white hover:bg-textHoverBg active:opacity-80 transition-all duration-75 ease-out;
+  }
+  .form {
+    @apply rounded-md px-3 py-1 border border-foreLighter box-border placeholder:text-foreLight;
+  }
+  .form-sm {
+    @apply text-sm px-2 py-1.5;
+  }
+  .btn {
+    @apply clickable text-xs select-none px-[1.15em] py-[0.75em] rounded-md font-bold flex items-center justify-center bg-fore text-white border border-fore;
+  }
+  .btn-text {
+    @apply clickable-text px-[1.15em] py-[0.75em] bg-transparent border-transparent text-fore;
+  }
+  .btn-disabled {
+    @apply opacity-50 hover:opacity-50 pointer-events-none;
+  }
+  .btn-large {
+    @apply text-sm px-[0.8em] py-3;
+  }
+  .btn-white {
+    @apply bg-card border border-[#c3c3c3] text-fore;
+  }
+  .btn-gray {
+    @apply bg-backLightest text-foreLight border-backLightest;
+  }
+  .btn-danger {
+    @apply bg-backDanger text-foreDanger border-none;
+  }
+}
+
+/**
+* Default
+*/
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+textarea {
+  resize: none;
+}
+
+input,
+textarea {
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* No scroll bar */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/**
+* For Markdown
+*/
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply font-bold mb-[0.5em] mt-[0.2em];
+}
+
+.markdown h1 {
+  @apply text-3xl;
+}
+
+.markdown h2 {
+  @apply text-2xl;
+}
+
+.markdown h3 {
+  @apply text-xl;
+}
+
+.markdown h4 {
+  @apply text-lg;
+}
+
+.markdown h5 {
+  @apply text-base;
+}
+
+.markdown ul {
+  @apply list-disc pl-5 mb-3;
+}
+
+.markdown ol {
+  @apply list-decimal pl-5 mb-3;
+}
+
+.markdown li {
+  @apply mb-1;
+}
+
+.markdown blockquote {
+  @apply border-l-4 border-foreLight pl-3 my-3;
+}
+
+.markdown a {
+  @apply underline text-link font-bold clickable;
+}
+
+.markdown p {
+  @apply mb-3;
+}
+
+.markdown blockquote {
+  @apply border-l-4 border-borderLight pl-3 my-3 text-lg text-foreSecondary italic;
+}
+
+/* .markdown .line-through {
+  text-decoration: line-through;
+  text-decoration-color: 
+} */
