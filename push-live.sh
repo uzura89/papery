@@ -10,5 +10,6 @@ fi
 
 git add .
 git commit -m "$1"
+git push origin master
 git push live master
-ssh -t root@167.99.198.58 'bash -i -c "cd /var/www/papery.me && npm install && npm run build && pm2 start ecosystem.config.js"'
+ssh -t root@papery.me 'bash -i -c "cd /var/www/papery.me && npm install && npm run build && pm2 start ecosystem.config.js"'
