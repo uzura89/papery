@@ -4,4 +4,5 @@ module.exports = function (mongoose: any) {
   require("./tag.model")(mongoose);
   require("./template.model")(mongoose);
   require("./report.model")(mongoose);
+  require("./onetimecode.model")(mongoose);
 };

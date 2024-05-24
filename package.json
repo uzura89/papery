@@ -17,6 +17,7 @@
     "@fontsource/inter": "^5.0.18",
     "@fontsource/lora": "^5.0.17",
     "@react-oauth/google": "^0.12.1",
+    "@sendgrid/mail": "^8.1.3",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.7",
     "@types/crypto-js": "^4.2.2",

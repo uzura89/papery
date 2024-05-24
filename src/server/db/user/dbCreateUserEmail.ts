@@ -1,29 +1,35 @@
 import { v4 } from "uuid";
 
-import { dbCreateDefaultEntries } from "../entry/dbCreateDefaultEntries";
 import { UserSchemaType } from "../../../common/types";
+import { hashString, makeSalt } from "../../modules/auth/crypto";
+import { dbCreateDefaultEntries } from "../entry/dbCreateDefaultEntries";
 
-export async function dbCreateUser(
+export async function dbCreateUserEmail(
   mongoose: any,
   user: {
     email: string;
-    googleId: string;
+    password: string;
   }
 ) {
   const User = mongoose.model("User");
 
   const userParmId = v4();
 
+  const salt = makeSalt();
+
   const newUser: UserSchemaType = {
     userParmId,
     email: user.email,
-    googleId: user.googleId,
+    googleId: "",
+    password: hashString(user.password, salt),
+    salt,
+    activated: false,
   };
 
   try {
     const user: UserSchemaType = await User.create(newUser);
 
-    // create default entries
+    // add default entries
     await dbCreateDefaultEntries(mongoose, user.userParmId);
 
     return user;

@@ -5,6 +5,7 @@ declare global {
       DB_URI: string;
       GAPI_CLIENT_SECRET: string;
       AES_SECRET: string;
+      SENDGRID_API_KEY: string;
     }
   }
 }

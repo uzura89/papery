@@ -19,6 +19,9 @@ const ENDPOINT_REPORT = `${CONS_ENDPOINT_API}/report`;
 // user
 export const CONS_ENDPOINT_FETCH_USER = `${ENDPOINT_USER}/fetch`;
 export const CONS_ENDPOINT_LOGIN_WITH_GOOGLE = `/login-with-google`;
+export const CONS_ENDPOINT_SIGNUP_WITH_EMAIL = `/signup-with-email`;
+export const CONS_ENDPOINT_VERIFY_EMAIL = `/verify-email`;
+export const CONS_ENDPOINT_LOGIN_WITH_EMAIL = `/login-with-email`;
 
 // entry
 export const CONS_ENDPOINT_CREATE_ENTRY = `${ENDPOINT_ENTRY}/create`;

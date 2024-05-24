@@ -1,14 +1,21 @@
-import { useEffect } from "react";
+import clsx from "clsx";
+import { Fragment, useEffect, useState } from "react";
 
 import useGoogleLoginHook from "../../modules/auth/useGoogleLoginHook";
-import { CONS_QUERY_PARAM_DEMO } from "../../../common/constants";
+import { LoginCard, LoginHeader } from "../wrappers/LoginShell";
+import { FormLabel } from "../atoms/input/FormLabel";
+import useUserStore from "../../store/user/userStore";
 
 export default function LoginPage(props: {}) {
+  const userStore = useUserStore();
   // hooks
   const googleLogin = useGoogleLoginHook();
+  // states
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const onClickDemo = () => {
-    window.location.href = `/?${CONS_QUERY_PARAM_DEMO}=true`;
+  const onClickSignup = () => {
+    userStore.loginWithEmail(email, password);
   };
 
   useEffect(() => {
@@ -18,42 +25,52 @@ export default function LoginPage(props: {}) {
   }, [googleLogin.succeeded]);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-start padding-x overflow-x-hidden">
-      {/* Container */}
-      <div className="max-w-[780px] flex flex-col items-center justify-start h-full">
-        {/* Header Text */}
-        <h1 className="font-serif text-2xl lg:text-4xl font-medium text-center leading-[1.2em] mt-12 lg:mt-24">
-          Login to Papery
-        </h1>
+    <Fragment>
+      {/* Header Text */}
+      <LoginHeader title="Login to Papery" />
 
-        {/* Login Card */}
-        <div className="relative shadow-md bg-[#f4efe3a3] mt-10 max-w-full w-[350px] rounded-[1rem] flex flex-col items-center p-8">
-          {/* Button */}
-          <div className="w-full">
-            <button
-              className="btn btn-large btn-white w-full"
-              onClick={googleLogin.onClickGoogleLogin}
-            >
-              <img src="/img/icons/google.svg" className="w-[16px] mr-2" />
-              Continue with Google
-            </button>
+      {/* Login Card */}
+      <LoginCard>
+        {/* Button */}
+        <div className="w-full">
+          <button
+            className="btn btn-large btn-white w-full"
+            onClick={googleLogin.onClickGoogleLogin}
+          >
+            <img src="/img/icons/google.svg" className="w-[16px] mr-2" />
+            Continue with Google
+          </button>
 
-            {/* Or line */}
-            <div className="flex items-center justify-stretch gap-4 my-3">
-              <span className="h-[1px] bg-border w-full" />
-              <span className="text-[#9d9a94] text-sm">Or</span>
-              <span className="h-[1px] bg-border w-full" />
-            </div>
-
-            <button
-              className="btn btn-large w-full bg-[#e07151] border-[#b7634b]"
-              onClick={onClickDemo}
-            >
-              Try Demo
-            </button>
+          {/* Or line */}
+          <div className="flex items-center justify-stretch gap-4 my-3">
+            <span className="h-[1px] bg-border w-full" />
+            <span className="text-[#9d9a94] text-sm">Or</span>
+            <span className="h-[1px] bg-border w-full" />
           </div>
+
+          {/* Email & Password */}
+          <FormLabel text="Email" />
+          <input
+            className="form"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <FormLabel text="Password" />
+          <input
+            className="form"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button
+            className={clsx("btn", userStore.loading && "btn-disabled")}
+            onClick={onClickSignup}
+          >
+            Login
+          </button>
         </div>
-      </div>
-    </div>
+      </LoginCard>
+    </Fragment>
   );
 }

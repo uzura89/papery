@@ -3,8 +3,9 @@ import { OAuth2Client } from "google-auth-library";
 import { makeAccessToken } from "../../../modules/auth/jwt";
 import { UserSchemaType } from "../../../../common/types";
 import { CONS_GOOGLE_CLIENT_ID } from "../../../../common/constants";
-import { dbCreateUser } from "../../../db/user/dbCreateUser";
+
 import { dbGetUserByEmail } from "../../../db/user/dbGetUserByEmail";
+import { dbCreateUserGoogle } from "../../../db/user/dbCreateUserGoogle";
 
 const oAuth2Client = new OAuth2Client(
   CONS_GOOGLE_CLIENT_ID,
@@ -81,7 +82,7 @@ async function getOrCreateUser(
       userParmId = user.userParmId;
     } else {
       // create user and return accessToken
-      const user = await dbCreateUser(mongoose, {
+      const user = await dbCreateUserGoogle(mongoose, {
         email,
         googleId,
       });

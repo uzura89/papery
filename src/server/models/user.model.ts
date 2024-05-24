@@ -7,6 +7,10 @@ module.exports = function (mongoose: any) {
       type: String,
       required: "userParmId is required",
     },
+    googleId: {
+      type: String,
+      default: "",
+    },
     email: {
       type: String,
       match: [/.+@.+\..+/, "Please type a valid email address"],
@@ -15,11 +19,18 @@ module.exports = function (mongoose: any) {
         unique: true,
       },
     },
-    googleId: {
+    password: {
       type: String,
       default: "",
     },
-
+    salt: {
+      type: String,
+      default: "",
+    },
+    activated: {
+      type: Boolean,
+      default: false,
+    },
     created: {
       type: Date,
       default: Date.now,

@@ -15,6 +15,14 @@ export const CONS_GOOGLE_CLIENT_ID =
 export const CONS_GOOGLE_TAG_MANAGER_ID = "G-L7CXXJRV7M";
 
 /**
+ * Company Info
+ */
+
+export const CONS_COMPANY_NAME = "Papery";
+export const CONS_COMPANY_EMAIL = "papery.contact@gmail.com";
+export const CONS_COMPANY_EMAIL_NOREPLY = "noreply@papery.me";
+
+/**
  * For Demo
  */
 export const CONS_QUERY_PARAM_DEMO = "demo";

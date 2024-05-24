@@ -12,9 +12,10 @@ import {
 } from "../common/constants";
 import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
-import LoginShell from "./components/wrappers/LoginShell";
+
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { createRoot } from "react-dom/client";
+import { LoginShell } from "./components/wrappers/LoginShell";
 
 /**
  * Loadable Components

@@ -228,12 +228,18 @@ section {
   }
 }
 
+#hero .login-link {
+  font-size: 0.9rem;
+  color: #5c5954;
+  margin-top: 1rem;
+}
+
 #hero .hero-image {
   position: relative;
 }
 
 #hero .hero-image-screen {
-  margin-top: 3.25rem;
+  margin-top: 2rem;
   max-width: 100%;
   width: 780px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
@@ -266,6 +272,7 @@ section {
 }
 
 /* Use Cases Section */
+
 #examples {
   text-align: center;
 }
