@@ -1,19 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { BrandLogo } from "../atoms/text/Brandlogo";
+import { CONS_PATH_LOGIN, CONS_PATH_SIGNUP } from "../../../common/constants";
 
 export function LoginShell() {
   return (
-    <div
-      className="bg-back h-[100vh] text-fore max-w-full flex flex-col justify-stretch"
-      // style={{
-      //   backgroundImage: "url(/img/paper-texture.svg)",
-      //   backgroundRepeat: "repeat",
-      // }}
-    >
-      <LoginPageHeader />
+    <div className="bg-back h-[100vh] text-fore max-w-full flex flex-col justify-stretch">
       <div className="w-full h-full flex flex-col items-center justify-start padding-x overflow-x-hidden">
         {/* Container */}
-        <div className="max-w-[780px] flex flex-col items-center justify-start h-full">
+        <div className="max-w-[780px] flex flex-col items-center justify-center h-full sm:-translate-y-[5%]">
+          <LoginPageHeader />
           <Outlet />
         </div>
       </div>
@@ -27,11 +22,15 @@ export function LoginShell() {
 
 function LoginPageHeader() {
   return (
-    <div className="w-full flex justify-between h-20 items-center container-narrow">
-      <a href="/" className="clickable-opacity">
-        <BrandLogo size={30} />
+    <div className="mb-12">
+      <a href="/" className="clickable-opacity inline-block">
+        <span className="hidden sm:block">
+          <BrandLogo size={40} />
+        </span>
+        <span className="block sm:hidden">
+          <BrandLogo size={30} />
+        </span>
       </a>
-      <div />
     </div>
   );
 }
@@ -43,11 +42,51 @@ export function LoginHeader(props: { title: string }) {
     </h1>
   );
 }
+export function LoginCardWrapper(props: {
+  children: React.ReactNode;
+  login?: boolean;
+}) {
+  return (
+    <div className="p-4 bg-backDim rounded-[1rem]">
+      {props.children}
+
+      {props.login ? (
+        <div className="text-center text-foreLight text-sm mt-3">
+          Don't have an account?
+          <Link to={CONS_PATH_SIGNUP}>
+            <span className="clickable-opacity font-bold ml-2 text-sm">
+              Sign up
+            </span>
+          </Link>
+        </div>
+      ) : (
+        <div className="text-center text-foreLight text-sm mt-3">
+          Already have an account?
+          <Link to={CONS_PATH_LOGIN}>
+            <span className="clickable-opacity font-bold ml-2 text-sm">
+              Login
+            </span>
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function LoginCard(props: { children: React.ReactNode }) {
   return (
-    <div className="relative shadow-md bg-[#f4efe3a3] mt-10 max-w-full w-[350px] rounded-[1rem] flex flex-col items-center p-8">
+    <div className="relative shadow-md bg-white max-w-full w-[330px] rounded-[1rem] flex flex-col items-center pt-5 pb-8 px-6">
       {props.children}
+    </div>
+  );
+}
+
+export function OrLine() {
+  return (
+    <div className="flex items-center justify-stretch gap-4 my-3">
+      <span className="h-[1px] bg-border w-full" />
+      <span className="text-[#9d9a94] text-sm">Or</span>
+      <span className="h-[1px] bg-border w-full" />
     </div>
   );
 }

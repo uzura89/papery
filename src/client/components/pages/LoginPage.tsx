@@ -1,12 +1,19 @@
 import clsx from "clsx";
-import { Fragment, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import useGoogleLoginHook from "../../modules/auth/useGoogleLoginHook";
-import { LoginCard, LoginHeader } from "../wrappers/LoginShell";
+import {
+  LoginCard,
+  LoginCardWrapper,
+  LoginHeader,
+  OrLine,
+} from "../wrappers/LoginShell";
 import { FormLabel } from "../atoms/input/FormLabel";
 import useUserStore from "../../store/user/userStore";
 
 export default function LoginPage(props: {}) {
+  // stores
   const userStore = useUserStore();
   // hooks
   const googleLogin = useGoogleLoginHook();
@@ -15,6 +22,11 @@ export default function LoginPage(props: {}) {
   const [password, setPassword] = useState("");
 
   const onClickSignup = () => {
+    if (!email || !password) {
+      window.alert("Please fill in the email and password fields.");
+      return;
+    }
+
     userStore.loginWithEmail(email, password);
   };
 
@@ -25,16 +37,18 @@ export default function LoginPage(props: {}) {
   }, [googleLogin.succeeded]);
 
   return (
-    <Fragment>
-      {/* Header Text */}
-      <LoginHeader title="Login to Papery" />
-
-      {/* Login Card */}
+    <LoginCardWrapper login>
       <LoginCard>
-        {/* Button */}
         <div className="w-full">
+          <div className="text-center font-bold font-serif mb-6">
+            Welcome back!
+          </div>
+
           <button
-            className="btn btn-large btn-white w-full"
+            className={clsx(
+              "btn btn-large btn-white w-full",
+              userStore.loading && "btn-disabled"
+            )}
             onClick={googleLogin.onClickGoogleLogin}
           >
             <img src="/img/icons/google.svg" className="w-[16px] mr-2" />
@@ -42,35 +56,36 @@ export default function LoginPage(props: {}) {
           </button>
 
           {/* Or line */}
-          <div className="flex items-center justify-stretch gap-4 my-3">
-            <span className="h-[1px] bg-border w-full" />
-            <span className="text-[#9d9a94] text-sm">Or</span>
-            <span className="h-[1px] bg-border w-full" />
-          </div>
+          <OrLine />
 
           {/* Email & Password */}
           <FormLabel text="Email" />
           <input
-            className="form"
+            className="form w-full mb-2"
+            placeholder="example@mail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <FormLabel text="Password" />
           <input
-            className="form"
+            className="form w-full mb-5"
             type="password"
+            placeholder="********"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <button
-            className={clsx("btn", userStore.loading && "btn-disabled")}
+            className={clsx(
+              "btn w-full btn-large",
+              userStore.loading && "btn-disabled"
+            )}
             onClick={onClickSignup}
           >
             Login
           </button>
         </div>
       </LoginCard>
-    </Fragment>
+    </LoginCardWrapper>
   );
 }

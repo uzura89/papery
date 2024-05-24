@@ -63,13 +63,13 @@
     @apply cursor-pointer hover:bg-white hover:bg-textHoverBg active:opacity-80 transition-all duration-75 ease-out;
   }
   .form {
-    @apply rounded-md px-3 py-1 border border-foreLighter box-border placeholder:text-foreLight;
+    @apply rounded-md px-3 py-1.5 border border-foreLighter box-border placeholder:text-foreLight;
   }
   .form-sm {
     @apply text-sm px-2 py-1.5;
   }
   .btn {
-    @apply clickable text-xs select-none px-[1.15em] py-[0.75em] rounded-md font-bold flex items-center justify-center bg-fore text-white border border-fore;
+    @apply clickable text-xs select-none px-[1.15em] h-[2.4rem] rounded-md font-semibold flex items-center justify-center bg-fore text-white border border-fore;
   }
   .btn-text {
     @apply clickable-text px-[1.15em] py-[0.75em] bg-transparent border-transparent text-fore;

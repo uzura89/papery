@@ -1,9 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
 import clsx from "clsx";
+import { Fragment, useEffect, useState } from "react";
 
 import useGoogleLoginHook from "../../modules/auth/useGoogleLoginHook";
 import { FormLabel } from "../atoms/input/FormLabel";
-import { LoginCard, LoginHeader } from "../wrappers/LoginShell";
+import { LoginCard, LoginCardWrapper, OrLine } from "../wrappers/LoginShell";
 import {
   errorCheckEmail,
   errorCheckPassword,
@@ -65,80 +65,92 @@ export default function SignupPage(props: {}) {
   function renderContent() {
     if (!verificationMailSent) {
       return (
-        <div className="w-full">
-          <button
-            className={clsx(
-              "btn btn-large btn-white w-full",
-              userStore.loading && "btn-disabled"
-            )}
-            onClick={googleLogin.onClickGoogleLogin}
-          >
-            <img src="/img/icons/google.svg" className="w-[16px] mr-2" />
-            Continue with Google
-          </button>
+        <LoginCardWrapper>
+          <LoginCard>
+            <div className="w-full">
+              <div className="text-center font-bold font-serif mb-6">
+                Create an account.
+              </div>
 
-          {/* Or line */}
-          <div className="flex items-center justify-stretch gap-4 my-3">
-            <span className="h-[1px] bg-border w-full" />
-            <span className="text-[#9d9a94] text-sm">Or</span>
-            <span className="h-[1px] bg-border w-full" />
-          </div>
+              <button
+                className={clsx(
+                  "btn btn-large btn-white w-full",
+                  userStore.loading && "btn-disabled"
+                )}
+                onClick={googleLogin.onClickGoogleLogin}
+              >
+                <img src="/img/icons/google.svg" className="w-[16px] mr-2" />
+                Continue with Google
+              </button>
 
-          {/* Email & Password */}
-          <FormLabel text="Email" />
-          <input
-            className="form"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <FormLabel text="Password" />
-          <input
-            className="form"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+              {/* Or line */}
+              <OrLine />
 
-          <button
-            className={clsx("btn", userStore.loading && "btn-disabled")}
-            onClick={onClickSignup}
-          >
-            Sign Up
-          </button>
-        </div>
+              {/* Email & Password */}
+              <FormLabel text="Email" />
+              <input
+                className="form w-full mb-2"
+                placeholder="example@mail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <FormLabel text="Password" />
+              <input
+                className="form w-full mb-5"
+                type="password"
+                placeholder="********"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+
+              <button
+                className={clsx(
+                  "btn w-full btn-large",
+                  userStore.loading && "btn-disabled"
+                )}
+                onClick={onClickSignup}
+              >
+                Sign Up
+              </button>
+            </div>
+          </LoginCard>
+        </LoginCardWrapper>
       );
     }
 
     return (
-      <div className="w-full">
-        <p>
-          A verification mail has been sent to your email. Please enter the
-          verification code below.
-        </p>
-        <FormLabel text="Verification Code" />
-        <input
-          className="form"
-          value={verificationCode}
-          onChange={(e) => setVerificationCode(e.target.value)}
-        />
+      <div className="fadein-up">
+        <LoginCard>
+          <div className="w-full">
+            <div className="text-center font-bold font-serif mb-4">
+              Verify your email.
+            </div>
+            <p className="text-sm mb-4">
+              A verification code has been sent to your email address. Please
+              enter the code below.
+            </p>
+            <FormLabel text="Verification Code" />
+            <input
+              className="form w-full"
+              placeholder="6-digit code"
+              value={verificationCode}
+              onChange={(e) => setVerificationCode(e.target.value)}
+            />
 
-        <button
-          className={clsx("btn", userStore.loading && "btn-disabled")}
-          onClick={onClickVerify}
-        >
-          Verify
-        </button>
+            <button
+              className={clsx(
+                "btn btn-large mt-4 w-full",
+                userStore.loading && "btn-disabled"
+              )}
+              onClick={onClickVerify}
+            >
+              Verify
+            </button>
+          </div>
+        </LoginCard>
       </div>
     );
   }
 
-  return (
-    <Fragment>
-      {/* Header Text */}
-      <LoginHeader title="Create an Account" />
-
-      {/* Login Card */}
-      <LoginCard>{renderContent()}</LoginCard>
-    </Fragment>
-  );
+  return <Fragment>{renderContent()}</Fragment>;
 }
