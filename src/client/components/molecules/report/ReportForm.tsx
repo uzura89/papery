@@ -91,13 +91,21 @@ export default function ReportForm(props: {
           />
         </div>
 
-        {/* Filter By Tags */}
+        {/* Report Type */}
         <div>
-          <FormLabel text="Filter By Tags" />
-          <FormMultiSelectTag
-            tagIds={reportForm.filterByTagIds}
-            onChange={onChangeFilterByTags}
-          />
+          <FormLabel text="Report Type" />
+          <div className="w-[140px]">
+            <FormSelection
+              maxHeight={200}
+              onSelect={onSelectReportType}
+              selectedId={reportForm.reportType}
+              selection={{
+                ids: Object.keys(CONS_REPORT_TYPE_MAP),
+                texts: Object.values(CONS_REPORT_TYPE_MAP),
+                icons: [<LuBarChart3 />, <LuCloud />],
+              }}
+            />
+          </div>
         </div>
 
         {/* Count By */}
@@ -116,22 +124,7 @@ export default function ReportForm(props: {
             />
           </div>
         </div>
-        {/* Report Type */}
-        <div>
-          <FormLabel text="Report Type" />
-          <div className="w-[140px]">
-            <FormSelection
-              maxHeight={200}
-              onSelect={onSelectReportType}
-              selectedId={reportForm.reportType}
-              selection={{
-                ids: Object.keys(CONS_REPORT_TYPE_MAP),
-                texts: Object.values(CONS_REPORT_TYPE_MAP),
-                icons: [<LuBarChart3 />, <LuCloud />],
-              }}
-            />
-          </div>
-        </div>
+
         {/* Duration */}
         <div>
           <FormLabel text="Duration" />
@@ -146,6 +139,15 @@ export default function ReportForm(props: {
               }}
             />
           </div>
+        </div>
+
+        {/* Filter By Tags */}
+        <div>
+          <FormLabel text="Filter By Tags" />
+          <FormMultiSelectTag
+            tagIds={reportForm.filterByTagIds}
+            onChange={onChangeFilterByTags}
+          />
         </div>
       </div>
 
