@@ -15,4 +15,4 @@ Papery is a personal journal app that allows you to write and organize your thou
 
 Papery is licensed under the Proprietary License. You are granted a non-exclusive, non-transferable, revocable license to use the source code strictly for personal, non-commercial purposes. Commercial use and redistribution of the source code are prohibited without explicit written permission.
 
-For more details, refer to the [LICENSE](./LICENSE) file.
+For more details, refer to the [LICENSE](./LICENSE.md) file.
