@@ -1,8 +1,12 @@
 import { useRef, useState } from "react";
-import { getTagColor } from "../../../../common/constants/tag.cons";
+
 import useTagStore from "../../../store/tag/tagStore";
 import { TagItem } from "../../atoms/tag/TagItem";
 import { useClickOutsideEffect } from "../../../modules/ui/useOutsideClick";
+import {
+  InputDropdownItem,
+  InputDropdownWindow,
+} from "../../atoms/input/InputDropdown";
 
 export default function FormMultiSelectTag(props: {
   tagIds: string[];
@@ -52,14 +56,10 @@ export default function FormMultiSelectTag(props: {
 
       {/* Tag Select dropdown */}
       {isDropdownOpen && (
-        <div className="absolute top-11 left-0 z-10 bg-card shadow-md w-full rounded-md py-2 max-h-[160px] overflow-y-scroll border border-borderLight">
+        <InputDropdownWindow top="45px">
           {allTags.map((tag) => {
             return (
-              <div
-                key={tag.id}
-                className="py-1 px-3 flex items-center gap-2 clickable-opacity hover:bg-textHoverBg"
-                onClick={() => onClickTag(tag.id)}
-              >
+              <InputDropdownItem id={tag.id} key={tag.id} onClick={onClickTag}>
                 <input
                   className="pointer-events-none"
                   type="checkbox"
@@ -67,10 +67,10 @@ export default function FormMultiSelectTag(props: {
                   onChange={() => {}}
                 />
                 <TagItem text={tag.text} color={tag.color} noBgColor />
-              </div>
+              </InputDropdownItem>
             );
           })}
-        </div>
+        </InputDropdownWindow>
       )}
     </div>
   );

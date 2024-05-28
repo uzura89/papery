@@ -80,6 +80,9 @@
   .btn-large {
     @apply text-sm px-[0.8em] py-3;
   }
+  .btn-small {
+    @apply text-xs px-[6px] h-[25px];
+  }
   .btn-white {
     @apply bg-card border border-[#c3c3c3] text-fore;
   }

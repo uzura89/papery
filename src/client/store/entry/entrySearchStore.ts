@@ -30,7 +30,7 @@ const useEntrySearchStore = create<{
     const searchText = get().searchText;
 
     // if the date is already in the search text, remove it
-    if (searchText.includes(date)) {
+    if (searchText.split(" ").some((word) => word === date)) {
       const searchTextWithoutDate = searchText.replace(date, "").trim();
       set({ searchText: searchTextWithoutDate });
       return;
