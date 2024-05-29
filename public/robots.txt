@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://papery.me
+
+# Sitemaps
+Sitemap: https://papery.me/sitemap.xml

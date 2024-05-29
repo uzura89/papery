@@ -3,10 +3,12 @@
   <head>
     <%- include('../partials/head') %>
 
-    <title>Papery: An Online Journal/Diary App</title>
+    <link rel="canonical" href="https://papery.me" />
+
+    <title>Papery: Online Journal App with Habit Tracker</title>
     <meta
       name="description"
-      content="Papery is an online journal/diary app that allows you to write down your thoughts, feelings, and experiences. It also has a habit tracker, mood tracker, and more. "
+      content="Papery is a customizable online journal and diary app designed for personal growth and peace of mind, featuring a habit tracker, mood tracker, and daily todos."
     />
 
     <link rel="stylesheet" href="/styles/landing.css" />
@@ -34,8 +36,16 @@
         </div>
 
         <div class="hero-image">
-          <img src="/img/landing/screenshot.webp" class="hero-image-screen" />
-          <img class="hero-image-hand" src="/img/hand-and-pen.webp" />
+          <img
+            src="/img/landing/screenshot.webp"
+            class="hero-image-screen"
+            alt="screenshot of papery"
+          />
+          <img
+            class="hero-image-hand"
+            src="/img/hand-and-pen.webp"
+            alt="hand with pen"
+          />
         </div>
       </div>
     </section>
@@ -87,18 +97,22 @@
             <img
               class="example-image example-diary active"
               src="/img/landing/examples/diary.webp"
+              alt="screenshot of diary example"
             />
             <img
               class="example-image example-habit"
               src="/img/landing/examples/habit.webp"
+              alt="screenshot of habit example"
             />
             <img
               class="example-image example-mood"
               src="/img/landing/examples/mood.webp"
+              alt="screenshot of mood example"
             />
             <img
               class="example-image example-goal"
               src="/img/landing/examples/goal.webp"
+              alt="screenshot of goal example"
             />
           </div>
         </div>
@@ -163,6 +177,7 @@
           <div class="mission-item">
             <img
               src="https://unpkg.com/lucide-static@latest/icons/file-down.svg"
+              alt="download entries icon"
             />
             <h3>Download Entries</h3>
             <p>
@@ -171,7 +186,10 @@
             </p>
           </div>
           <div class="mission-item">
-            <img src="https://unpkg.com/lucide-static@latest/icons/lock.svg" />
+            <img
+              src="https://unpkg.com/lucide-static@latest/icons/lock.svg"
+              alt="privacy icon"
+            />
             <h3>Privacy</h3>
             <p>
               We use AES-256 encryption to protect your data, meaning we only
@@ -181,6 +199,7 @@
           <div class="mission-item">
             <img
               src="https://unpkg.com/lucide-static@latest/icons/code-xml.svg"
+              alt="open source icon"
             />
             <h3>Open Source</h3>
             <p>
