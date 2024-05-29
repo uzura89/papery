@@ -29,6 +29,10 @@ module.exports = function (app: any) {
     return res.render("pages/login");
   }
 
+  function renderSignup(req: any, res: any) {
+    return res.render("pages/signup");
+  }
+
   function renderPrivacy(req: any, res: any) {
     return res.render("pages/privacy");
   }
@@ -50,7 +54,7 @@ module.exports = function (app: any) {
   app.get(CONS_PATH_REPORT, renderApp);
   // login routes
   app.get(CONS_PATH_LOGIN, renderLogin);
-  app.get(CONS_PATH_SIGNUP, renderLogin);
+  app.get(CONS_PATH_SIGNUP, renderSignup);
   // privacy
   app.get(CONS_PATH_PRIVACY, renderPrivacy);
   app.get(CONS_PATH_TERMS, renderTerms);
