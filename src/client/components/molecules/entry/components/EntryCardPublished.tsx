@@ -74,18 +74,20 @@ export function EntryCardPublished(props: {
 
   return (
     <div>
-      {props.withDate ? (
+      {props.withDate && (
         <div className="flex items-center h-[2em] mb-2">
           {props.pinned && <span className="mr-1.5">📍</span>}
           <span className="text-foreLighter text-xs mr-1">
             Date: <span className="text-foreLight">{props.date}</span>
           </span>
         </div>
-      ) : (
-        <div className="h-3" />
       )}
 
-      <EntryCardContent divRef={divRef} body={props.body} />
+      <EntryCardContent
+        divRef={divRef}
+        body={props.body}
+        withDate={props.withDate}
+      />
     </div>
   );
 }

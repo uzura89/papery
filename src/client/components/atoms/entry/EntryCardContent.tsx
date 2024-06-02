@@ -15,6 +15,7 @@ const md: any = markdownit({
 export default function EntryCardContent(props: {
   divRef: React.RefObject<HTMLDivElement>;
   body: string;
+  withDate?: boolean;
 }) {
   const tagStore = useTagStore();
 
@@ -26,6 +27,7 @@ export default function EntryCardContent(props: {
 
   return (
     <div className="" ref={props.divRef}>
+      {props.withDate !== true && <div className="h-3" />}
       <div
         className="markdown"
         dangerouslySetInnerHTML={{ __html: renderMarkdown(props.body) }}
