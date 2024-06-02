@@ -14,6 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { BrandLogo } from "../atoms/text/Brandlogo";
 import {
+  CONS_COMPANY_EMAIL,
   CONS_PATH_HOME,
   CONS_PATH_LOGIN,
   CONS_PATH_REFLECT,
@@ -43,9 +44,9 @@ export function Header() {
     navigate(`${path}${query}`);
   }
 
-  function onClickFeedback() {
+  function onClickContact() {
     // open in new tab
-    window.open(`https://papery.canny.io/feature-requests`, "_blank");
+    window.alert(`Please contact us at ${CONS_COMPANY_EMAIL}.`);
   }
 
   return (
@@ -67,9 +68,9 @@ export function Header() {
         <OptionButton
           options={[
             {
-              text: "Forum",
+              text: "Contact",
               icon: <LuMessagesSquare />,
-              onClick: onClickFeedback,
+              onClick: onClickContact,
             },
             { text: "Logout", icon: <LuLogOut />, onClick: onClickLogout },
           ]}
@@ -114,7 +115,7 @@ export function Header() {
             {
               text: "Forum",
               icon: <LuMessagesSquare />,
-              onClick: onClickFeedback,
+              onClick: onClickContact,
             },
             { text: "Logout", icon: <LuLogOut />, onClick: onClickLogout },
           ]}

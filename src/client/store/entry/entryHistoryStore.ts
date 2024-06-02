@@ -74,22 +74,20 @@ function makeCalendarDates(year: string, today: Date) {
 
   for (let month = 0; month < 12; month++) {
     // check if this month includes today
-    const isToday =
-      month === today.getMonth() && year === today.getFullYear().toString();
+    // const isToday =
+    //   month === today.getMonth() && year === today.getFullYear().toString();
 
     // calc start day of month and date count
     const startDayOfMonth = new Date(parseInt(year, 10), month, 1).getDay();
-    const dateCnt = isToday
-      ? today.getDate()
-      : new Date(parseInt(year, 10), month + 1, 0).getDate();
+    const dateCnt = new Date(parseInt(year, 10), month + 1, 0).getDate();
 
     // save
     calendarDates.push({ month, startDayOfMonth, dateCnt });
 
     // if this month includes today, cut off here
-    if (isToday) {
-      break;
-    }
+    // if (isToday) {
+    //   break;
+    // }
   }
   return calendarDates;
 }

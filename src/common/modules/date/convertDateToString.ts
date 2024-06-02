@@ -6,6 +6,6 @@ export function convertDateToString(date: Date): string {
   return `${year}-${addZero(month)}-${addZero(day)}`;
 }
 
-function addZero(num: number) {
+export function addZero(num: number) {
   return num < 10 ? "0" + num : num;
 }

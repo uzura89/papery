@@ -11,7 +11,9 @@ export function EntryHistorySection(props: { onSelectDate?: () => void }) {
   const entryHistoryStore = useEntryHistoryStore();
   const entryStore = useEntryStore();
   const entrySearchStore = useEntrySearchStore();
-  // states
+  // refs
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const scrollToRef = useRef<HTMLDivElement>(null);
 
   const changeYear = (year: string) => {
     entryHistoryStore.setYearAndFetchEntryHistories(year);
@@ -35,11 +37,31 @@ export function EntryHistorySection(props: { onSelectDate?: () => void }) {
     entryStore.fetchEntriesBySearchText();
   };
 
-  useEffect(() => {
-    const currentYear = new Date().getFullYear().toString();
+  const scrollToCurrentMonth = () => {
+    if (scrollToRef.current) {
+      scrollerRef.current?.scrollTo({
+        top: scrollToRef.current.offsetTop - 150,
+      });
+    } else {
+      scrollerRef.current?.scrollTo({
+        top: 0,
+      });
+    }
+  };
 
+  useEffect(() => {
+    // fetch entry histories of current year
+    const currentYear = new Date().getFullYear().toString();
     entryHistoryStore.setYearAndFetchEntryHistories(currentYear);
+    // scroll to current month
+    setTimeout(() => {
+      scrollToCurrentMonth();
+    }, 100);
   }, [null]);
+
+  useEffect(() => {
+    scrollToCurrentMonth();
+  }, [entryHistoryStore.year]);
 
   return (
     <div className="flex flex-col justify-stretch h-full">
@@ -47,7 +69,7 @@ export function EntryHistorySection(props: { onSelectDate?: () => void }) {
         <YearController year={entryHistoryStore.year} changeYear={changeYear} />
       </div>
 
-      <div className="overflow-y-scroll no-scrollbar">
+      <div className="overflow-y-scroll no-scrollbar" ref={scrollerRef}>
         <HistoryCalendar
           loading={entryHistoryStore.loading}
           year={entryHistoryStore.year}
@@ -56,6 +78,7 @@ export function EntryHistorySection(props: { onSelectDate?: () => void }) {
           onClickDate={onClickDate}
           onClickMonth={onClickMonth}
           searchText={entrySearchStore.searchText}
+          scrollToRef={scrollToRef}
         />
       </div>
     </div>

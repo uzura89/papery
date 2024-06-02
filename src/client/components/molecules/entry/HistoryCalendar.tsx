@@ -5,6 +5,10 @@ import {
   CalendarDateType,
   EntryHistoryType,
 } from "../../../../common/types/entryHistory.types";
+import {
+  addZero,
+  convertDateToString,
+} from "../../../../common/modules/date/convertDateToString";
 
 export function HistoryCalendar(props: {
   loading: boolean;
@@ -12,9 +16,12 @@ export function HistoryCalendar(props: {
   calendarDates: CalendarDateType[];
   entryHistories: EntryHistoryType[];
   searchText: string;
+  scrollToRef: React.RefObject<HTMLDivElement>;
   onClickDate: (date: string) => void;
   onClickMonth: (month: number) => void;
 }) {
+  const today = convertDateToString(new Date());
+
   return (
     <div className="flex flex-col-reverse">
       {props.calendarDates.map((month) => {
@@ -30,9 +37,12 @@ export function HistoryCalendar(props: {
         return (
           <DatesInMonth
             key={month.month}
+            year={props.year}
             month={month}
             entryHistoriesOfMonth={entryHistoriesOfMonth}
             searchText={props.searchText}
+            today={today}
+            scrollToRef={props.scrollToRef}
             onClickDate={props.onClickDate}
             onClickMonth={props.onClickMonth}
           />
@@ -43,9 +53,12 @@ export function HistoryCalendar(props: {
 }
 
 function DatesInMonth(props: {
+  year: string;
   month: CalendarDateType;
   entryHistoriesOfMonth: EntryHistoryType[];
   searchText: string;
+  today: string;
+  scrollToRef: React.RefObject<HTMLDivElement>;
   onClickDate: (date: string) => void;
   onClickMonth: (month: number) => void;
 }) {
@@ -58,11 +71,16 @@ function DatesInMonth(props: {
   const blankDays = props.month.startDayOfMonth;
   const actualDays = props.month.dateCnt;
 
+  const isCurrentMonth =
+    new Date().getMonth() === props.month.month &&
+    new Date().getFullYear() === parseInt(props.year);
+
   return (
     <div className="pb-3">
       <div
         className="font-black font-serif  mb-3 text-sm clickable inline-block select-none"
         onClick={onClickMonth}
+        ref={isCurrentMonth ? props.scrollToRef : null}
       >
         {convertMonthToString(props.month.month)}
       </div>
@@ -82,21 +100,35 @@ function DatesInMonth(props: {
             }
           );
 
+          const date = `${props.year}-${addZero(
+            props.month.month + 1
+          )}-${addZero(index + 1)}`;
+
+          const isToday = date === props.today;
+
           return (
             <div key={index}>
               <DateItemWrapper key={index + blankDays}>
                 <DateItem
+                  date={date}
                   entryHistory={entryHistory}
                   onClickDate={props.onClickDate}
-                  isSelected={
-                    entryHistory
-                      ? props.searchText.includes(entryHistory.date)
-                      : false
-                  }
+                  isSelected={props.searchText.includes(date)}
                 />
               </DateItemWrapper>
-              <div className="text-[10px] text-fore opacity-50 w-full text-center">
-                {index + 1}
+              <div
+                className={clsx(
+                  "text-foreLight w-full text-center h-[10px] text-[10px] mb-0.5"
+                )}
+              >
+                <span
+                  className={clsx(
+                    "rounded-full px-1.5",
+                    isToday ? "bg-[#e35b35df] font-bold text-white" : ""
+                  )}
+                >
+                  {index + 1}
+                </span>
               </div>
             </div>
           );
@@ -108,37 +140,48 @@ function DatesInMonth(props: {
 
 function DateItemWrapper(props: { children: React.ReactNode }) {
   return (
-    <div className="h-9 md:h-7 rounded-sm overflow-hidden relative">
+    <div className={clsx("h-9 md:h-7 rounded-sm overflow-hidden relative")}>
       {props.children}
     </div>
   );
 }
 
 function DateItem(props: {
+  date: string;
   entryHistory: EntryHistoryType | undefined;
   isSelected: boolean;
   onClickDate: (date: string) => void;
 }) {
-  if (props.entryHistory === undefined) {
-    return <div className="h-full bg-backDark"></div>;
-  }
-
   const onClickDate = () => {
-    if (!props.entryHistory) return;
-    props.onClickDate(props.entryHistory.date);
+    props.onClickDate(props.date);
   };
 
-  const emojis = props.entryHistory.primaryEmojis.filter((e) => e !== "");
+  const renderDateItemContent = () => {
+    if (props.entryHistory === undefined) {
+      return <div className="h-full bg-backDark"></div>;
+    }
+
+    const emojis = props.entryHistory.primaryEmojis.filter((e) => e !== "");
+    return (
+      <div
+        className={clsx(
+          "h-full flex items-center justify-center select-none bg-card"
+        )}
+      >
+        <EmojiItems emojis={emojis} />
+      </div>
+    );
+  };
 
   return (
     <div
       className={clsx(
-        "h-full flex items-center justify-center clickable select-none border bg-card",
+        "h-full clickable border w-full rounded-[4px] overflow-hidden",
         props.isSelected ? "border-foreSecondary" : "border-transparent"
       )}
       onClick={onClickDate}
     >
-      <EmojiItems emojis={emojis} />
+      {renderDateItemContent()}
     </div>
   );
 }

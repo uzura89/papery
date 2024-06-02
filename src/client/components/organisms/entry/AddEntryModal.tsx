@@ -1,4 +1,6 @@
-import { LuCog, LuLayoutTemplate } from "react-icons/lu";
+import { LuLayoutTemplate } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
+
 import { extractTagsFromBody } from "../../../../common/modules/tag/extractTagsFromBody";
 import EventTracker from "../../../modules/analytics/EventTracker";
 import useEntrySearchStore from "../../../store/entry/entrySearchStore";
@@ -8,8 +10,8 @@ import TemplateItem from "../../atoms/template/TemplateItem";
 import Modal from "../../molecules/modal/Modal";
 import { ModalFooter } from "../../molecules/modal/ModalFooter";
 import { ModalHeader } from "../../molecules/modal/ModalHeader";
-import { useNavigate } from "react-router-dom";
 import { CONS_PATH_TEMPLATES } from "../../../../common/constants";
+import { extractDateFromText } from "../../../../common/modules/date/extractDateFromText";
 
 export default function AddEntryModal(props: {
   visible: boolean;
@@ -39,35 +41,39 @@ export default function AddEntryModal(props: {
     }, 500);
   };
 
+  const createEntries = (bodies: string[]) => {
+    // get date from the search text
+    const date = extractDateFromText(entrySearchStore.searchText);
+
+    // create entries
+    bodies.forEach((body) => {
+      entryStore.createEntry(body, date || "");
+    });
+
+    // closing
+    EventTracker.createEntry();
+    props.closeModal();
+  };
+
   const onClickBlankEntry = () => {
     // create a new entry with tags from the search text
     const tags = extractTagsFromBody(entrySearchStore.searchText);
     const tagsText =
       tags.length > 0 ? tags.map((t) => `#${t}`).join(" ") + " " : "";
-    entryStore.createEntry(tagsText, "");
+
+    // create entries
+    createEntries([tagsText]);
 
     focusOnEntry();
-
-    EventTracker.createEntry();
-
-    // close the modal
-    props.closeModal();
   };
 
   const onClickTemplate = (templateId: string) => {
     const template = templateStore.getTemplateById(templateId);
     if (!template) return;
 
-    // create entries from template
-    template.bodies.forEach((body) => {
-      entryStore.createEntry(body, "");
-    });
+    createEntries(template.bodies);
 
-    EventTracker.createEntry();
     EventTracker.useTemplate();
-
-    // close the modal
-    props.closeModal();
   };
 
   return (
@@ -75,7 +81,7 @@ export default function AddEntryModal(props: {
       visible={props.visible}
       width="450px"
       closeModal={props.closeModal}
-      alignTop={false}
+      alignTop={true}
     >
       <ModalHeader title="Add Entry" />
       <div className="py-4 grid grid-cols-1 md:grid-cols-2 gap-2 padding-x-sm">
