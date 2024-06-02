@@ -31,7 +31,7 @@ export async function dbFetchRecentEntries(
       ...options,
     }).sort({ date: -1 });
 
-    // fetch published entries 100 max
+    // fetch published entries 50 max
     const publishedEntries = await Entry.find({
       userParmId,
       draft: false,
@@ -39,7 +39,7 @@ export async function dbFetchRecentEntries(
       ...options,
     })
       .sort({ date: -1, created: -1 })
-      .limit(100);
+      .limit(50);
 
     const entriesDecrypted = [
       ...draftEntries,
