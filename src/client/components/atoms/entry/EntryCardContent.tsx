@@ -74,8 +74,8 @@ function addCheckBoxes(body: string) {
   // for each line, add checkbox
   bodyWithCheckBoxes = bodyWithCheckBoxes
     .split("\n")
-    .map((line) => {
-      const lineWithCheckBox = addCheckBoxToLine(line);
+    .map((line, index) => {
+      const lineWithCheckBox = addCheckBoxToLine(line, index);
       return lineWithCheckBox;
     })
     .join("\n");
@@ -83,9 +83,9 @@ function addCheckBoxes(body: string) {
   return bodyWithCheckBoxes;
 }
 
-function addCheckBoxToLine(line: string) {
+function addCheckBoxToLine(line: string, lineIndex: number) {
   // if line is empty, return empty string
-  if (line.trim() === "") return "";
+  if (line === "") return "";
 
   const checkedRegex = /\[[x|-]\]/g;
   const uncheckedRegex = /\[\s?\]/g;
@@ -94,16 +94,16 @@ function addCheckBoxToLine(line: string) {
     return `<div class="line-through decoration-[#b5b2ad91] text-[#949289]">
         ${line.replace(
           checkedRegex,
-          `<input type="checkbox" checked class="mr-0.5 h-4 w-4 pointer-events-none" />`
+          `<input type="checkbox" checked class="clickable-checkbox clickable mr-0.5 h-4 w-4" data="${lineIndex}" />`
         )}
       </div>`;
   }
 
   if (line.match(uncheckedRegex)) {
-    return `<div>
+    return `<div class="">
         ${line.replace(
           uncheckedRegex,
-          `<input type="checkbox" class="mr-0.5 h-4 w-4 pointer-events-none" />`
+          `<input type="checkbox" class="clickable-checkbox clickable mr-0.5 h-4 w-4" data="${lineIndex}" />`
         )}
       </div>`;
   }

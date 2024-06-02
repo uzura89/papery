@@ -44,10 +44,11 @@ export default function AddEntryModal(props: {
   const createEntries = (bodies: string[]) => {
     // get date from the search text
     const date = extractDateFromText(entrySearchStore.searchText);
+    const dateText = date.length === 10 ? date : "";
 
     // create entries
     bodies.forEach((body) => {
-      entryStore.createEntry(body, date || "");
+      entryStore.createEntry(body, dateText);
     });
 
     // closing
