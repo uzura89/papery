@@ -11,6 +11,7 @@ export function EntryCardPublished(props: {
   pinned: boolean;
   onDraft: () => void;
   onUpdateBody: (newBody: string) => void;
+  withDate?: boolean;
 }) {
   const entryStore = useEntryStore();
   const entrySearchStore = useEntrySearchStore();
@@ -71,7 +72,22 @@ export function EntryCardPublished(props: {
     }, 100);
   }, [props.body]);
 
-  return <EntryCardContent divRef={divRef} body={props.body} />;
+  return (
+    <div>
+      {props.withDate ? (
+        <div className="flex items-center h-[2em] mb-2">
+          {props.pinned && <span className="mr-1.5">📍</span>}
+          <span className="text-foreLighter text-xs mr-1">
+            Date: <span className="text-foreLight">{props.date}</span>
+          </span>
+        </div>
+      ) : (
+        <div className="h-3" />
+      )}
+
+      <EntryCardContent divRef={divRef} body={props.body} />
+    </div>
+  );
 }
 
 /**

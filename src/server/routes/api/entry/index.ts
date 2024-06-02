@@ -10,6 +10,7 @@ import {
   CONS_ENDPOINT_FETCH_ENTRIES_BY_TEXT,
   CONS_ENDPOINT_FETCH_ENTRIES_CSV,
   CONS_ENDPOINT_FETCH_REFLECTIONS,
+  CONS_ENDPOINT_FETCH_ENTRY_BY_ID,
 } from "../../../../common/constants";
 import { serveCreateEntry } from "./serveCreateEntry";
 import { serveDeleteEntry } from "./serveDeleteEntry";
@@ -22,6 +23,7 @@ import { serveUpdateEntry } from "./serveUpdateEntry";
 import { servefetchEntriesByText } from "./serveFetchEntriesByText";
 import { serveFetchEntriesCsv } from "./serveFetchEntriesCsv";
 import { serveFetchReflections } from "./serveFetchReflections";
+import { serveFetchEntryById } from "./serveFetchEntryById";
 
 module.exports = function (app: any) {
   app.post(CONS_ENDPOINT_CREATE_ENTRY, serveCreateEntry);
@@ -35,4 +37,5 @@ module.exports = function (app: any) {
   app.get(CONS_ENDPOINT_FETCH_ENTRIES_BY_TEXT, servefetchEntriesByText);
   app.get(CONS_ENDPOINT_FETCH_ENTRIES_CSV, serveFetchEntriesCsv);
   app.get(CONS_ENDPOINT_FETCH_REFLECTIONS, serveFetchReflections);
+  app.get(CONS_ENDPOINT_FETCH_ENTRY_BY_ID, serveFetchEntryById);
 };

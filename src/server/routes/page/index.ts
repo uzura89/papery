@@ -1,4 +1,5 @@
 import {
+  CONS_PATH_ENTRY,
   CONS_PATH_HOME,
   CONS_PATH_LOGIN,
   CONS_PATH_PRIVACY,
@@ -52,6 +53,7 @@ module.exports = function (app: any) {
   app.get(CONS_PATH_SETTINGS, renderApp);
   app.get(CONS_PATH_REFLECT, renderApp);
   app.get(CONS_PATH_REPORT, renderApp);
+  app.get(CONS_PATH_ENTRY + "/*", renderApp);
   // login routes
   app.get(CONS_PATH_LOGIN, renderLogin);
   app.get(CONS_PATH_SIGNUP, renderSignup);

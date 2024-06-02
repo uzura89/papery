@@ -35,6 +35,7 @@ export const CONS_ENDPOINT_FETCH_ENTRY_HISTORIES = `${ENDPOINT_ENTRY}/fetch-hist
 export const CONS_ENDPOINT_FETCH_ENTRIES_BY_TEXT = `${ENDPOINT_ENTRY}/fetch-by-text`;
 export const CONS_ENDPOINT_FETCH_ENTRIES_CSV = `${ENDPOINT_ENTRY}/fetch-csv`;
 export const CONS_ENDPOINT_FETCH_REFLECTIONS = `${ENDPOINT_ENTRY}/fetch-reflections`;
+export const CONS_ENDPOINT_FETCH_ENTRY_BY_ID = `${ENDPOINT_ENTRY}/fetch-by-id`;
 
 // tag
 export const CONS_ENDPOINT_CREATE_TAG = `${ENDPOINT_TAG}/create`;

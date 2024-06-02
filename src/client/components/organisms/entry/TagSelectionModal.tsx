@@ -34,18 +34,20 @@ export function TagSelectionModal() {
     tagSelectionStore.closeModal();
   }
 
-  function onKeyUp(e: KeyboardEvent) {
-    if (e.key === " " || e.key === "Enter") {
-      closeModal();
-    }
-
+  function updateTagInput() {
     if (!tagSelectionStore.textareaRef) return;
     if (!tagSelectionStore.textareaRef.current) return;
-
     const body = tagSelectionStore.textareaRef.current.value;
     // get tag input
     const _tagInput = getTagInput(tagSelectionStore.cursorPosition, body);
     setTagInput(_tagInput);
+  }
+
+  function onKeyUp(e: KeyboardEvent) {
+    if (e.key === " " || e.key === "Enter") {
+      closeModal();
+    }
+    updateTagInput();
     // close modal if number of # is less than
     if (getNumberOfHash(tagSelectionStore.textareaRef) < numberOfHash.current) {
       closeModal();
@@ -58,6 +60,7 @@ export function TagSelectionModal() {
 
   useEffect(() => {
     if (tagSelectionStore.modalOpen) {
+      updateTagInput();
       window.addEventListener("keyup", onKeyUp);
       numberOfHash.current = getNumberOfHash(tagSelectionStore.textareaRef);
     }
@@ -100,8 +103,6 @@ export function TagSelectionModal() {
 
 function getTagInput(cursorPosition: number, body: string) {
   const bodyAfterCursor = body.slice(cursorPosition, body.length);
-  // const tagInput = bodyAfterCursor.split(" ")[0];
-  // split by space or new line
   const tagInput = bodyAfterCursor.split(/[\s\n]/)[0];
   return tagInput;
 }

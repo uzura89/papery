@@ -8,6 +8,7 @@ export const CONS_PATH_REPORT = "/report";
 export const CONS_PATH_TAGS = "/tags";
 export const CONS_PATH_SETTINGS = "/settings";
 export const CONS_PATH_REFLECT = "/reflection";
+export const CONS_PATH_ENTRY = "/entry";
 
 export const CONS_PATH_PRIVACY = "/privacy";
 export const CONS_PATH_TERMS = "/terms";

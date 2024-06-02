@@ -26,8 +26,6 @@ export default function EntryCardContent(props: {
 
   return (
     <div className="" ref={props.divRef}>
-      <div className="h-3" />
-
       <div
         className="markdown"
         dangerouslySetInnerHTML={{ __html: renderMarkdown(props.body) }}

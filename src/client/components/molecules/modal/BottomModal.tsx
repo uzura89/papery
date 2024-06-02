@@ -24,7 +24,7 @@ export default function BottomModal(props: Props) {
   return (
     <div
       className={clsx(
-        `absolute bottom-0 w-full px-3 duration-150 ease-in-out`,
+        `absolute bottom-0 px-3 duration-150 ease-in-out w-full`,
         props.visible
           ? "pointer-events-auto opacity-100 translate-y-0"
           : "pointer-events-none opacity-0 translate-y-[100%]"

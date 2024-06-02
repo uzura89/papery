@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   LuSave,
   LuCheckCircle,
@@ -29,6 +30,7 @@ export function EntryCardDraft(props: {
   saveToServer: () => void;
 }) {
   const tagSelectionStore = useTagSelectionStore();
+  const scrolledByUserRef = useRef(true);
 
   const onChangeDate = (date: Date) => {
     const YYYY_MM_DD = date.toISOString().split("T")[0];

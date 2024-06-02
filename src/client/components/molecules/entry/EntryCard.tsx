@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import {
+  LuExpand,
   LuFileEdit,
   LuMoreVertical,
   LuPin,
@@ -11,6 +12,8 @@ import Dropdown from "../selection/Dropdown";
 import EntryCardWrapper from "../../atoms/entry/EntryCardWrapper";
 import { EntryCardDraft } from "./components/EntryCardDraft";
 import { EntryCardPublished } from "./components/EntryCardPublished";
+import { useNavigate } from "react-router-dom";
+import { CONS_PATH_ENTRY } from "../../../../common/constants";
 
 export function EntryCard(props: {
   id: string;
@@ -25,7 +28,9 @@ export function EntryCard(props: {
   onTogglePin: (id: string, pinned: boolean) => void;
   saveToServer: (id: string, body: string, date: string) => void;
   isUnsaved: boolean;
+  withDate?: boolean;
 }) {
+  const navigate = useNavigate();
   // refs
   const entryRef = useRef<{ id: string; body: string; date: string }>({
     id: props.id,
@@ -108,6 +113,10 @@ export function EntryCard(props: {
     saveToServer();
   };
 
+  const handleExpand = () => {
+    navigate(`${CONS_PATH_ENTRY}/${props.id}`);
+  };
+
   return (
     <EntryCardWrapper>
       <div className="absolute top-[14px] right-4">
@@ -117,6 +126,7 @@ export function EntryCard(props: {
           onClickDelete={handleDeleteEntry}
           onClickEdit={handleDraftEntry}
           onClickTogglePin={handleTogglePin}
+          onClickExpand={handleExpand}
         />
       </div>
       {props.draft ? (
@@ -140,6 +150,7 @@ export function EntryCard(props: {
           pinned={props.pinned}
           onDraft={handleDraftEntry}
           onUpdateBody={handleUpdateBody}
+          withDate={props.withDate}
         />
       )}
     </EntryCardWrapper>
@@ -156,8 +167,15 @@ function CardOptions(props: {
   onClickDelete: () => void;
   onClickEdit: () => void;
   onClickTogglePin: () => void;
+  onClickExpand: () => void;
 }) {
   const items = [
+    {
+      text: "Expand",
+      onClick: props.onClickExpand,
+      icon: <LuExpand />,
+      isDanger: false,
+    },
     {
       text: props.pinned ? "Unpin" : "Pin to top",
       onClick: props.onClickTogglePin,
