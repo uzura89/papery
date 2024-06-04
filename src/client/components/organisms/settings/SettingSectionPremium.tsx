@@ -7,8 +7,6 @@ import {
 import useUiStore from "../../../store/ui/uiStore";
 import useUserStore from "../../../store/user/userStore";
 import { CONS_PREMIUM_TYPE_LIFETIME } from "../../../../common/constants/setting.cons";
-import { convertDateToDayOfWeek } from "../../../../common/modules/date/convertDateToDayOfWeek";
-import { convertDateToReadableString } from "../../../../common/modules/date/convertDateToReadableString";
 
 export default function SettingSectionPremium() {
   const userStore = useUserStore();
@@ -21,6 +19,8 @@ export default function SettingSectionPremium() {
   function onClickManage() {
     window.open(CONS_URL_CUSTOMER_PORTAL);
   }
+
+  if (userStore.loading) return null;
 
   if (userStore.checkIfPremium()) {
     return (

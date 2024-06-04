@@ -62,7 +62,6 @@ export const CONS_ENDPOINT_CHANGE_ORDER_OF_REPORTS = `${ENDPOINT_REPORT}/change-
 // premium
 export const CONS_ENDPOINT_FETCH_PREMIUM_PLANS = `${ENDPOINT_PREMIUM}/fetch-plans`;
 export const CONS_ENDPOINT_CREATE_CHECKOUT_SESSION = `${ENDPOINT_PREMIUM}/create-checkout-session`;
-export const CONS_ENDPOINT_CANCEL_SUBSCRIPTION = `${ENDPOINT_PREMIUM}/cancel-subscription`;
 
 // webhook
 export const CONS_ENDPOINT_STRIPE_WEBHOOK = `/stripe-webhook`;

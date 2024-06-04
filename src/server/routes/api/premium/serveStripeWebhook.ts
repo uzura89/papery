@@ -16,10 +16,13 @@ export async function serveStripeWebhook(req: any, res: any) {
       case "checkout.session.completed":
         await onCheckoutSessionCompleted(stripeEvent);
       case "customer.subscription.updated":
+        console.log("customer.subscription.updated");
         await onCustomerSubscriptionUpdated(stripeEvent);
       case "customer.subscription.deleted":
+        console.log("customer.subscription.deleted");
         await onCustomerSubscriptionDeleted(stripeEvent);
       case "customer.deleted":
+        console.log("customer.deleted");
         await onCustomerDeleted(stripeEvent);
       default:
         return res.status(200).end();

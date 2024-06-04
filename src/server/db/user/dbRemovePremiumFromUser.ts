@@ -3,6 +3,7 @@ export async function dbRemovePremiumFromUser(
   customerId: string
 ) {
   const User = mongoose.model("User");
+  console.log("deleting subscription from user");
 
   try {
     return User.updateOne(
