@@ -7,6 +7,7 @@ import {
 import useUiStore from "../../../store/ui/uiStore";
 import useUserStore from "../../../store/user/userStore";
 import { CONS_PREMIUM_TYPE_LIFETIME } from "../../../../common/constants/setting.cons";
+import { convertDateToEnglishString } from "../../../../common/modules/date/convertDateToReadableString";
 
 export default function SettingSectionPremium() {
   const userStore = useUserStore();
@@ -28,11 +29,11 @@ export default function SettingSectionPremium() {
         {/* Subscriptoin info */}
         {userStore.data.user.subscriptionCancelAtPeriodEnd ? (
           <div className="">
-            Your subscription will be removed on{" "}
+            Your subscription will end on{" "}
             <span className="font-bold text-forePositive">
-              {new Date(
-                userStore.data.user.subscriptionCurrentPeriodEnd || 0
-              ).toDateString()}
+              {convertDateToEnglishString(
+                new Date(userStore.data.user.subscriptionCurrentPeriodEnd || 0)
+              )}
             </span>
             .
           </div>

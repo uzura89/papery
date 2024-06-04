@@ -7,6 +7,8 @@ export async function dbPurchaseOnetime(
     purchasePlan: string;
   }
 ) {
+  console.log("🚀 ~ email:", email);
+  console.log("🚀 ~ details:", details);
   const User = mongoose.model("User");
 
   try {

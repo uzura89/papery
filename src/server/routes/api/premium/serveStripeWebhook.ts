@@ -40,6 +40,7 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
     stripeEvent
   );
   const priceItem = StripeHandler.getPriceItem(stripeSession);
+  console.log("🚀 ~ onCheckoutSessionCompleted ~ priceItem:", priceItem);
 
   // error handling
   if (!priceItem) {
@@ -51,9 +52,6 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
   ) {
     throw new Error("Customer email not found");
   }
-  if (typeof stripeSession.subscription !== "string") {
-    throw new Error("Subscription not found");
-  }
 
   // process checkout.session.completed event
   if (!priceItem.isRecurring) {
@@ -63,6 +61,10 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
       purchasePlan: priceItem.title,
     });
   } else {
+    if (typeof stripeSession.subscription !== "string") {
+      throw new Error("Subscription not found");
+    }
+
     const subscription = await StripeHandler.retrieveSubscription(
       stripeSession.subscription
     );

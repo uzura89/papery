@@ -8,7 +8,8 @@
     "start": "ts-node index.ts",
     "build": "NODE_ENV=production webpack",
     "dev": "rimraf public/dist/* && open http://localhost:3000 && nodemon ./webpack-dev-server.ts",
-    "demo": "ts-node ./scripts/upsertDemoUser.ts"
+    "demo": "ts-node ./scripts/upsertDemoUser.ts",
+    "premium": "ts-node ./scripts/addPremiumToAllUsers.ts"
   },
   "keywords": [],
   "author": "",
