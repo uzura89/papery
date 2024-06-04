@@ -2,6 +2,7 @@ export async function dbPurchaseOnetime(
   mongoose: any,
   email: string,
   details: {
+    customerId: string;
     purchaseId: string;
     purchasePlan: string;
   }
@@ -13,6 +14,7 @@ export async function dbPurchaseOnetime(
       { email },
       {
         $set: {
+          customerId: details.customerId,
           purchaseId: details.purchaseId,
           purchasePlan: details.purchasePlan,
         },

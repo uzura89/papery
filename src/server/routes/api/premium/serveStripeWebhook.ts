@@ -50,19 +50,20 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
   if (!stripeSession.customer_email) {
     throw new Error("Customer email not found");
   }
+  if (typeof stripeSession.customer !== "string") {
+    throw new Error("Customer not found");
+  }
 
   // process checkout.session.completed event
   if (!priceItem.isRecurring) {
     await dbPurchaseOnetime(mongoose, stripeSession.customer_email, {
+      customerId: stripeSession.customer,
       purchaseId: stripeSession.id,
       purchasePlan: priceItem.title,
     });
   } else {
     if (typeof stripeSession.subscription !== "string") {
       throw new Error("Subscription not found");
-    }
-    if (typeof stripeSession.customer !== "string") {
-      throw new Error("Customer not found");
     }
 
     const subscription = await StripeHandler.retrieveSubscription(
