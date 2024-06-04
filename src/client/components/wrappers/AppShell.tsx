@@ -7,6 +7,8 @@ import useEntryStore from "../../store/entry/entryStore";
 import useTagStore from "../../store/tag/tagStore";
 import useTemplateStore from "../../store/template/templateStore";
 import useReportStore from "../../store/report/reportStore";
+import UpgradeModal from "../organisms/premium/UpgradeModal";
+import useSettingStore from "../../store/setting/settingStore";
 
 export function AppShell() {
   const userStore = useUserStore();
@@ -14,6 +16,7 @@ export function AppShell() {
   const tagStore = useTagStore();
   const templateStore = useTemplateStore();
   const reportStore = useReportStore();
+  const settingStore = useSettingStore();
 
   useEffect(() => {
     if (userStore.data.user.userParmId) {
@@ -26,6 +29,7 @@ export function AppShell() {
 
   useEffect(() => {
     userStore.fetchUser();
+    settingStore.fetchPremiumPlans();
   }, [null]);
 
   return (
@@ -40,6 +44,8 @@ export function AppShell() {
           </Suspense>
         </div>
       </div>
+
+      <UpgradeModal />
     </div>
   );
 }

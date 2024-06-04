@@ -40,3 +40,10 @@ export const DEMO_ALLOWED_URLS = [
   CONS_ENDPOINT_FETCH_ALL_REPORTS,
   CONS_ENDPOINT_FETCH_REPORT_DATA,
 ];
+
+/**
+ * Payment
+ */
+
+export const CONS_URL_CUSTOMER_PORTAL =
+  "https://billing.stripe.com/p/login/fZebLib7sf0H4py3cc";

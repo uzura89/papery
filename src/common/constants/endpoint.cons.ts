@@ -11,6 +11,7 @@ const ENDPOINT_ENTRY = `${CONS_ENDPOINT_API}/entry`;
 const ENDPOINT_TAG = `${CONS_ENDPOINT_API}/tag`;
 const ENDPOINT_TEMPLATE = `${CONS_ENDPOINT_API}/template`;
 const ENDPOINT_REPORT = `${CONS_ENDPOINT_API}/report`;
+const ENDPOINT_PREMIUM = `${CONS_ENDPOINT_API}/premium`;
 
 /**
  * Endpoints
@@ -57,3 +58,9 @@ export const CONS_ENDPOINT_CREATE_REPORT = `${ENDPOINT_REPORT}/create`;
 export const CONS_ENDPOINT_UPDATE_REPORT = `${ENDPOINT_REPORT}/update`;
 export const CONS_ENDPOINT_DELETE_REPORT = `${ENDPOINT_REPORT}/delete`;
 export const CONS_ENDPOINT_CHANGE_ORDER_OF_REPORTS = `${ENDPOINT_REPORT}/change-order`;
+
+// premium
+export const CONS_ENDPOINT_FETCH_PREMIUM_PLANS = `${ENDPOINT_PREMIUM}/fetch-plans`;
+export const CONS_ENDPOINT_STRIPE_WEBHOOK = `${ENDPOINT_PREMIUM}/stripe-webhook`;
+export const CONS_ENDPOINT_CREATE_CHECKOUT_SESSION = `${ENDPOINT_PREMIUM}/create-checkout-session`;
+export const CONS_ENDPOINT_CANCEL_SUBSCRIPTION = `${ENDPOINT_PREMIUM}/cancel-subscription`;

@@ -15,6 +15,12 @@ const INITIAL_USER: UserSchemaType = {
   password: "",
   salt: "",
   activated: false,
+  customerId: null,
+  purchaseId: null,
+  purchasePlan: null,
+  subscriptionId: null,
+  cancelOnPeriodEnd: null,
+  subscriptionRenewalDate: null,
   created: new Date(),
 };
 
@@ -33,6 +39,7 @@ const useUserStore = create<{
   ) => Promise<void>;
   verifyEmail: (email: string, code: string) => Promise<void>;
   loginWithEmail: (email: string, password: string) => Promise<void>;
+  checkIfPremium: () => boolean;
 }>((set, get) => ({
   data: {
     user: INITIAL_USER,
@@ -95,6 +102,9 @@ const useUserStore = create<{
       await get().fetchUser(response.data.accessToken);
     }
     set({ loading: false });
+  },
+  checkIfPremium: () => {
+    return get().data.user.purchasePlan !== null;
   },
 }));
 

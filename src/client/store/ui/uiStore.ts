@@ -1,18 +1,24 @@
 import { create } from "zustand";
 
 const useUiStore = create<{
-  // data
+  // calendar for mobile
   isCalendarVisible: boolean;
-  // data loader
   toggleCalendarVisibility: () => void;
+  // modals
+  visibleModal: string | null;
+  setVisibleModal: (modal: string | null) => void;
 }>((set, get) => ({
-  // data
+  // calendar modal
   isCalendarVisible: false,
-  // data loader
   toggleCalendarVisibility: () => {
     set((state) => ({
       isCalendarVisible: !state.isCalendarVisible,
     }));
+  },
+  // premium modal
+  visibleModal: null,
+  setVisibleModal: (modal) => {
+    set({ visibleModal: modal });
   },
 }));
 

@@ -16,6 +16,7 @@ module.exports = {
         foreLight: "rgb(var(--fore-light-rgb))",
         foreLighter: "rgb(var(--fore-lighter-rgb))",
         foreDanger: "rgb(var(--fore-danger-rgb))",
+        forePositive: "rgb(var(--fore-positive-rgb))",
         backDanger: "rgb(var(--back-danger-rgb))",
         foreGray: "rgb(var(--fore-gray-rgb))",
         foreGrayLight: "rgb(var(--fore-gray-light-rgb))",

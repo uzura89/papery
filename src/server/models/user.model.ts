@@ -31,6 +31,31 @@ module.exports = function (mongoose: any) {
       type: Boolean,
       default: false,
     },
+    // premium
+    customerId: {
+      type: String,
+      default: null,
+    },
+    purchaseId: {
+      type: String,
+      default: null,
+    },
+    purchasePlan: {
+      type: String,
+      default: null,
+    },
+    subscriptionId: {
+      type: String,
+      default: null,
+    },
+    subscriptionRenewalDate: {
+      type: Number,
+      default: null,
+    },
+    cancelOnPeriodEnd: {
+      type: Boolean,
+      default: null,
+    },
     created: {
       type: Date,
       default: Date.now,

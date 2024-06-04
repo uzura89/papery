@@ -5,4 +5,5 @@ module.exports = function (app: any) {
   require("./api/tag/index")(app);
   require("./api/template/index")(app);
   require("./api/report/index")(app);
+  require("./api/premium/index")(app);
 };

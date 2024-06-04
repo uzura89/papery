@@ -12,3 +12,4 @@ export const CONS_PATH_ENTRY = "/entry";
 
 export const CONS_PATH_PRIVACY = "/privacy";
 export const CONS_PATH_TERMS = "/terms";
+export const CONS_PATH_COMMERCE = "/commerce";

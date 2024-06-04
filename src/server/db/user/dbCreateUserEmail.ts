@@ -24,6 +24,12 @@ export async function dbCreateUserEmail(
     password: hashString(user.password, salt),
     salt,
     activated: false,
+    customerId: null,
+    purchaseId: null,
+    purchasePlan: null,
+    subscriptionId: null,
+    subscriptionRenewalDate: null,
+    cancelOnPeriodEnd: null,
   };
 
   try {

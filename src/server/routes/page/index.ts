@@ -1,4 +1,5 @@
 import {
+  CONS_PATH_COMMERCE,
   CONS_PATH_ENTRY,
   CONS_PATH_HOME,
   CONS_PATH_LOGIN,
@@ -42,6 +43,10 @@ module.exports = function (app: any) {
     return res.render("pages/terms");
   }
 
+  function renderTokutei(req: any, res: any) {
+    return res.render("pages/commerce");
+  }
+
   // app routes
   app.get(CONS_PATH_HOME, renderApp);
   app.get(CONS_PATH_TEMPLATES, renderApp);
@@ -60,6 +65,7 @@ module.exports = function (app: any) {
   // privacy
   app.get(CONS_PATH_PRIVACY, renderPrivacy);
   app.get(CONS_PATH_TERMS, renderTerms);
+  app.get(CONS_PATH_COMMERCE, renderTokutei);
 };
 
 /**

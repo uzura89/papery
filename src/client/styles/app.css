@@ -15,6 +15,7 @@
   --fore-danger-rgb: 228, 91, 14;
   --fore-gray-rgb: 132, 130, 126;
   --fore-gray-light-rgb: 174, 171, 163;
+  --fore-positive-rgb: 15, 170, 30;
   --back-danger-rgb: 246, 217, 193, 0.36;
   --link-rgb: 212, 106, 68;
   --text-hover-bg-rgb: 0, 0, 0, 0.05;
@@ -88,6 +89,9 @@
   }
   .btn-gray {
     @apply bg-backLightest text-foreLight border-backLightest;
+  }
+  .btn-primary {
+    @apply bg-[#1db480] text-white border-[#1db480];
   }
   .btn-danger {
     @apply bg-backDanger text-foreDanger border-none;

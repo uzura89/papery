@@ -21,6 +21,12 @@ export async function dbCreateUserGoogle(
     password: "",
     salt: "",
     activated: true,
+    customerId: null,
+    purchaseId: null,
+    purchasePlan: null,
+    subscriptionId: null,
+    subscriptionRenewalDate: null,
+    cancelOnPeriodEnd: null,
   };
 
   try {
