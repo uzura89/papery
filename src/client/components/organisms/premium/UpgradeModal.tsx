@@ -14,12 +14,14 @@ export default function UpgradeModal() {
   const settingStore = useSettingStore();
   // local state
   const [selectedIndex, setSelectedIndex] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   function closeModal() {
     uiStore.setVisibleModal(null);
   }
 
   async function onClickProceed() {
+    setLoading(true);
     const selectedPlan = settingStore.premiumPlans[selectedIndex];
 
     const response = await callCreateCheckoutSession({
@@ -27,6 +29,7 @@ export default function UpgradeModal() {
     });
     if (response.error) {
       window.alert(response.error.message);
+      setLoading(false);
       return;
     }
 
@@ -59,7 +62,10 @@ export default function UpgradeModal() {
       </div>
 
       <ModalFooter>
-        <button onClick={onClickProceed} className="btn btn-primary w-full">
+        <button
+          onClick={onClickProceed}
+          className={clsx("btn btn-primary w-full", loading && "btn-disabled")}
+        >
           Proceed
         </button>
       </ModalFooter>

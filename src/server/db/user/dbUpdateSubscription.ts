@@ -9,7 +9,7 @@ export async function dbUpdateSubscription(
   try {
     const User = mongoose.model("User");
 
-    await User.update(
+    await User.updateOne(
       { customerId },
       {
         $set: {
