@@ -2,6 +2,7 @@ import Stripe from "stripe";
 
 import { getLocalEnv } from "../env/getLocalEnv";
 import { getPremiumPlans } from "../premium/getPremiumPlans";
+import { CONS_PATH_SETTINGS } from "../../../common/constants";
 
 const env = getLocalEnv();
 const stripe = new Stripe(env.STRIPE_KEY_SEC);
@@ -25,8 +26,8 @@ async function generateCheckoutUrl(params: {
       },
     ],
     mode: params.isRecurring ? "subscription" : "payment",
-    success_url: `${env.APP_URL}/purchase-success`,
-    cancel_url: `${env.APP_URL}/purchase-fail`,
+    success_url: `${env.APP_URL}${CONS_PATH_SETTINGS}`,
+    cancel_url: `${env.APP_URL}${CONS_PATH_SETTINGS}`,
   });
 
   return session.url;
