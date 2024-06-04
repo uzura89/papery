@@ -6,6 +6,8 @@ export async function dbUpdateSubscription(
     subscriptionRenewalDate: number;
   }
 ) {
+  console.log("🚀 ~ data:", data);
+  console.log("🚀 ~ customerId:", customerId);
   try {
     const User = mongoose.model("User");
 
@@ -19,6 +21,7 @@ export async function dbUpdateSubscription(
       }
     );
   } catch (error) {
+    console.log("🚀 ~ error:", error);
     throw error;
   }
 }

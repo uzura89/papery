@@ -90,9 +90,14 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
 
 async function onCustomerSubscriptionUpdated(stripeEvent: any) {
   const subscription = stripeEvent.data.object;
+  console.log(
+    "🚀 ~ onCustomerSubscriptionUpdated ~ subscription:",
+    subscription
+  );
   const customer = await StripeHandler.retrieveCustomerFromSubscription(
     subscription
   );
+  console.log("🚀 ~ onCustomerSubscriptionUpdated ~ customer:", customer);
 
   // handle customer.subscription.updated event
   await dbUpdateSubscription(mongoose, customer.id, {
