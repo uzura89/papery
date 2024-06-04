@@ -88,7 +88,6 @@ function Benefits() {
         <ul className="list-disc list-inside">
           <li className="">📔 Unlimited templates (more than 1)</li>
           <li className="">📊 Unlimited reports (more than 1)</li>
-          <li className="">📢 No ads</li>
           <li className="">And all the future updates...</li>
         </ul>
       </div>

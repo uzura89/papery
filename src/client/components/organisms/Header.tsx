@@ -113,7 +113,7 @@ export function Header() {
               onClick: () => goToPage(CONS_PATH_SETTINGS),
             },
             {
-              text: "Forum",
+              text: "Contact",
               icon: <LuMessagesSquare />,
               onClick: onClickContact,
             },

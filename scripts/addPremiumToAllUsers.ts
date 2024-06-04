@@ -5,7 +5,7 @@ async function addPremiumToUsers(mongoose: any) {
   try {
     const User = mongoose.model("User");
 
-    const users = await User.find({ email: { $ne: "ys0520" } });
+    const users = await User.find({ email: { $ne: "ys0520@gmail.com" } });
 
     for (const user of users) {
       user.customerId = null;

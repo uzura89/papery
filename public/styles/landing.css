@@ -419,15 +419,27 @@ section {
   text-align: center;
 }
 
+#pricing .pricing-plans {
+  /* display: flex; */
+  /* justify-content: center; */
+  gap: 2rem;
+  /* flex-wrap: wrap; */
+
+  display: grid;
+  /* 3 cols */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
+
 #pricing .pricing-plan {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 2rem;
   border: 1px solid #e1dbcb;
   border-radius: 5px;
   background-color: #fffcf6;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 18px;
-  max-width: 300px;
+  /* max-width: 40%; */
 }
 
 #pricing .pricing-plan h3 {
@@ -435,9 +447,17 @@ section {
   margin-bottom: 1rem;
 }
 
+#pricing .pricing-plan ul {
+  text-align: left;
+}
+
 #pricing .pricing-plan p {
   font-size: 1.1rem;
   color: #5c5954;
+}
+
+#pricing .premium-item {
+  color: rgb(200, 115, 45);
 }
 
 /* Mission Section */
@@ -629,6 +649,10 @@ footer .brand-mark img {
     gap: 1rem;
   }
 
+  #pricing .pricing-plans {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   #features .features {
     display: flex;
     flex-direction: column;
@@ -656,6 +680,10 @@ footer .brand-mark img {
   .cta-btn {
     padding: 0.5rem 1rem;
     margin: 0.5rem 0;
+  }
+
+  #pricing .pricing-plans {
+    grid-template-columns: repeat(1, 1fr);
   }
 
   #features .feature {
