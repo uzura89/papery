@@ -33,11 +33,11 @@ export default function SettingsPage() {
             </PageSection>
           </SectionCard>
 
-          <SectionCard>
+          {/* <SectionCard>
             <PageSection title="Subscription">
               <SettingSectionPremium />
             </PageSection>
-          </SectionCard>
+          </SectionCard> */}
         </div>
       </div>
     </PageWrapper>
