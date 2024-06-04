@@ -84,7 +84,7 @@ const cancelSubscription = async (subscriptionId: string) => {
   }
 };
 
-const cancelOnPeriodEnd = async (subscriptionId: string) => {
+const cancelAtPeriodEnd = async (subscriptionId: string) => {
   await stripe.subscriptions.update(subscriptionId, {
     cancel_at_period_end: true,
   });
@@ -102,7 +102,7 @@ const StripeHandler = {
   cancelSubscription,
   retrieveSubscription,
   retrieveCustomerFromSubscription,
-  cancelOnPeriodEnd,
+  cancelAtPeriodEnd,
 };
 
 export default StripeHandler;

@@ -10,8 +10,8 @@ export type UserSchemaType = {
   purchaseId: string | null;
   purchasePlan: string | null;
   subscriptionId: string | null;
-  subscriptionRenewalDate: number | null;
-  cancelOnPeriodEnd: boolean | null;
+  subscriptionCurrentPeriodEnd: number | null;
+  subscriptionCancelAtPeriodEnd: boolean | null;
   // created
   created?: Date;
 };

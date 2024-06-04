@@ -48,11 +48,11 @@ module.exports = function (mongoose: any) {
       type: String,
       default: null,
     },
-    subscriptionRenewalDate: {
+    subscriptionCurrentPeriodEnd: {
       type: Number,
       default: null,
     },
-    cancelOnPeriodEnd: {
+    subscriptionCancelAtPeriodEnd: {
       type: Boolean,
       default: null,
     },

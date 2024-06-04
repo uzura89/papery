@@ -8,31 +8,25 @@ import { dbRemovePremiumFromUser } from "../../../db/user/dbRemovePremiumFromUse
 
 export async function serveStripeWebhook(req: any, res: any) {
   try {
-    console.log("webhook arrived");
     const stripeEvent = await StripeHandler.retrieveStripeEvent(req);
-    console.log("🚀 ~ serveStripeWebhook ~ stripeEvent:", stripeEvent);
 
     switch (stripeEvent.type) {
       case "checkout.session.completed":
         await onCheckoutSessionCompleted(stripeEvent);
         break;
       case "customer.subscription.updated":
-        console.log("customer.subscription.updated");
         await onCustomerSubscriptionUpdated(stripeEvent);
         break;
       case "customer.subscription.deleted":
-        console.log("customer.subscription.deleted");
         await onCustomerSubscriptionDeleted(stripeEvent);
         break;
       case "customer.deleted":
-        console.log("customer.deleted");
         await onCustomerDeleted(stripeEvent);
         break;
       default:
         return res.status(200).end();
     }
   } catch (err) {
-    console.log("🚀 ~ serveStripeWebhook ~ err:", err);
     return res.status(500).send(err);
   }
 }
@@ -82,27 +76,22 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
       purchaseId: stripeSession.id,
       purchasePlan: priceItem.title,
       subscriptionId: subscription.id,
-      subscriptionRenewalDate: subscription.current_period_end * 1000,
-      cancelOnPeriodEnd: subscription.cancel_at_period_end,
+      subscriptionCurrentPeriodEnd: subscription.current_period_end * 1000,
+      subscriptionCancelAtPeriodEnd: subscription.cancel_at_period_end,
     });
   }
 }
 
 async function onCustomerSubscriptionUpdated(stripeEvent: any) {
   const subscription = stripeEvent.data.object;
-  console.log(
-    "🚀 ~ onCustomerSubscriptionUpdated ~ subscription:",
-    subscription
-  );
   const customer = await StripeHandler.retrieveCustomerFromSubscription(
     subscription
   );
-  console.log("🚀 ~ onCustomerSubscriptionUpdated ~ customer:", customer);
 
   // handle customer.subscription.updated event
   await dbUpdateSubscription(mongoose, customer.id, {
-    subscriptionRenewalDate: subscription.current_period_end * 1000,
-    cancelOnNextRenewal: subscription.cancel_at_period_end,
+    subscriptionCurrentPeriodEnd: subscription.current_period_end * 1000,
+    subscriptionCancelAtPeriodEnd: subscription.cancel_at_period_end,
   });
 }
 

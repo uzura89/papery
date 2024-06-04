@@ -12,8 +12,8 @@ export async function dbRemovePremiumFromUser(
         purchaseId: null,
         purchasePlan: null,
         subscriptionId: null,
-        subscriptionRenewalDate: null,
-        cancelOnNextRenewal: null,
+        subscriptionCurrentPeriodEnd: null,
+        subscriptionCancelAtPeriodEnd: null,
       }
     );
 

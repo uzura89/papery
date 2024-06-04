@@ -26,12 +26,12 @@ export default function SettingSectionPremium() {
     return (
       <div>
         {/* Subscriptoin info */}
-        {userStore.data.user.cancelOnPeriodEnd ? (
+        {userStore.data.user.subscriptionCancelAtPeriodEnd ? (
           <div className="">
             Your subscription will be removed on{" "}
             <span className="font-bold text-forePositive">
               {new Date(
-                userStore.data.user.subscriptionRenewalDate || 0
+                userStore.data.user.subscriptionCurrentPeriodEnd || 0
               ).toDateString()}
             </span>
             .

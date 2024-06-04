@@ -19,8 +19,8 @@ const INITIAL_USER: UserSchemaType = {
   purchaseId: null,
   purchasePlan: null,
   subscriptionId: null,
-  cancelOnPeriodEnd: null,
-  subscriptionRenewalDate: null,
+  subscriptionCurrentPeriodEnd: null,
+  subscriptionCancelAtPeriodEnd: null,
   created: new Date(),
 };
 

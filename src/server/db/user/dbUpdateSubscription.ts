@@ -2,12 +2,10 @@ export async function dbUpdateSubscription(
   mongoose: any,
   customerId: string,
   data: {
-    cancelOnNextRenewal: boolean;
-    subscriptionRenewalDate: number;
+    subscriptionCurrentPeriodEnd: number;
+    subscriptionCancelAtPeriodEnd: boolean;
   }
 ) {
-  console.log("🚀 ~ data:", data);
-  console.log("🚀 ~ customerId:", customerId);
   try {
     const User = mongoose.model("User");
 
@@ -15,13 +13,12 @@ export async function dbUpdateSubscription(
       { customerId },
       {
         $set: {
-          subscriptionRenewalDate: data.subscriptionRenewalDate,
-          cancelOnNextRenewal: data.cancelOnNextRenewal,
+          subscriptionCurrentPeriodEnd: data.subscriptionCurrentPeriodEnd,
+          subscriptionCancelAtPeriodEnd: data.subscriptionCancelAtPeriodEnd,
         },
       }
     );
   } catch (error) {
-    console.log("🚀 ~ error:", error);
     throw error;
   }
 }

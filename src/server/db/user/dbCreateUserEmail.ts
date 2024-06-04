@@ -29,7 +29,7 @@ export async function dbCreateUserEmail(
     purchasePlan: null,
     subscriptionId: null,
     subscriptionRenewalDate: null,
-    cancelOnPeriodEnd: null,
+    cancelAtPeriodEnd: null,
   };
 
   try {

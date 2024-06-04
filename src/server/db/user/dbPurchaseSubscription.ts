@@ -6,8 +6,8 @@ export async function dbPurchaseSubscription(
     purchaseId: string;
     purchasePlan: string;
     subscriptionId: string;
-    subscriptionRenewalDate: number;
-    cancelOnPeriodEnd: boolean;
+    subscriptionCurrentPeriodEnd: number;
+    subscriptionCancelAtPeriodEnd: boolean;
   }
 ) {
   const User = mongoose.model("User");
@@ -21,8 +21,8 @@ export async function dbPurchaseSubscription(
           purchaseId: details.purchaseId,
           purchasePlan: details.purchasePlan,
           subscriptionId: details.subscriptionId,
-          subscriptionRenewalDate: details.subscriptionRenewalDate,
-          cancelOnPeriodEnd: details.cancelOnPeriodEnd,
+          subscriptionCurrentPeriodEnd: details.subscriptionCurrentPeriodEnd,
+          subscriptionCancelAtPeriodEnd: details.subscriptionCancelAtPeriodEnd,
         },
       }
     );
