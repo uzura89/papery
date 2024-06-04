@@ -25,8 +25,8 @@ export async function dbCreateUserGoogle(
     purchaseId: null,
     purchasePlan: null,
     subscriptionId: null,
-    subscriptionRenewalDate: null,
-    cancelAtPeriodEnd: null,
+    subscriptionCurrentPeriodEnd: null,
+    subscriptionCancelAtPeriodEnd: null,
   };
 
   try {
