@@ -8,7 +8,9 @@ import { dbRemovePremiumFromUser } from "../../../db/user/dbRemovePremiumFromUse
 
 export async function serveStripeWebhook(req: any, res: any) {
   try {
+    console.log("webhook arrived");
     const stripeEvent = await StripeHandler.retrieveStripeEvent(req);
+    console.log("🚀 ~ serveStripeWebhook ~ stripeEvent:", stripeEvent);
 
     switch (stripeEvent.type) {
       case "checkout.session.completed":
@@ -23,6 +25,7 @@ export async function serveStripeWebhook(req: any, res: any) {
         return res.status(200).end();
     }
   } catch (err) {
+    console.log("🚀 ~ serveStripeWebhook ~ err:", err);
     return res.status(500).send(err);
   }
 }
