@@ -9,6 +9,7 @@ import { dbRemovePremiumFromUser } from "../../../db/user/dbRemovePremiumFromUse
 export async function serveStripeWebhook(req: any, res: any) {
   try {
     const stripeEvent = await StripeHandler.retrieveStripeEvent(req);
+    console.log("🚀 ~ serveStripeWebhook ~ stripeEvent:", stripeEvent);
 
     switch (stripeEvent.type) {
       case "checkout.session.completed":
@@ -21,6 +22,7 @@ export async function serveStripeWebhook(req: any, res: any) {
         await onCustomerSubscriptionDeleted(stripeEvent);
         break;
       case "customer.deleted":
+        console.log("customer deleted event");
         await onCustomerDeleted(stripeEvent);
         break;
       default:
@@ -106,5 +108,6 @@ async function onCustomerSubscriptionDeleted(stripeEvent: any) {
 
 async function onCustomerDeleted(stripeEvent: any) {
   const customer = stripeEvent.data.object;
+  console.log("🚀 ~ onCustomerDeleted ~ customer:", customer);
   await dbRemovePremiumFromUser(mongoose, customer.id);
 }
