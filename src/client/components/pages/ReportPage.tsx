@@ -8,10 +8,14 @@ import { PageTitle, PageWrapper } from "../wrappers/PageShell";
 import { Card } from "../atoms/card/Card";
 import { LuList } from "react-icons/lu";
 import SortListModal from "../organisms/commons/SortListModal";
+import useUiStore from "../../store/ui/uiStore";
+import useUserStore from "../../store/user/userStore";
 
 export default function ReportPage() {
   // store
   const reportStore = useReportStore();
+  const uiStore = useUiStore();
+  const userStore = useUserStore();
   // local state
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [newModalVisible, setNewModalVisible] = useState(false);
@@ -19,6 +23,16 @@ export default function ReportPage() {
   const [sortModalVisible, setSortModalVisible] = useState(false);
 
   const onClickNewReport = () => {
+    if (!userStore.checkIfPremium() && reportStore.reports.length >= 1) {
+      const response = confirm(
+        "Please upgrade to premium to create more than 1 report"
+      );
+      if (response) {
+        uiStore.setVisibleModal("upgrade");
+      }
+      return;
+    }
+
     setNewModalVisible(true);
   };
 
