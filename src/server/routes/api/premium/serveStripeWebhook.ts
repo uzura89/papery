@@ -40,29 +40,27 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
     stripeEvent
   );
   const priceItem = StripeHandler.getPriceItem(stripeSession);
-  console.log("🚀 ~ onCheckoutSessionCompleted ~ priceItem:", priceItem);
 
   // error handling
   if (!priceItem) {
     throw new Error("Price not found");
   }
-  if (
-    !stripeSession.customer_email ||
-    typeof stripeSession.customer !== "string"
-  ) {
+  if (!stripeSession.customer_email) {
     throw new Error("Customer email not found");
   }
 
   // process checkout.session.completed event
   if (!priceItem.isRecurring) {
     await dbPurchaseOnetime(mongoose, stripeSession.customer_email, {
-      customerId: stripeSession.customer,
       purchaseId: stripeSession.id,
       purchasePlan: priceItem.title,
     });
   } else {
     if (typeof stripeSession.subscription !== "string") {
       throw new Error("Subscription not found");
+    }
+    if (typeof stripeSession.customer !== "string") {
+      throw new Error("Customer not found");
     }
 
     const subscription = await StripeHandler.retrieveSubscription(
