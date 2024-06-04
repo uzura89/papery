@@ -7,6 +7,8 @@ import {
 import useUiStore from "../../../store/ui/uiStore";
 import useUserStore from "../../../store/user/userStore";
 import { CONS_PREMIUM_TYPE_LIFETIME } from "../../../../common/constants/setting.cons";
+import { convertDateToDayOfWeek } from "../../../../common/modules/date/convertDateToDayOfWeek";
+import { convertDateToReadableString } from "../../../../common/modules/date/convertDateToReadableString";
 
 export default function SettingSectionPremium() {
   const userStore = useUserStore();
@@ -24,13 +26,25 @@ export default function SettingSectionPremium() {
     return (
       <div>
         {/* Subscriptoin info */}
-        <div className="">
-          You are subscribed to{" "}
-          <span className="font-bold text-forePositive">
-            {userStore.data.user.purchasePlan}
-          </span>{" "}
-          plan.
-        </div>
+        {userStore.data.user.cancelOnPeriodEnd ? (
+          <div className="">
+            Your subscription will be removed on{" "}
+            <span className="font-bold text-forePositive">
+              {new Date(
+                userStore.data.user.subscriptionRenewalDate || 0
+              ).toDateString()}
+            </span>
+            .
+          </div>
+        ) : (
+          <div className="">
+            You are subscribed to{" "}
+            <span className="font-bold text-forePositive">
+              {userStore.data.user.purchasePlan}
+            </span>{" "}
+            plan.
+          </div>
+        )}
 
         {/* Customer portal link */}
         {userStore.data.user.purchasePlan !== CONS_PREMIUM_TYPE_LIFETIME && (
