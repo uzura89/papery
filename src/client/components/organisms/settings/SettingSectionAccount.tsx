@@ -22,7 +22,11 @@ export default function SettingSectionAccount() {
   async function onDelete() {
     setLoading(true);
 
-    await callDeleteUser({});
+    const response = await callDeleteUser({});
+    if (response.error) {
+      window.confirm("Something went wrong");
+      return;
+    }
     window.confirm("Account deleted successfully");
     // go to signup page
     window.location.href = CONS_PATH_SIGNUP;

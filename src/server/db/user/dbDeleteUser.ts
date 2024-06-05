@@ -1,4 +1,5 @@
 export async function dbDeleteUser(mongoose: any, userParmId: string) {
+  console.log("🚀 ~ dbDeleteUser ~ userParmId:", userParmId);
   const Entry = mongoose.model("Entry");
   const Report = mongoose.model("Report");
   const Setting = mongoose.model("Setting");
@@ -8,6 +9,7 @@ export async function dbDeleteUser(mongoose: any, userParmId: string) {
 
   try {
     const user = await User.findOne({ userParmId });
+    console.log("🚀 ~ dbDeleteUser ~ user:", user);
     if (!user) throw new Error("User not found");
 
     // delete all related data
