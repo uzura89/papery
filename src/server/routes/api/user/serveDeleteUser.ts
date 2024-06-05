@@ -9,7 +9,7 @@ export async function serveDeleteUser(req: any, res: any) {
   console.log("🚀 ~ serveDeleteUser ~ userParmId:", userParmId);
 
   try {
-    const user = await dbGetUserById(mongoose, userParmId);
+    const user = await dbGetUserById(mongoose, { userParmId });
 
     // cancel subscription if exists
     if (user.subscriptionId) {
