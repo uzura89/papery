@@ -7,7 +7,7 @@ export function BrandLogo(props: { size: number; transparent?: boolean }) {
         <img src="/img/brand/brandlogo.svg" className="w-[5rem]" />
       ) : (
         <div
-          className={clsx("font-serif", "text-[#e05d35]")}
+          className={clsx("font-serif", "text-brandlogo")}
           style={{
             fontSize: props.size,
             fontWeight: "bold",

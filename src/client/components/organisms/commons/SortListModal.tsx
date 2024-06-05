@@ -124,7 +124,7 @@ function Item(props: {
         onDragStart={onDragStart}
         onDragEnter={onDragEnter}
         className={clsx(
-          "padding-x-sm py-1.5 flex items-center gap-1.5 bg-white"
+          "padding-x-sm py-1.5 flex items-center gap-1.5 bg-transparent"
         )}
       >
         <LuAlignJustify className="text-foreLighter text-sm" />

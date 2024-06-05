@@ -12,6 +12,7 @@ const ENDPOINT_TAG = `${CONS_ENDPOINT_API}/tag`;
 const ENDPOINT_TEMPLATE = `${CONS_ENDPOINT_API}/template`;
 const ENDPOINT_REPORT = `${CONS_ENDPOINT_API}/report`;
 const ENDPOINT_PREMIUM = `${CONS_ENDPOINT_API}/premium`;
+const ENDPOINT_SETTING = `${CONS_ENDPOINT_API}/setting`;
 
 /**
  * Endpoints
@@ -63,6 +64,10 @@ export const CONS_ENDPOINT_CHANGE_ORDER_OF_REPORTS = `${ENDPOINT_REPORT}/change-
 // premium
 export const CONS_ENDPOINT_FETCH_PREMIUM_PLANS = `${ENDPOINT_PREMIUM}/fetch-plans`;
 export const CONS_ENDPOINT_CREATE_CHECKOUT_SESSION = `${ENDPOINT_PREMIUM}/create-checkout-session`;
+
+// setting
+export const CONS_ENDPOINT_FETCH_SETTING = `${ENDPOINT_SETTING}/fetch`;
+export const CONS_ENDPOINT_UPDATE_THEME = `${ENDPOINT_SETTING}/update-theme`;
 
 // webhook
 export const CONS_ENDPOINT_STRIPE_WEBHOOK = `/stripe-webhook`;

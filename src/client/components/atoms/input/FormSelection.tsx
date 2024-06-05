@@ -79,7 +79,7 @@ function SelectionList(props: {
   return (
     <div
       className={clsx(
-        "w-full absolute z-10 bg-white border border-gray-200 rounded-md shadow-md",
+        "w-full absolute z-10 bg-card rounded-md shadow-md",
         "overflow-y-auto"
       )}
       style={{ maxHeight: props.maxHeight + "px" }}
@@ -90,7 +90,7 @@ function SelectionList(props: {
           <div
             key={item.id}
             onClick={() => props.onSelect(item.id)}
-            className="p-2 hover:bg-gray-100 cursor-pointer"
+            className="p-2 hover:bg-textHoverBg cursor-pointer"
           >
             <Item text={item.text} icon={item.icon} />
           </div>

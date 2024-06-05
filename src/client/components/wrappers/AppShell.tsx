@@ -30,7 +30,15 @@ export function AppShell() {
   useEffect(() => {
     userStore.fetchUser();
     settingStore.fetchPremiumPlans();
+    settingStore.fetchSetting();
   }, [null]);
+
+  useEffect(() => {
+    if (settingStore.theme) {
+      // update theme
+      document.documentElement.setAttribute("data-theme", settingStore.theme);
+    }
+  }, [settingStore.theme]);
 
   return (
     <div>

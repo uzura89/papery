@@ -97,7 +97,7 @@ function EntrySearchFormInput(props: {
   return (
     <div
       className={clsx(
-        "flex items-center justify-stretch gap-2 border px-4 py-1.5 text-sm rounded-full w-full bg-white relative",
+        "flex items-center justify-stretch gap-2 border px-4 py-1.5 text-sm rounded-full w-full bg-card relative",
         props.searchInput.length > 0
           ? "border-foreLight"
           : "border-border opacity-90"
@@ -111,7 +111,9 @@ function EntrySearchFormInput(props: {
         value={props.searchInput}
         type="text"
         placeholder="Date or tags..."
-        className={clsx("bg-transparent overflow-hidden text-foreSecondary")}
+        className={clsx(
+          "bg-transparent overflow-hidden text-foreSecondary placeholder:text-foreLight"
+        )}
         onFocus={props.onFocus}
       />
 

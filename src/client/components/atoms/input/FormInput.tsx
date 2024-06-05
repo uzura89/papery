@@ -7,7 +7,7 @@ export function FormInput(props: {
 }) {
   return (
     <input
-      className="form form-sm w-full"
+      className="form form-sm w-full bg-transparent"
       value={props.value}
       onChange={(e) => props.onChange(e.target.value)}
       placeholder={props.placeholder}

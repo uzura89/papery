@@ -1,11 +1,18 @@
 import clsx from "clsx";
-import { LuCrown, LuDownload, LuUser, LuUser2 } from "react-icons/lu";
+import {
+  LuCrown,
+  LuDownload,
+  LuPalette,
+  LuUser,
+  LuUser2,
+} from "react-icons/lu";
 
 import { Card } from "../atoms/card/Card";
 import { PageSection, PageTitle, PageWrapper } from "../wrappers/PageShell";
 import useSettingStore from "../../store/setting/settingStore";
 import SettingSectionPremium from "../organisms/settings/SettingSectionPremium";
 import SettingSectionAccount from "../organisms/settings/SettingSectionAccount";
+import SettingSectionTheme from "../organisms/settings/SettingSectionTheme";
 
 export default function SettingsPage() {
   const settingStore = useSettingStore();
@@ -21,6 +28,18 @@ export default function SettingsPage() {
 
         <div className="flex flex-col gap-4">
           <SectionCard>
+            <PageSection title="Style" icon={<LuPalette />}>
+              <SettingSectionTheme />
+            </PageSection>
+          </SectionCard>
+
+          <SectionCard>
+            <PageSection title="Subscription" icon={<LuCrown />}>
+              <SettingSectionPremium />
+            </PageSection>
+          </SectionCard>
+
+          <SectionCard>
             <PageSection title="Download" icon={<LuDownload />}>
               <button
                 onClick={onClickDownloadEntries}
@@ -31,12 +50,6 @@ export default function SettingsPage() {
               >
                 Download Entries (CSV)
               </button>
-            </PageSection>
-          </SectionCard>
-
-          <SectionCard>
-            <PageSection title="Subscription" icon={<LuCrown />}>
-              <SettingSectionPremium />
             </PageSection>
           </SectionCard>
 

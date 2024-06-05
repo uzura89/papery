@@ -106,7 +106,7 @@ function PlanCard(props: {
       onClick={props.onSelectPlan}
       className={clsx(
         "cursor-pointer border-[1.5px] rounded-md p-3 mb-4 w-full flex flex-col items-center gap-1",
-        props.selected ? "border-[#34c388]" : "border-gray-200"
+        props.selected ? "border-[#34c388]" : "border-borderLight"
       )}
     >
       <div className="font-bold text-[#1db480] text-sm">{props.title}</div>

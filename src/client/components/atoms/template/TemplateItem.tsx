@@ -6,7 +6,7 @@ export default function TemplateItem(props: {
   return (
     <button
       key={props.id}
-      className="bg-card flex items-center justify-center border border-gray p-4 rounded-md shadow-sm"
+      className="bg-card flex items-center justify-center border border-borderGray p-4 rounded-md shadow-sm"
       onClick={() => props.onClick(props.id)}
     >
       <span className="text-foreSecondary">{props.name}</span>

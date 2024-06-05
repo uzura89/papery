@@ -35,10 +35,12 @@ export default function BottomModal(props: Props) {
     >
       {/* Window */}
       <div
-        className="bg-card rounded-t-xl pt-4 padding-x-sm h-full"
-        style={{
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-        }}
+        className="bg-card rounded-t-xl pt-4 padding-x-sm h-full shadow-shadowColor shadow-bottom"
+        style={
+          {
+            // boxShadow: "0px 0px 10px",
+          }
+        }
       >
         <div className="text-xs text-foreGray font-medium mb-4">
           {props.title}

@@ -10,7 +10,7 @@ const CONST_TAG_COLOR_MAP = {
   lime: "#9d9d00",
   brown: "#a7a61b",
   orange: "#d56f0c",
-  gray: "#5d6469",
+  // gray: "#5d6469",
 };
 
 export const CONS_TAG_COLOR_RED = "red";
@@ -24,7 +24,7 @@ export const CONS_TAG_COLOR_GREEN = "green";
 export const CONS_TAG_COLOR_TEA = "lime";
 export const CONS_TAG_COLOR_BROWN = "brown";
 export const CONS_TAG_COLOR_ORANGE = "orange";
-export const CONS_TAG_COLOR_GRAY = "gray";
+// export const CONS_TAG_COLOR_GRAY = "gray";
 
 export const CONS_TAG_COLOR_LIST = [
   CONS_TAG_COLOR_RED,
@@ -37,7 +37,7 @@ export const CONS_TAG_COLOR_LIST = [
   CONS_TAG_COLOR_PURPLE,
   CONS_TAG_COLOR_TEAL,
   CONS_TAG_COLOR_TEA,
-  CONS_TAG_COLOR_GRAY,
+  // CONS_TAG_COLOR_GRAY,
   CONS_TAG_COLOR_BROWN,
 ];
 
@@ -65,8 +65,8 @@ export function getTagColor(tagColor: string): string {
       return CONST_TAG_COLOR_MAP.brown;
     case CONS_TAG_COLOR_ORANGE:
       return CONST_TAG_COLOR_MAP.orange;
-    case CONS_TAG_COLOR_GRAY:
-      return CONST_TAG_COLOR_MAP.gray;
+    // case CONS_TAG_COLOR_GRAY:
+    // return CONST_TAG_COLOR_MAP.gray;
     default:
       return CONST_TAG_COLOR_MAP.red;
   }

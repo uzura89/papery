@@ -159,7 +159,7 @@ export function EntryCardDraft(props: {
         {props.pinned && <span className="mr-1.5">📍</span>}
         <span className="text-foreLighter text-xs mr-1">Date:</span>
         <DatePicker
-          className="text-xs translate-y-[-1.5px] text-foreLight"
+          className="text-xs translate-y-[-1.5px] text-foreLight bg-inherit"
           dateFormat="yyyy-MM-dd"
           selected={props.date ? new Date(props.date) : new Date()}
           onChange={onChangeDate}

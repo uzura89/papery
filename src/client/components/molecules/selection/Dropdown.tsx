@@ -38,7 +38,7 @@ export default function Dropdown(props: {
             top: props.top || 34,
           }}
         >
-          <div className="bg-card rounded-lg shadow-md py-1 ">
+          <div className="bg-card rounded-lg shadow-md py-1 shadow-shadowColor">
             {props.items.map((item, index) => (
               <div
                 key={index}
@@ -48,7 +48,7 @@ export default function Dropdown(props: {
                   item.onClick();
                 }}
                 className={clsx(
-                  `flex items-center gap-2 pl-3 pr-5 py-1.5 hover:bg-black/5 cursor-pointer text-sm`,
+                  `flex items-center gap-2 pl-3 pr-5 py-1.5 hover:bg-textHoverBg cursor-pointer text-sm`,
                   item.isDanger ? "text-foreDanger" : "text-fore"
                 )}
               >
