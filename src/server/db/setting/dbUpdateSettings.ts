@@ -12,13 +12,13 @@ export async function dbUpdateSetting(
 
   try {
     // update setting
-    let setting = await Setting.fineOne({ userParmId });
+    let setting = await Setting.findOne({ userParmId });
     if (!setting) {
       await Setting.create({
         userParmId,
         theme: CONS_SETTING_THEME_LIGHT,
       });
-      setting = await Setting.fineOne({ userParmId });
+      setting = await Setting.findOne({ userParmId });
     }
 
     // update

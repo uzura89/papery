@@ -9,6 +9,8 @@ import useTemplateStore from "../../store/template/templateStore";
 import useReportStore from "../../store/report/reportStore";
 import UpgradeModal from "../organisms/premium/UpgradeModal";
 import useSettingStore from "../../store/setting/settingStore";
+import { createCookie } from "../../modules/cookie/CookieUtils";
+import { CONS_COOKIE_NAME_THEME } from "../../../common/constants/setting.cons";
 
 export function AppShell() {
   const userStore = useUserStore();
@@ -37,6 +39,7 @@ export function AppShell() {
     if (settingStore.theme) {
       // update theme
       document.documentElement.setAttribute("data-theme", settingStore.theme);
+      createCookie(CONS_COOKIE_NAME_THEME, settingStore.theme, 365, "/");
     }
   }, [settingStore.theme]);
 

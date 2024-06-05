@@ -3,16 +3,16 @@ import { LuMoon, LuSun } from "react-icons/lu";
 import { CONS_SETTING_THEME_MAP } from "../../../../common/constants/setting.cons";
 import useSettingStore from "../../../store/setting/settingStore";
 import { FormSelection } from "../../atoms/input/FormSelection";
-import useUserStore from "../../../store/user/userStore";
 import PremiumIcon from "../../atoms/marks/PremiumIcon";
 
 export default function SettingSectionTheme() {
-  const userStore = useUserStore();
   const settingStore = useSettingStore();
 
   function onSelectTheme(theme: string) {
     settingStore.updateTheme(theme);
   }
+
+  if (!settingStore.theme) return null;
 
   return (
     <div className="">

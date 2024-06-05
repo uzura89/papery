@@ -14,6 +14,10 @@ import {
   CONS_PATH_TEMPLATES_NEW,
   CONS_PATH_TERMS,
 } from "../../../common/constants";
+import {
+  CONS_COOKIE_NAME_THEME,
+  CONS_SETTING_THEME_LIGHT,
+} from "../../../common/constants/setting.cons";
 import { decodeAccessToken } from "../../modules/auth/jwt";
 
 export default function (app: any) {
@@ -21,7 +25,12 @@ export default function (app: any) {
     // param of demo is true
     const isDemo = req.query.demo === "true";
     if (isDemo || checkIfAuthenticated(req, app)) {
-      return res.render("pages/app");
+      // read cookie and set theme
+      const theme =
+        req.cookies[CONS_COOKIE_NAME_THEME] || CONS_SETTING_THEME_LIGHT;
+      return res.render("pages/app", {
+        theme,
+      });
     }
 
     return res.render("pages/landing");

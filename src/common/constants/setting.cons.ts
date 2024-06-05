@@ -13,3 +13,6 @@ export const CONS_SETTING_THEME_MAP: Record<string, string> = {
   [CONS_SETTING_THEME_LIGHT]: "Light",
   [CONS_SETTING_THEME_DARK]: "Dark",
 };
+
+// cookie
+export const CONS_COOKIE_NAME_THEME = "theme";
