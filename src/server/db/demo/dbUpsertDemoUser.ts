@@ -17,6 +17,8 @@ import {
   CONS_REPORT_TYPE_CLOUD,
 } from "../../../common/constants/report.cons";
 import { dbFetchAllTags } from "../tag/dbFetchAllTags";
+import { dbUpdateSetting } from "../setting/dbUpdateSettings";
+import { CONS_SETTING_THEME_LIGHT } from "../../../common/constants/setting.cons";
 
 export async function dbUpsertDemoUser(mongoose: any): Promise<void> {
   const userParmId = CONS_DEMO_USER_ID;
@@ -33,6 +35,9 @@ export async function dbUpsertDemoUser(mongoose: any): Promise<void> {
 
     // create default reports
     await createDemoReport(mongoose, userParmId);
+
+    // create demo setting
+    await createDemoSetting(mongoose, userParmId);
 
     // return
     return;
@@ -272,6 +277,17 @@ async function createDemoReport(mongoose: any, userParmId: string) {
     duration: CONS_REPORT_DURATION_THIS_YEAR,
     order: 0,
   });
+}
+
+/**
+ * createDemoSetting
+ */
+
+async function createDemoSetting(mongoose: any, userParmId: string) {
+  await dbUpdateSetting(mongoose, userParmId, {
+    theme: CONS_SETTING_THEME_LIGHT,
+  });
+  return;
 }
 
 /**
