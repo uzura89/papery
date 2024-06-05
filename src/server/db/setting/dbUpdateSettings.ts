@@ -1,3 +1,4 @@
+import { CONS_SETTING_THEME_LIGHT } from "../../../common/constants/setting.cons";
 import { SettingSchemaType } from "../../../common/types/setting.types";
 
 export async function dbUpdateSetting(
@@ -11,8 +12,14 @@ export async function dbUpdateSetting(
 
   try {
     // update setting
-    const setting = await Setting.fineOne({ userParmId });
-    if (!setting) throw new Error("Setting not found");
+    let setting = await Setting.fineOne({ userParmId });
+    if (!setting) {
+      await Setting.create({
+        userParmId,
+        theme: CONS_SETTING_THEME_LIGHT,
+      });
+      setting = await Setting.fineOne({ userParmId });
+    }
 
     // update
     if (typeof newValues.theme === "string") {
