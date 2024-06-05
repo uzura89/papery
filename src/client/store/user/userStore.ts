@@ -7,6 +7,7 @@ import callLoginWithGoogle from "../../api/user/callLoginWithGoogle";
 import { callSignupWithEmail } from "../../api/user/callSignupWithEmail";
 import { callVerifyEmail } from "../../api/user/callVerifyEmail";
 import { callLoginWithEmail } from "../../api/user/callLoginWithEmail";
+import { CONS_PATH_LOGIN } from "../../../common/constants";
 
 const INITIAL_USER: UserSchemaType = {
   userParmId: "",
@@ -52,7 +53,7 @@ const useUserStore = create<{
     if (response.error) {
       set({ loading: false, error: response.error.message });
       // go to login page
-      // window.location.href = CONS_PATH_LOGIN;
+      window.location.href = CONS_PATH_LOGIN;
     } else {
       set({ loading: false, data: { user: response.data.user } });
     }

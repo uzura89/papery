@@ -6,6 +6,7 @@ import { CONS_PATH_SIGNUP } from "../../../../common/constants";
 import Modal from "../../molecules/modal/Modal";
 import { ModalHeader } from "../../molecules/modal/ModalHeader";
 import { ModalFooter } from "../../molecules/modal/ModalFooter";
+import { deleteAccessToken } from "../../../modules/auth/AccessTokenUtils";
 
 export default function SettingSectionAccount() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,6 +28,10 @@ export default function SettingSectionAccount() {
       window.confirm("Something went wrong");
       return;
     }
+
+    // remove access_token from cookie
+    deleteAccessToken();
+
     window.confirm("Account deleted successfully");
     // go to signup page
     window.location.href = CONS_PATH_SIGNUP;
