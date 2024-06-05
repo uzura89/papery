@@ -2,7 +2,6 @@ export async function dbRemovePremiumFromUser(
   mongoose: any,
   customerId: string
 ) {
-  console.log("🚀 ~ customerId:", customerId);
   const User = mongoose.model("User");
 
   try {
@@ -20,7 +19,6 @@ export async function dbRemovePremiumFromUser(
 
     return;
   } catch (error) {
-    console.log("🚀 ~ error:", error);
     throw error;
   }
 }

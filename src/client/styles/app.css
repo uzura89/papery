@@ -56,27 +56,33 @@
   --fore-positive-rgb: 240, 85, 225;
   --link-rgb: 186, 118, 93;
   --link-rgb: 80, 136, 183;
-  --text-hover-bg-rgb: 255, 255, 255, 0.05;
+  /* --text-hover-bg-rgb: 255, 255, 255, 0.05; */
+  --text-hover-bg-rgb: 123, 122, 157, 0.05;
   /* --back-rgb: 5, 21, 29; */
-  --back-rgb: 2, 12, 16;
+  /* --back-rgb: 2, 12, 16; */
+  --back-rgb: 13, 34, 42;
   --back-dim-rgb: 18, 30, 59;
   /* --back-dark-rgb: 52, 60, 70; */
-  --back-dark-rgb: 51, 55, 60;
+  /* --back-dark-rgb: 51, 55, 60; */
+  --back-dark-rgb: 48, 55, 63;
   /* --back-danger-rgb: 178, 113, 137, 0.11; */
   --back-danger-rgb: 234, 176, 197, 0.11;
-
   --back-light-rgb: 7, 9, 17;
   --back-lightest-rgb: 10, 12, 18;
   --back-active-rgb: 19, 167, 167, 0.55;
-  --border-rgb: 42, 49, 65;
-  --border-light-rgb: 26, 29, 39;
-  --border-gray-rgb: 17, 17, 17;
+  /* --border-rgb: 42, 49, 65; */
+  --border-rgb: 75, 82, 96;
+  /* --border-light-rgb: 26, 29, 39; */
+  --border-light-rgb: 28, 33, 40;
+  /* --border-gray-rgb: 17, 17, 17; */
+  --border-gray-rgb: 25, 34, 46;
   /* --card-rgb: 31, 40, 51; */
-  --card-rgb: 37, 41, 46;
+  /* --card-rgb: 37, 41, 46; */
+  --card-rgb: 33, 44, 57;
   --fill-positive-rgb: 65, 136, 89, 0.9;
   --fill-light-gray-rgb: 22, 24, 29;
   --fill-primary-light-rgb: 48, 86, 125, 0.92;
-  --shadow-color-rgb: 0, 0, 0, 0.25;
+  --shadow-color-rgb: 0, 0, 0, 0.17;
   /* --button-bg-default-rgb: 56, 72, 92; */
   --button-bg-default-rgb: 49, 65, 85;
   --button-bg-primary-rgb: 39, 136, 104;
@@ -238,10 +244,6 @@ textarea {
   @apply mb-1;
 }
 
-.markdown blockquote {
-  @apply border-l-4 border-foreLight pl-3 my-3;
-}
-
 .markdown a {
   @apply underline text-link font-bold clickable;
 }
@@ -251,7 +253,7 @@ textarea {
 }
 
 .markdown blockquote {
-  @apply border-l-4 border-borderLight pl-3 my-3 text-lg text-foreSecondary italic;
+  @apply border-l-4 border-textHoverBg pl-3 my-3 text-lg text-foreSecondary italic;
 }
 
 /* .markdown .line-through {

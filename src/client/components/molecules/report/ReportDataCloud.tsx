@@ -67,6 +67,7 @@ export default function ReportDataCloud(props: {
       list,
       weightFactor: 25,
       rotateRatio: 0,
+      backgroundColor: "transparent",
     });
   }, [props.reportData]);
 
