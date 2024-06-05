@@ -12,7 +12,8 @@ export async function dbFetchSettings(
     const setting = await Setting.findOne({ userParmId }).lean();
 
     const settingToReturn: SettingType = {
-      theme: setting.theme ? setting.theme : CONS_SETTING_THEME_LIGHT,
+      theme:
+        setting && setting.theme ? setting.theme : CONS_SETTING_THEME_LIGHT,
     };
 
     // return
