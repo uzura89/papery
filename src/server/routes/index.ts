@@ -1,9 +1,17 @@
-module.exports = function (app: any) {
-  require("./page/index")(app);
-  require("./api/user/index")(app);
-  require("./api/entry/index")(app);
-  require("./api/tag/index")(app);
-  require("./api/template/index")(app);
-  require("./api/report/index")(app);
-  require("./api/premium/index")(app);
-};
+import PageRoutes from "./page/index";
+import UserRoutes from "./api/user/index";
+import EntryRoutes from "./api/entry/index";
+import TagRoutes from "./api/tag/index";
+import TemplateRoutes from "./api/template/index";
+import ReportRoutes from "./api/report/index";
+import PremiumRoutes from "./api/premium/index";
+
+export default function (app: any) {
+  PageRoutes(app);
+  UserRoutes(app);
+  EntryRoutes(app);
+  TagRoutes(app);
+  TemplateRoutes(app);
+  ReportRoutes(app);
+  PremiumRoutes(app);
+}

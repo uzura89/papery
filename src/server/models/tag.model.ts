@@ -1,4 +1,4 @@
-module.exports = function (mongoose: any) {
+export default function (mongoose: any) {
   const { Schema } = mongoose;
 
   // define Entry Schema
@@ -30,4 +30,4 @@ module.exports = function (mongoose: any) {
 
   // define Tag model using TagSchema
   mongoose.model("Tag", TagSchema);
-};
+}

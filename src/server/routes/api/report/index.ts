@@ -13,11 +13,11 @@ import { serveFetchAllReports } from "./serveFetchAllReports";
 import { serveFetchReportData } from "./serveFetchReportData";
 import { serveUpdateReport } from "./serveUpdateReport";
 
-module.exports = function (app: any) {
+export default function (app: any) {
   app.get(CONS_ENDPOINT_FETCH_ALL_REPORTS, serveFetchAllReports);
   app.get(CONS_ENDPOINT_FETCH_REPORT_DATA, serveFetchReportData);
   app.post(CONS_ENDPOINT_CREATE_REPORT, serveCreateReport);
   app.post(CONS_ENDPOINT_UPDATE_REPORT, serveUpdateReport);
   app.post(CONS_ENDPOINT_DELETE_REPORT, serveDeleteReport);
   app.post(CONS_ENDPOINT_CHANGE_ORDER_OF_REPORTS, serveChangeOrderOfReports);
-};
+}

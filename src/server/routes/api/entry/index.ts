@@ -25,7 +25,7 @@ import { serveFetchEntriesCsv } from "./serveFetchEntriesCsv";
 import { serveFetchReflections } from "./serveFetchReflections";
 import { serveFetchEntryById } from "./serveFetchEntryById";
 
-module.exports = function (app: any) {
+export default function (app: any) {
   app.post(CONS_ENDPOINT_CREATE_ENTRY, serveCreateEntry);
   app.post(CONS_ENDPOINT_UPDATE_ENTRY, serveUpdateEntry);
   app.post(CONS_ENDPOINT_DELETE_ENTRY, serveDeleteEntry);
@@ -38,4 +38,4 @@ module.exports = function (app: any) {
   app.get(CONS_ENDPOINT_FETCH_ENTRIES_CSV, serveFetchEntriesCsv);
   app.get(CONS_ENDPOINT_FETCH_REFLECTIONS, serveFetchReflections);
   app.get(CONS_ENDPOINT_FETCH_ENTRY_BY_ID, serveFetchEntryById);
-};
+}

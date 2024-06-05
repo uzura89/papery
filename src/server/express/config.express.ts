@@ -12,6 +12,8 @@ import {
   DEMO_ALLOWED_URLS,
 } from "../../common/constants";
 import { CONS_ERROR_CODE_FORBIDDEN } from "../../common/constants/api.cons";
+import Models from "../models/index";
+import Routes from "../routes/index";
 
 // load from .local.env
 dotenv.config({ path: ".local.env" });
@@ -22,7 +24,7 @@ const app = express();
 
 export default function () {
   // models
-  require("../models/index")(mongoose);
+  Models(mongoose);
 
   // configureExpress
   configureExpress(app);
@@ -64,7 +66,7 @@ export default function () {
   });
 
   // routes
-  require("../routes/index")(app);
+  Routes(app);
 
   // error handler
   errorHandlers(app);

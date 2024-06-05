@@ -9,9 +9,9 @@ import { serveDeleteTemplate } from "./serveDeleteTemplate";
 import { serveFetchAllTemplates } from "./serveFetchAllTemplates";
 import { serveUpdateTemplate } from "./serveUpdateTemplate";
 
-module.exports = function (app: any) {
+export default function (app: any) {
   app.get(CONS_ENDPOINT_FETCH_ALL_TEMPLATES, serveFetchAllTemplates);
   app.post(CONS_ENDPOINT_CREATE_TEMPLATE, serveCreateTemplate);
   app.post(CONS_ENDPOINT_UPDATE_TEMPLATE, serveUpdateTemplate);
   app.post(CONS_ENDPOINT_DELETE_TEMPLATE, serveDeleteTemplate);
-};
+}

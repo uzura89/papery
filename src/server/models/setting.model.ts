@@ -1,4 +1,4 @@
-module.exports = function (mongoose: any) {
+export default function (mongoose: any) {
   const { Schema } = mongoose;
 
   // define Entry Schema
@@ -22,4 +22,4 @@ module.exports = function (mongoose: any) {
 
   // define Setting model using SettingSchema
   mongoose.model("Setting", SettingSchema);
-};
+}

@@ -1,4 +1,4 @@
-import configExpress from "./src/server/express/config.express";
+import configExpress from "./express/config.express";
 
 const PORT = 3000;
 

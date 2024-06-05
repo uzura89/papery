@@ -1,0 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const constants_1 = require("../../../../common/constants");
+const serveCreateEntry_1 = require("./serveCreateEntry");
+const serveDeleteEntry_1 = require("./serveDeleteEntry");
+const serveDraftEntry_1 = require("./serveDraftEntry");
+const serveFetchEntryHistories_1 = require("./serveFetchEntryHistories");
+const serveFetchRecentEntries_1 = require("./serveFetchRecentEntries");
+const servePublishEntry_1 = require("./servePublishEntry");
+const serveTogglePinOfEntry_1 = require("./serveTogglePinOfEntry");
+const serveUpdateEntry_1 = require("./serveUpdateEntry");
+const serveFetchEntriesByText_1 = require("./serveFetchEntriesByText");
+const serveFetchEntriesCsv_1 = require("./serveFetchEntriesCsv");
+const serveFetchReflections_1 = require("./serveFetchReflections");
+const serveFetchEntryById_1 = require("./serveFetchEntryById");
+function default_1(app) {
+    app.post(constants_1.CONS_ENDPOINT_CREATE_ENTRY, serveCreateEntry_1.serveCreateEntry);
+    app.post(constants_1.CONS_ENDPOINT_UPDATE_ENTRY, serveUpdateEntry_1.serveUpdateEntry);
+    app.post(constants_1.CONS_ENDPOINT_DELETE_ENTRY, serveDeleteEntry_1.serveDeleteEntry);
+    app.post(constants_1.CONS_ENDPOINT_PUBLISH_ENTRY, servePublishEntry_1.servePublishEntry);
+    app.post(constants_1.CONS_ENDPOINT_DRAFT_ENTRY, serveDraftEntry_1.serveDraftEntry);
+    app.get(constants_1.CONS_ENDPOINT_FETCH_RECENT_ENTRIES, serveFetchRecentEntries_1.serveFetchRecentEntries);
+    app.post(constants_1.CONS_ENDPOINT_TOGGLE_PIN_OF_ENTRY, serveTogglePinOfEntry_1.serveTogglePinOfEntry);
+    app.get(constants_1.CONS_ENDPOINT_FETCH_ENTRY_HISTORIES, serveFetchEntryHistories_1.serveFetchEntryHistories);
+    app.get(constants_1.CONS_ENDPOINT_FETCH_ENTRIES_BY_TEXT, serveFetchEntriesByText_1.servefetchEntriesByText);
+    app.get(constants_1.CONS_ENDPOINT_FETCH_ENTRIES_CSV, serveFetchEntriesCsv_1.serveFetchEntriesCsv);
+    app.get(constants_1.CONS_ENDPOINT_FETCH_REFLECTIONS, serveFetchReflections_1.serveFetchReflections);
+    app.get(constants_1.CONS_ENDPOINT_FETCH_ENTRY_BY_ID, serveFetchEntryById_1.serveFetchEntryById);
+}
+exports.default = default_1;

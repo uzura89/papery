@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node index.ts",
-    "build": "NODE_ENV=production webpack",
+    "start": "node ./dist/index.js",
+    "build": "NODE_ENV=production webpack && npm run tsc",
     "dev": "rimraf public/dist/* && open http://localhost:3000 && nodemon ./webpack-dev-server.ts",
     "demo": "ts-node ./scripts/upsertDemoUser.ts",
-    "premium": "ts-node ./scripts/addPremiumToAllUsers.ts"
+    "premium": "ts-node ./scripts/addPremiumToAllUsers.ts",
+    "tsc": "tsc -p tsconfig.server.json"
   },
   "keywords": [],
   "author": "",
@@ -56,6 +57,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",
+    "@types/scheduler": "^0.23.0",
     "@types/webpack-hot-middleware": "^2.25.9",
     "autoprefixer": "^10.4.19",
     "css-loader": "^7.1.1",

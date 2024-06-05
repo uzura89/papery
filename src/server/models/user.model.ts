@@ -1,4 +1,4 @@
-module.exports = function (mongoose: any) {
+export default function (mongoose: any) {
   const { Schema } = mongoose;
 
   // define User Schema
@@ -67,4 +67,4 @@ module.exports = function (mongoose: any) {
 
   // define User model using UserSchema
   mongoose.model("User", UserSchema);
-};
+}

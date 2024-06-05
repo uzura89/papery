@@ -16,7 +16,7 @@ import {
 } from "../../../common/constants";
 import { decodeAccessToken } from "../../modules/auth/jwt";
 
-module.exports = function (app: any) {
+export default function (app: any) {
   function renderApp(req: any, res: any) {
     // param of demo is true
     const isDemo = req.query.demo === "true";
@@ -66,7 +66,7 @@ module.exports = function (app: any) {
   app.get(CONS_PATH_PRIVACY, renderPrivacy);
   app.get(CONS_PATH_TERMS, renderTerms);
   app.get(CONS_PATH_COMMERCE, renderTokutei);
-};
+}
 
 /**
  * checkIfAuthenticated
