@@ -1,4 +1,4 @@
-import { LuMoon, LuSun } from "react-icons/lu";
+import { LuCloud, LuMoon, LuSun } from "react-icons/lu";
 
 import { CONS_SETTING_THEME_MAP } from "../../../../common/constants/setting.cons";
 import useSettingStore from "../../../store/setting/settingStore";
@@ -25,7 +25,7 @@ export default function SettingSectionTheme() {
             selection={{
               ids: Object.keys(CONS_SETTING_THEME_MAP),
               texts: Object.values(CONS_SETTING_THEME_MAP),
-              icons: [<LuSun />, <LuMoon />],
+              icons: [<LuSun />, <LuCloud />, <LuMoon />],
             }}
           />
         </div>
