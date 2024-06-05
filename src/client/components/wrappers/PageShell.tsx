@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { LuCrown } from "react-icons/lu";
 
 export function PageWrapper(props: { children: ReactNode }) {
   return (
@@ -19,10 +20,16 @@ export function PageTitle(props: { title: string; children?: ReactNode }) {
   );
 }
 
-export function PageSection(props: { title: string; children: ReactNode }) {
+export function PageSection(props: {
+  title: string;
+  icon: ReactNode;
+  children: ReactNode;
+}) {
   return (
     <div className="">
-      <h2 className="font-bold mb-3">{props.title}</h2>
+      <h2 className="font-bold mb-3 flex items-center gap-1.5">
+        <span className="opacity-50 text-sm">{props.icon}</span> {props.title}
+      </h2>
       {props.children}
     </div>
   );

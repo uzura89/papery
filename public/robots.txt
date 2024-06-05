@@ -1,6 +1,7 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /?demo=true
 
 # Host
 Host: https://papery.me

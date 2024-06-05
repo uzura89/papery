@@ -62,7 +62,6 @@ export default function SettingSectionPremium() {
 
   return (
     <button className="btn btn-primary gap-1.5" onClick={onClickUpgrade}>
-      <LuCrown />
       Upgrade to Premium
     </button>
   );

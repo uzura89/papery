@@ -66,6 +66,9 @@
   .form {
     @apply rounded-md px-3 py-1.5 border border-foreLighter box-border placeholder:text-foreLight;
   }
+  .form-md {
+    @apply text-base py-[5px] px-[11px];
+  }
   .form-sm {
     @apply text-sm px-2 py-1.5;
   }

@@ -1,10 +1,11 @@
 import clsx from "clsx";
-import { LuDownload } from "react-icons/lu";
+import { LuCrown, LuDownload, LuUser, LuUser2 } from "react-icons/lu";
 
 import { Card } from "../atoms/card/Card";
 import { PageSection, PageTitle, PageWrapper } from "../wrappers/PageShell";
 import useSettingStore from "../../store/setting/settingStore";
 import SettingSectionPremium from "../organisms/settings/SettingSectionPremium";
+import SettingSectionAccount from "../organisms/settings/SettingSectionAccount";
 
 export default function SettingsPage() {
   const settingStore = useSettingStore();
@@ -20,7 +21,7 @@ export default function SettingsPage() {
 
         <div className="flex flex-col gap-4">
           <SectionCard>
-            <PageSection title="Download">
+            <PageSection title="Download" icon={<LuDownload />}>
               <button
                 onClick={onClickDownloadEntries}
                 className={clsx(
@@ -28,14 +29,20 @@ export default function SettingsPage() {
                   settingStore.isDownloading ? "btn-disabled" : ""
                 )}
               >
-                <LuDownload /> Download Entries (CSV)
+                Download Entries (CSV)
               </button>
             </PageSection>
           </SectionCard>
 
           <SectionCard>
-            <PageSection title="Subscription">
+            <PageSection title="Subscription" icon={<LuCrown />}>
               <SettingSectionPremium />
+            </PageSection>
+          </SectionCard>
+
+          <SectionCard>
+            <PageSection title="Account" icon={<LuUser2 />}>
+              <SettingSectionAccount />
             </PageSection>
           </SectionCard>
         </div>

@@ -18,11 +18,12 @@ const ENDPOINT_PREMIUM = `${CONS_ENDPOINT_API}/premium`;
  */
 
 // user
-export const CONS_ENDPOINT_FETCH_USER = `${ENDPOINT_USER}/fetch`;
 export const CONS_ENDPOINT_LOGIN_WITH_GOOGLE = `/login-with-google`;
 export const CONS_ENDPOINT_SIGNUP_WITH_EMAIL = `/signup-with-email`;
 export const CONS_ENDPOINT_VERIFY_EMAIL = `/verify-email`;
 export const CONS_ENDPOINT_LOGIN_WITH_EMAIL = `/login-with-email`;
+export const CONS_ENDPOINT_FETCH_USER = `${ENDPOINT_USER}/fetch`;
+export const CONS_ENDPOINT_DELETE_USER = `${ENDPOINT_USER}/delete`;
 
 // entry
 export const CONS_ENDPOINT_CREATE_ENTRY = `${ENDPOINT_ENTRY}/create`;
