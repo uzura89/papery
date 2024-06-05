@@ -6,6 +6,7 @@ import { PremiumPlanType } from "../../../common/types/premium.types";
 import { callFetchPremiumPlans } from "../../api/premium/callFetchPremiumPlans";
 import { callFetchSetting } from "../../api/setting/callFetchSetting";
 import { callUpdateTheme } from "../../api/setting/callUpdateTheme";
+import { CONS_SETTING_THEME_LIGHT } from "../../../common/constants/setting.cons";
 
 const useSettingStore = create<{
   fetchSetting: () => void;
@@ -24,7 +25,7 @@ const useSettingStore = create<{
     if (response.error) return;
 
     // update theme
-    set({ theme: response.data.setting.theme });
+    set({ theme: response.data.setting.theme || CONS_SETTING_THEME_LIGHT });
   },
   // download entries
   isDownloading: false,
