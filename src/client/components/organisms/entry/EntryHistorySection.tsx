@@ -26,6 +26,13 @@ export function EntryHistorySection(props: { onSelectDate?: () => void }) {
     entryStore.fetchEntriesBySearchText();
   };
 
+  const onSelectDateRange = (fromDate: string, toDate: string) => {
+    props.onSelectDate && props.onSelectDate();
+
+    entrySearchStore.addDateRangeToSearchText(fromDate, toDate);
+    entryStore.fetchEntriesBySearchText();
+  };
+
   const onClickMonth = (month: number) => {
     props.onSelectDate && props.onSelectDate();
 
@@ -77,6 +84,7 @@ export function EntryHistorySection(props: { onSelectDate?: () => void }) {
           entryHistories={entryHistoryStore.entryHistories}
           onClickDate={onClickDate}
           onClickMonth={onClickMonth}
+          onSelectDateRange={onSelectDateRange}
           searchText={entrySearchStore.searchText}
           scrollToRef={scrollToRef}
         />

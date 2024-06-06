@@ -7,6 +7,7 @@ const useEntrySearchStore = create<{
   changeSearchText: (text: string) => void;
   addTagToSearchText: (tag: string) => void;
   addDateToSearchText: (date: string) => void;
+  addDateRangeToSearchText: (fromDate: string, toDate: string) => void;
 }>((set, get) => ({
   searchText: "",
   changeSearchText: (text: string) => {
@@ -41,6 +42,17 @@ const useEntrySearchStore = create<{
     const newSearchText = `${tagsInSearchText
       .map((t) => `#${t}`)
       .join(" ")} ${date}`;
+
+    set({ searchText: newSearchText });
+  },
+  addDateRangeToSearchText: (fromDate: string, toDate: string) => {
+    const searchText = get().searchText;
+
+    // add the date range to the search text
+    const tagsInSearchText = extractTagsFromBody(searchText);
+    const newSearchText = `${tagsInSearchText
+      .map((t) => `#${t}`)
+      .join(" ")} ${fromDate}~${toDate}`;
 
     set({ searchText: newSearchText });
   },

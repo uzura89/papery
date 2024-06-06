@@ -66,7 +66,7 @@ export default function EntrySearchForm() {
   );
 
   return (
-    <div className="w-[220px]" ref={inputDivRef}>
+    <div className="w-[250px]" ref={inputDivRef}>
       <EntrySearchFormInput
         searchInput={entrySearchStore.searchText}
         onChangeText={onChangeText}
@@ -112,7 +112,7 @@ function EntrySearchFormInput(props: {
         type="text"
         placeholder="Date or tags..."
         className={clsx(
-          "bg-transparent overflow-hidden text-foreSecondary placeholder:text-foreLight"
+          "bg-transparent overflow-hidden text-foreSecondary placeholder:text-foreLight w-full"
         )}
         onFocus={props.onFocus}
       />

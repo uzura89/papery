@@ -15,3 +15,17 @@ function isDate(word: string) {
 
   return false;
 }
+
+export function extractDateRangeFromText(
+  text: string
+): [string, string] | null {
+  const dateRange = text.split("~");
+  if (dateRange.length !== 2) return null;
+
+  const fromDate = extractDateFromText(dateRange[0]);
+  const toDate = extractDateFromText(dateRange[1]);
+
+  if (!fromDate || !toDate) return null;
+
+  return [fromDate, toDate];
+}

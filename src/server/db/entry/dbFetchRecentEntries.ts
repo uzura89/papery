@@ -67,10 +67,11 @@ function makeTextFilter(text?: string) {
 
   // extract tags and date from raw text
   const tags = extractTagsFromBody(text);
+  const dateRange = extractDateRange(text);
   const date = extractDate(text);
 
   // if no tags and date, fetch none
-  if (tags.length === 0 && !date) {
+  if (tags.length === 0 && !date && dateRange.length === 0) {
     return {
       id: { $exists: false },
     };
@@ -78,9 +79,15 @@ function makeTextFilter(text?: string) {
 
   // prepare query
   const tagsQuery = tags.length > 0 ? { $all: tags } : { $exists: true };
-  const dateQuery = date
-    ? { $regex: new RegExp(date, "i") }
-    : { $exists: true };
+  const dateQuery =
+    dateRange.length == 2
+      ? {
+          $gte: dateRange[0],
+          $lte: dateRange[1],
+        }
+      : date
+      ? { $regex: new RegExp(date, "i") }
+      : { $exists: true };
 
   return {
     $and: [
@@ -95,6 +102,18 @@ function makeTextFilter(text?: string) {
 /**
  * Modules
  */
+
+function extractDateRange(text: string) {
+  const dateRange = text.split("~");
+  if (dateRange.length !== 2) return [];
+
+  const fromDate = extractDate(dateRange[0]);
+  const toDate = extractDate(dateRange[1]);
+
+  if (!fromDate || !toDate) return [];
+
+  return [fromDate, toDate];
+}
 
 function extractDate(text: string) {
   return text.split(" ").find((word) => isDate(word));

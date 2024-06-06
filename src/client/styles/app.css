@@ -40,101 +40,68 @@
 }
 
 [data-theme="dark"] {
-  /* --fore-rgb: 232, 234, 237; */
   --fore-rgb: 233, 230, 226;
-  /* --fore-secondary-rgb: 173, 178, 190; */
   --fore-secondary-rgb: 206, 203, 201;
   --fore-entry-rgb: 174, 177, 184;
-  /* --fore-light-rgb: 180, 184, 195; */
   --fore-light-rgb: 141, 140, 140;
-  /* --fore-lighter-rgb: 110, 121, 130; */
   --fore-lighter-rgb: 123, 121, 119;
-  /* --fore-danger-rgb: 178, 113, 137; */
   --fore-danger-rgb: 196, 112, 143;
   --fore-gray-rgb: 123, 125, 129;
   --fore-gray-light-rgb: 81, 84, 92;
   --fore-positive-rgb: 240, 85, 225;
   --link-rgb: 186, 118, 93;
   --link-rgb: 80, 136, 183;
-  /* --text-hover-bg-rgb: 255, 255, 255, 0.05; */
   --text-hover-bg-rgb: 123, 122, 157, 0.05;
-  /* --back-rgb: 5, 21, 29; */
   --back-rgb: 2, 12, 16;
   --back-dim-rgb: 18, 30, 59;
-  /* --back-dark-rgb: 52, 60, 70; */
   --back-dark-rgb: 51, 55, 60;
-  /* --back-danger-rgb: 178, 113, 137, 0.11; */
   --back-danger-rgb: 234, 176, 197, 0.11;
   --back-light-rgb: 7, 9, 17;
   --back-lightest-rgb: 10, 12, 18;
   --back-active-rgb: 19, 167, 167, 0.55;
-  --border-rgb: 56, 62, 69;
-  /* --border-rgb: 75, 82, 96; */
+  --border-rgb: 75, 78, 79;
   --border-light-rgb: 26, 29, 39;
-  /* --border-light-rgb: 28, 33, 40; */
-  --border-gray-rgb: 17, 17, 17;
-  /* --border-gray-rgb: 25, 34, 46; */
-  /* --card-rgb: 31, 40, 51; */
+  --border-gray-rgb: 94, 96, 98;
   --card-rgb: 27, 31, 36;
   --fill-positive-rgb: 65, 136, 89, 0.9;
   --fill-light-gray-rgb: 22, 24, 29;
   --fill-primary-light-rgb: 48, 86, 125, 0.92;
   --shadow-color-rgb: 0, 0, 0, 0.17;
-  /* --button-bg-default-rgb: 56, 72, 92; */
   --button-bg-default-rgb: 43, 59, 81;
   --button-bg-primary-rgb: 39, 136, 104;
-  /* --brandlogo-rgb: 83, 95, 107; */
   --brandlogo-rgb: 134, 131, 129;
 }
 
 [data-theme="dim"] {
-  /* --fore-rgb: 232, 234, 237; */
   --fore-rgb: 233, 230, 226;
-  /* --fore-secondary-rgb: 173, 178, 190; */
   --fore-secondary-rgb: 206, 203, 201;
   --fore-entry-rgb: 174, 177, 184;
-  /* --fore-light-rgb: 180, 184, 195; */
   --fore-light-rgb: 141, 140, 140;
-  /* --fore-lighter-rgb: 110, 121, 130; */
   --fore-lighter-rgb: 123, 121, 119;
-  /* --fore-danger-rgb: 178, 113, 137; */
   --fore-danger-rgb: 196, 112, 143;
   --fore-gray-rgb: 123, 125, 129;
   --fore-gray-light-rgb: 81, 84, 92;
   --fore-positive-rgb: 240, 85, 225;
   --link-rgb: 186, 118, 93;
   --link-rgb: 80, 136, 183;
-  /* --text-hover-bg-rgb: 255, 255, 255, 0.05; */
-  --text-hover-bg-rgb: 123, 122, 157, 0.05;
-  /* --back-rgb: 5, 21, 29; */
-  /* --back-rgb: 2, 12, 16; */
+  --text-hover-bg-rgb: 123, 122, 157, 0.15;
   --back-rgb: 13, 34, 42;
   --back-dim-rgb: 18, 30, 59;
-  /* --back-dark-rgb: 52, 60, 70; */
-  /* --back-dark-rgb: 51, 55, 60; */
   --back-dark-rgb: 48, 55, 63;
-  /* --back-danger-rgb: 178, 113, 137, 0.11; */
   --back-danger-rgb: 234, 176, 197, 0.11;
   --back-light-rgb: 7, 9, 17;
   --back-lightest-rgb: 10, 12, 18;
   --back-active-rgb: 19, 167, 167, 0.55;
-  /* --border-rgb: 42, 49, 65; */
   --border-rgb: 75, 82, 96;
-  /* --border-light-rgb: 26, 29, 39; */
   --border-light-rgb: 28, 33, 40;
-  /* --border-gray-rgb: 17, 17, 17; */
-  --border-gray-rgb: 25, 34, 46;
-  /* --card-rgb: 31, 40, 51; */
-  /* --card-rgb: 37, 41, 46; */
+  --border-gray-rgb: 75, 84, 96;
   --card-rgb: 33, 44, 57;
   --fill-positive-rgb: 65, 136, 89, 0.9;
   --fill-light-gray-rgb: 22, 24, 29;
   --fill-primary-light-rgb: 48, 86, 125, 0.92;
   --shadow-color-rgb: 0, 0, 0, 0.17;
-  /* --button-bg-default-rgb: 56, 72, 92; */
   --button-bg-default-rgb: 49, 65, 85;
   --button-bg-primary-rgb: 39, 136, 104;
-  /* --brandlogo-rgb: 83, 95, 107; */
   --brandlogo-rgb: 134, 131, 129;
 }
 

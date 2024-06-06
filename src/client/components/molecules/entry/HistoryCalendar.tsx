@@ -9,6 +9,11 @@ import {
   addZero,
   convertDateToString,
 } from "../../../../common/modules/date/convertDateToString";
+import {
+  extractDateFromText,
+  extractDateRangeFromText,
+} from "../../../../common/modules/date/extractDateFromText";
+import { useState, useEffect } from "react";
 
 export function HistoryCalendar(props: {
   loading: boolean;
@@ -19,11 +24,53 @@ export function HistoryCalendar(props: {
   scrollToRef: React.RefObject<HTMLDivElement>;
   onClickDate: (date: string) => void;
   onClickMonth: (month: number) => void;
+  onSelectDateRange: (fromDate: string, toDate: string) => void;
 }) {
   const today = convertDateToString(new Date());
+  // states
+  const [holdedKey, setHoldedKey] = useState<string>("");
+
+  function handleClickDate(date: string) {
+    if (holdedKey === "Shift") {
+      const existingDate = extractDateFromText(props.searchText);
+      if (existingDate) {
+        props.onSelectDateRange(existingDate, date);
+        return;
+      }
+    }
+    props.onClickDate(date);
+  }
+
+  function handleClickMonth(month: number) {
+    if (holdedKey === "Shift") {
+      const existingDate = extractDateFromText(props.searchText);
+      if (existingDate) {
+        const yearMonth = `${props.year}-${addZero(month + 1)}`;
+        props.onSelectDateRange(existingDate, yearMonth);
+        return;
+      }
+    }
+    props.onClickMonth(month);
+  }
+
+  function onKeyDown(event: any) {
+    setHoldedKey(event.key);
+  }
+  function onKeyUp(event: any) {
+    setHoldedKey("");
+  }
+
+  useEffect(() => {
+    window.document.addEventListener("keydown", onKeyDown);
+    window.document.addEventListener("keyup", onKeyUp);
+    return () => {
+      window.document.removeEventListener("keydown", onKeyDown);
+      window.document.removeEventListener("keyup", onKeyUp);
+    };
+  }, [null]);
 
   return (
-    <div className="flex flex-col-reverse">
+    <div className="flex flex-col-reverse select-none">
       {props.calendarDates.map((month) => {
         const entryHistoriesOfMonth = props.entryHistories.filter(
           (entryHistory) => {
@@ -43,8 +90,8 @@ export function HistoryCalendar(props: {
             searchText={props.searchText}
             today={today}
             scrollToRef={props.scrollToRef}
-            onClickDate={props.onClickDate}
-            onClickMonth={props.onClickMonth}
+            onClickDate={handleClickDate}
+            onClickMonth={handleClickMonth}
           />
         );
       })}
@@ -64,6 +111,14 @@ function DatesInMonth(props: {
 }) {
   function onClickMonth() {
     props.onClickMonth(props.month.month);
+  }
+
+  function checkIfDateSelected(date: string, searchText: string) {
+    const selectedDate = extractDateFromText(searchText);
+    if (selectedDate === date) return true;
+    const dateRange = extractDateRangeFromText(searchText);
+    if (dateRange && date >= dateRange[0] && date <= dateRange[1]) return true;
+    return false;
   }
 
   // const blankDays =
@@ -113,7 +168,7 @@ function DatesInMonth(props: {
                   date={date}
                   entryHistory={entryHistory}
                   onClickDate={props.onClickDate}
-                  isSelected={props.searchText.includes(date)}
+                  isSelected={checkIfDateSelected(date, props.searchText)}
                 />
               </DateItemWrapper>
               <div
