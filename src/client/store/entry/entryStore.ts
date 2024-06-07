@@ -17,6 +17,8 @@ import { EntryType } from "../../../common/types/entry.types";
 import useEntrySearchStore from "./entrySearchStore";
 import { CONS_ERROR_CODE_FORBIDDEN } from "../../../common/constants/api.cons";
 import useReportStore from "../report/reportStore";
+import useUiStore from "../ui/uiStore";
+import { CONS_MODAL_UPGRADE } from "../../../common/constants";
 
 const useEntryStore = create<{
   loading: boolean;
@@ -223,8 +225,32 @@ const useEntryStore = create<{
 
     // call publish entry API
     const response = await callPublishEntry({ id, body, date });
+    // handle response
     if (response.error) {
       set({ error: response.error.message });
+
+      // update draft state locally (entries)
+      const entries = get().entries.map((entry) => {
+        if (entry.id === id) {
+          return { ...entry, draft: true, changedTS: Date.now() };
+        }
+        return entry;
+      });
+      // update draft state locally (defaultEntries)
+      const defaultEntries = get().defaultEntries.map((entry) => {
+        if (entry.id === id) {
+          return { ...entry, draft: true, changedTS: Date.now() };
+        }
+        return entry;
+      });
+      set({ entries, defaultEntries });
+
+      const answer = window.confirm(response.error.message);
+      if (answer) {
+        useUiStore.getState().setVisibleModal(CONS_MODAL_UPGRADE);
+      }
+
+      return;
     }
 
     // reorder entries

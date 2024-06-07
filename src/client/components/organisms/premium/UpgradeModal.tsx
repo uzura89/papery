@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import clsx from "clsx";
 
 import { CONS_MODAL_UPGRADE } from "../../../../common/constants";
@@ -56,9 +56,27 @@ export default function UpgradeModal() {
               onSelectPlan={() => setSelectedIndex(index)}
               title={plan.title}
               price={plan.price}
+              isRecurring={plan.isRecurring}
             />
           ))}
         </div>
+
+        <ul className="text-foreSecondary text-sm mb-5">
+          {selectedIndex === 0 && (
+            <li>
+              * The subscription will automatically renew every month until you
+              cancel.
+            </li>
+          )}
+          {selectedIndex === 1 && (
+            <Fragment>
+              <li>* Save 33% with yearly plan</li>
+              <li>
+                * The subscription will automatically expire after 1 year.
+              </li>
+            </Fragment>
+          )}
+        </ul>
       </div>
 
       <ModalFooter>
@@ -75,7 +93,7 @@ export default function UpgradeModal() {
 
 function Label(props: { text: string }) {
   return (
-    <div className="text-foreGray text-sm font-bold mt-3 mb-3">
+    <div className="text-foreLight text-sm font-bold mt-3 mb-3">
       {props.text}
     </div>
   );
@@ -86,8 +104,14 @@ function Benefits() {
     <div className="">
       <div className="text-foreSecondary">
         <ul className="list-disc list-inside">
-          <li className="">📔 Unlimited templates (more than 1)</li>
-          <li className="">📊 Unlimited reports (more than 1)</li>
+          {/* <li className="">🗒 Unlimited entries (3+ per day)</li>
+          <li className="">📔 Unlimited templates (2+)</li>
+          <li className="">📊 Unlimited reports (2+)</li> */}
+
+          <li className="">🗒 Create more than 2 entries per day</li>
+          <li className="">📔 Save more than 1 template</li>
+          <li className="">📊 Save more than 1 report</li>
+
           <li className="">And all the future updates...</li>
         </ul>
       </div>
@@ -100,6 +124,7 @@ function PlanCard(props: {
   onSelectPlan: () => void;
   title: string;
   price: number;
+  isRecurring: boolean;
 }) {
   return (
     <div
@@ -112,13 +137,18 @@ function PlanCard(props: {
       <div className="font-bold text-[#1db480] text-sm">{props.title}</div>
       <div className="text-foreSecondary text-2xl font-bold">
         ${props.price}
-      </div>
-      <div className="text-sm text-foreLight">
-        <div className="text-xs mb-1">
-          {props.title === "Lifetime" && "pay once"}
+        <span className="text-xs mb-1 font-normal ml-1">
           {props.title === "Yearly" && "/ year"}
           {props.title === "Monthly" && "/ month"}
-        </div>
+        </span>
+      </div>
+
+      <div
+        className={clsx(
+          "text-foreSecondary bg-textHoverBg text-xs rounded-full py-0.5 px-2 font-medium mt-2"
+        )}
+      >
+        {props.isRecurring ? "Auto renew" : "Auto expire"}
       </div>
     </div>
   );

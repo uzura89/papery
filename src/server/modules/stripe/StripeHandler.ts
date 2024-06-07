@@ -14,7 +14,6 @@ const stripe = new Stripe(env.STRIPE_KEY_SEC);
 async function generateCheckoutUrl(params: {
   priceId: string;
   customerEmail: string;
-  isRecurring: boolean;
 }) {
   const sessionObject: any = {
     customer_email: params.customerEmail,
@@ -24,17 +23,17 @@ async function generateCheckoutUrl(params: {
         quantity: 1,
       },
     ],
-    mode: params.isRecurring ? "subscription" : "payment",
+    mode: "subscription",
     success_url: `${env.APP_URL}${CONS_PATH_SETTINGS}`,
     cancel_url: `${env.APP_URL}${CONS_PATH_SETTINGS}`,
   };
 
   // this is needed to create an invoice for one-time payments
-  if (!params.isRecurring) {
-    sessionObject.invoice_creation = {
-      enabled: true,
-    };
-  }
+  // if (!params.isRecurring) {
+  //   sessionObject.invoice_creation = {
+  //     enabled: true,
+  //   };
+  // }
 
   const session = await stripe.checkout.sessions.create(sessionObject);
 

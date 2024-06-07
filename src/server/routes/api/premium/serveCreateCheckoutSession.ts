@@ -24,7 +24,6 @@ export async function serveCreateCheckoutSession(req: any, res: any) {
     const checkoutUrl = await StripeHandler.generateCheckoutUrl({
       priceId,
       customerEmail: user.email,
-      isRecurring: priceItem.isRecurring,
     });
 
     return res.status(200).send({ checkoutUrl });

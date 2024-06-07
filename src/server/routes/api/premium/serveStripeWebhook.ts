@@ -53,33 +53,30 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
   }
 
   // process checkout.session.completed event
-  if (!priceItem.isRecurring) {
-    await dbPurchaseOnetime(mongoose, stripeSession.customer_email, {
-      customerId: stripeSession.customer,
-      purchaseId: stripeSession.id,
-      purchasePlan: priceItem.title,
-    });
-  } else {
-    if (typeof stripeSession.subscription !== "string") {
-      throw new Error("Subscription not found");
-    }
+  if (typeof stripeSession.subscription !== "string") {
+    throw new Error("Subscription not found");
+  }
 
-    const subscription = await StripeHandler.retrieveSubscription(
-      stripeSession.subscription
-    );
+  const subscription = await StripeHandler.retrieveSubscription(
+    stripeSession.subscription
+  );
 
-    if (!subscription || typeof subscription.current_period_end !== "number") {
-      throw new Error("Subscription not found");
-    }
+  if (!subscription || typeof subscription.current_period_end !== "number") {
+    throw new Error("Subscription not found");
+  }
 
-    await dbPurchaseSubscription(mongoose, stripeSession.customer_email, {
-      customerId: stripeSession.customer,
-      purchaseId: stripeSession.id,
-      purchasePlan: priceItem.title,
-      subscriptionId: subscription.id,
-      subscriptionCurrentPeriodEnd: subscription.current_period_end * 1000,
-      subscriptionCancelAtPeriodEnd: subscription.cancel_at_period_end,
-    });
+  await dbPurchaseSubscription(mongoose, stripeSession.customer_email, {
+    customerId: stripeSession.customer,
+    purchaseId: stripeSession.id,
+    purchasePlan: priceItem.title,
+    subscriptionId: subscription.id,
+    subscriptionCurrentPeriodEnd: subscription.current_period_end * 1000,
+    subscriptionCancelAtPeriodEnd: subscription.cancel_at_period_end,
+  });
+
+  // cancel at period end if not recurring
+  if (priceItem.isRecurring === false) {
+    await StripeHandler.cancelAtPeriodEnd(subscription.id);
   }
 }
 

@@ -35,6 +35,8 @@ module.exports = {
         fillPositive: "rgb(var(--fill-positive-rgb))",
         fillLightGray: "rgb(var(--fill-light-gray-rgb))",
         fillPrimaryLight: "rgb(var(--fill-primary-light-rgb))",
+        fillBlue: "rgb(var(--fill-blue-rgb))",
+        fillPink: "rgb(var(--fill-pink-rgb))",
         shadowColor: "rgb(var(--shadow-color-rgb))",
         buttonBgDefault: "rgb(var(--button-bg-default-rgb))",
         buttonBgPrimary: "rgb(var(--button-bg-primary-rgb))",

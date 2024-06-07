@@ -51,7 +51,7 @@
   --fore-positive-rgb: 240, 85, 225;
   --link-rgb: 186, 118, 93;
   --link-rgb: 80, 136, 183;
-  --text-hover-bg-rgb: 123, 122, 157, 0.05;
+  --text-hover-bg-rgb: 123, 122, 157, 0.22;
   --back-rgb: 2, 12, 16;
   --back-dim-rgb: 18, 30, 59;
   --back-dark-rgb: 51, 55, 60;
@@ -60,7 +60,7 @@
   --back-lightest-rgb: 10, 12, 18;
   --back-active-rgb: 19, 167, 167, 0.55;
   --border-rgb: 75, 78, 79;
-  --border-light-rgb: 26, 29, 39;
+  --border-light-rgb: 43, 46, 54;
   --border-gray-rgb: 94, 96, 98;
   --card-rgb: 27, 31, 36;
   --fill-positive-rgb: 65, 136, 89, 0.9;
@@ -99,6 +99,8 @@
   --fill-positive-rgb: 65, 136, 89, 0.9;
   --fill-light-gray-rgb: 22, 24, 29;
   --fill-primary-light-rgb: 48, 86, 125, 0.92;
+  --fill-blue-rgb: 35, 113, 141, 0.9;
+  --fill-pink-rgb: 179, 52, 161, 0.9;
   --shadow-color-rgb: 0, 0, 0, 0.17;
   --button-bg-default-rgb: 49, 65, 85;
   --button-bg-primary-rgb: 39, 136, 104;

@@ -425,10 +425,8 @@ section {
   gap: 2rem;
   /* flex-wrap: wrap; */
 
-  display: grid;
-  /* 3 cols */
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  display: flex;
+  justify-content: center;
 }
 
 #pricing .pricing-plan {
@@ -439,7 +437,8 @@ section {
   background-color: #fffcf6;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 18px;
-  /* max-width: 40%; */
+  width: 240px;
+  text-align: center;
 }
 
 #pricing .pricing-plan h3 {
@@ -650,7 +649,9 @@ footer .brand-mark img {
   }
 
   #pricing .pricing-plans {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 
   #features .features {
@@ -680,10 +681,6 @@ footer .brand-mark img {
   .cta-btn {
     padding: 0.5rem 1rem;
     margin: 0.5rem 0;
-  }
-
-  #pricing .pricing-plans {
-    grid-template-columns: repeat(1, 1fr);
   }
 
   #features .feature {
