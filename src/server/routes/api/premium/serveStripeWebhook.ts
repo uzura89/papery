@@ -71,7 +71,7 @@ async function onCheckoutSessionCompleted(stripeEvent: any) {
     purchasePlan: priceItem.title,
     subscriptionId: subscription.id,
     subscriptionCurrentPeriodEnd: subscription.current_period_end * 1000,
-    subscriptionCancelAtPeriodEnd: subscription.cancel_at_period_end,
+    subscriptionCancelAtPeriodEnd: !priceItem.isRecurring ? true : false,
   });
 
   // cancel at period end if not recurring
