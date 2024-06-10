@@ -7,6 +7,8 @@ import { callFetchPremiumPlans } from "../../api/premium/callFetchPremiumPlans";
 import { callFetchSetting } from "../../api/setting/callFetchSetting";
 import { callUpdateTheme } from "../../api/setting/callUpdateTheme";
 import { CONS_SETTING_THEME_LIGHT } from "../../../common/constants/setting.cons";
+import { callDecryptEntries } from "../../api/setting/callDecryptEntries";
+import { callEncryptEntries } from "../../api/setting/callEncryptEntries";
 
 const useSettingStore = create<{
   fetchSetting: () => void;
@@ -19,13 +21,19 @@ const useSettingStore = create<{
   // theme
   theme: string | undefined;
   updateTheme: (theme: string) => void;
+  // encrypt
+  textSearchEnabled: boolean;
+  updateTextSearch: (textSearchEnabled: boolean) => void;
 }>((set, get) => ({
   fetchSetting: async () => {
     const response = await callFetchSetting({});
     if (response.error) return;
 
     // update theme
-    set({ theme: response.data.setting.theme || CONS_SETTING_THEME_LIGHT });
+    set({
+      theme: response.data.setting.theme || CONS_SETTING_THEME_LIGHT,
+      textSearchEnabled: response.data.setting.textSearchEnabled || false,
+    });
   },
   // download entries
   isDownloading: false,
@@ -60,6 +68,17 @@ const useSettingStore = create<{
 
     // try updating theme in db
     await callUpdateTheme({ theme });
+  },
+  // encrypt
+  textSearchEnabled: false,
+  updateTextSearch: async (textSearchEnabled) => {
+    set({ textSearchEnabled });
+    if (textSearchEnabled) {
+      await callDecryptEntries({});
+    } else {
+      // encrypt entries
+      await callEncryptEntries({});
+    }
   },
 }));
 

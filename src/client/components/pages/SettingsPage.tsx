@@ -1,11 +1,5 @@
 import clsx from "clsx";
-import {
-  LuCrown,
-  LuDownload,
-  LuPalette,
-  LuUser,
-  LuUser2,
-} from "react-icons/lu";
+import { LuCog, LuCrown, LuDownload, LuPalette, LuUser2 } from "react-icons/lu";
 
 import { Card } from "../atoms/card/Card";
 import { PageSection, PageTitle, PageWrapper } from "../wrappers/PageShell";
@@ -13,6 +7,7 @@ import useSettingStore from "../../store/setting/settingStore";
 import SettingSectionPremium from "../organisms/settings/SettingSectionPremium";
 import SettingSectionAccount from "../organisms/settings/SettingSectionAccount";
 import SettingSectionTheme from "../organisms/settings/SettingSectionTheme";
+import SettingSectionEncryption from "../organisms/settings/SettingSectionEncryption";
 
 export default function SettingsPage() {
   const settingStore = useSettingStore();
@@ -27,6 +22,12 @@ export default function SettingsPage() {
         <PageTitle title="Settings" />
 
         <div className="flex flex-col gap-4">
+          <SectionCard>
+            <PageSection title="General" icon={<LuCog />}>
+              <SettingSectionEncryption />
+            </PageSection>
+          </SectionCard>
+
           <SectionCard>
             <PageSection title="Style" icon={<LuPalette />}>
               <SettingSectionTheme />

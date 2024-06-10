@@ -12,6 +12,7 @@ import { TagItem } from "../../atoms/tag/TagItem";
 import useTagStore from "../../../store/tag/tagStore";
 import { TagType } from "../../../../common/types";
 import { useClickOutsideEffect } from "../../../modules/ui/useOutsideClick";
+import useSettingStore from "../../../store/setting/settingStore";
 
 export default function EntrySearchForm() {
   // stores
@@ -94,6 +95,8 @@ function EntrySearchFormInput(props: {
   clearText: () => void;
   onFocus: () => void;
 }) {
+  const { textSearchEnabled } = useSettingStore();
+
   return (
     <div
       className={clsx(
@@ -110,7 +113,9 @@ function EntrySearchFormInput(props: {
         onChange={props.onChangeText}
         value={props.searchInput}
         type="text"
-        placeholder="Date or tags..."
+        placeholder={
+          textSearchEnabled ? "date, tags, or texts..." : "date or tags..."
+        }
         className={clsx(
           "bg-transparent overflow-hidden text-foreSecondary placeholder:text-foreLight w-full"
         )}

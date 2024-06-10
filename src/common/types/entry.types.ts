@@ -10,6 +10,7 @@ export type EntryBaseType = {
 
 export type EntrySchemaType = EntryBaseType & {
   userParmId: string;
+  decryptedBody: string | null;
   created?: Date;
 };
 

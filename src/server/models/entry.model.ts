@@ -15,6 +15,10 @@ export default function (mongoose: any) {
       type: String,
       default: "",
     },
+    decryptedBody: {
+      type: String,
+      default: null,
+    },
     date: {
       type: String,
       default: "",
@@ -46,6 +50,20 @@ export default function (mongoose: any) {
 
   // userParmId, date, tags
   EntrySchema.index({ userParmId: 1, date: 1, tags: 1 });
+
+  EntrySchema.index(
+    {
+      primaryEmoji: "text",
+      decryptedBody: "text",
+    },
+    {
+      name: "Entry text index",
+      weights: {
+        primaryEmoji: 2,
+        decryptedBody: 1,
+      },
+    }
+  );
 
   // define Entry model using EntrySchema
   mongoose.model("Entry", EntrySchema);

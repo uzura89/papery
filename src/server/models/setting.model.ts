@@ -13,6 +13,10 @@ export default function (mongoose: any) {
       type: String,
       default: CONS_SETTING_THEME_LIGHT,
     },
+    textSearchEnabled: {
+      type: Boolean,
+      default: false,
+    },
     created: {
       type: Date,
       default: Date.now,

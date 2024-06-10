@@ -104,13 +104,10 @@ function Benefits() {
     <div className="">
       <div className="text-foreSecondary">
         <ul className="list-disc list-inside">
-          {/* <li className="">🗒 Unlimited entries (3+ per day)</li>
-          <li className="">📔 Unlimited templates (2+)</li>
-          <li className="">📊 Unlimited reports (2+)</li> */}
-
           <li className="">🗒 Create more than 2 entries per day</li>
           <li className="">📔 Save more than 1 template</li>
           <li className="">📊 Save more than 1 report</li>
+          <li className="">🔍 Search entries by text</li>
 
           <li className="">And all the future updates...</li>
         </ul>

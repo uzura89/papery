@@ -16,5 +16,10 @@ export const CONS_SETTING_THEME_MAP: Record<string, string> = {
   [CONS_SETTING_THEME_DARK]: "Dark",
 };
 
+// encryption
+
+export const CONS_SETTING_TEXT_SEARCH_ENABLED = "enabled";
+export const CONS_SETTING_TEXT_SEARCH_DISABLED = "disabled";
+
 // cookie
 export const CONS_COOKIE_NAME_THEME = "theme";

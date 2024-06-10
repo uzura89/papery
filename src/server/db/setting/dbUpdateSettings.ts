@@ -6,6 +6,7 @@ export async function dbUpdateSetting(
   userParmId: string,
   newValues: {
     theme?: string;
+    textSearchEnabled?: boolean;
   }
 ): Promise<SettingSchemaType> {
   const Setting = mongoose.model("Setting");
@@ -17,6 +18,7 @@ export async function dbUpdateSetting(
       await Setting.create({
         userParmId,
         theme: CONS_SETTING_THEME_LIGHT,
+        textSearchEnabled: false,
       });
       setting = await Setting.findOne({ userParmId });
     }
@@ -24,6 +26,9 @@ export async function dbUpdateSetting(
     // update
     if (typeof newValues.theme === "string") {
       setting.theme = newValues.theme;
+    }
+    if (typeof newValues.textSearchEnabled === "boolean") {
+      setting.textSearchEnabled = newValues.textSearchEnabled;
     }
 
     // save

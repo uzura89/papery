@@ -68,6 +68,8 @@ export const CONS_ENDPOINT_CREATE_CHECKOUT_SESSION = `${ENDPOINT_PREMIUM}/create
 // setting
 export const CONS_ENDPOINT_FETCH_SETTING = `${ENDPOINT_SETTING}/fetch`;
 export const CONS_ENDPOINT_UPDATE_THEME = `${ENDPOINT_SETTING}/update-theme`;
+export const CONS_ENDPOINT_DECRYPT_ENTRIES = `${ENDPOINT_SETTING}/decrypt-entries`;
+export const CONS_ENDPOINT_ENCRYPT_ENTRIES = `${ENDPOINT_SETTING}/encrypt-entries`;
 
 // webhook
 export const CONS_ENDPOINT_STRIPE_WEBHOOK = `/stripe-webhook`;

@@ -11,6 +11,8 @@ import {
   CONS_ENDPOINT_FETCH_ENTRIES_CSV,
   CONS_ENDPOINT_FETCH_REFLECTIONS,
   CONS_ENDPOINT_FETCH_ENTRY_BY_ID,
+  CONS_ENDPOINT_DECRYPT_ENTRIES,
+  CONS_ENDPOINT_ENCRYPT_ENTRIES,
 } from "../../../../common/constants";
 import { serveCreateEntry } from "./serveCreateEntry";
 import { serveDeleteEntry } from "./serveDeleteEntry";
@@ -24,6 +26,8 @@ import { servefetchEntriesByText } from "./serveFetchEntriesByText";
 import { serveFetchEntriesCsv } from "./serveFetchEntriesCsv";
 import { serveFetchReflections } from "./serveFetchReflections";
 import { serveFetchEntryById } from "./serveFetchEntryById";
+import { serveEncryptEntries } from "./serveEncryptEntries";
+import { serveDecryptEntries } from "./serveDecryptEntries";
 
 export default function (app: any) {
   app.post(CONS_ENDPOINT_CREATE_ENTRY, serveCreateEntry);
@@ -38,4 +42,6 @@ export default function (app: any) {
   app.get(CONS_ENDPOINT_FETCH_ENTRIES_CSV, serveFetchEntriesCsv);
   app.get(CONS_ENDPOINT_FETCH_REFLECTIONS, serveFetchReflections);
   app.get(CONS_ENDPOINT_FETCH_ENTRY_BY_ID, serveFetchEntryById);
+  app.post(CONS_ENDPOINT_DECRYPT_ENTRIES, serveDecryptEntries);
+  app.post(CONS_ENDPOINT_ENCRYPT_ENTRIES, serveEncryptEntries);
 }

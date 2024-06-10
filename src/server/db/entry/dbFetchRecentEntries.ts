@@ -10,6 +10,7 @@ export async function dbFetchRecentEntries(
   const Entry = mongoose.model("Entry");
 
   const options = makeTextFilter(text);
+
   const tags = extractTagsFromBody(text || "");
 
   try {
@@ -69,13 +70,7 @@ function makeTextFilter(text?: string) {
   const tags = extractTagsFromBody(text);
   const dateRange = extractDateRange(text);
   const date = extractDate(text);
-
-  // if no tags and date, fetch none
-  if (tags.length === 0 && !date && dateRange.length === 0) {
-    return {
-      id: { $exists: false },
-    };
-  }
+  const freeTexts = extractFreeTexts(text);
 
   // prepare query
   const tagsQuery = tags.length > 0 ? { $all: tags } : { $exists: true };
@@ -88,6 +83,10 @@ function makeTextFilter(text?: string) {
       : date
       ? { $regex: new RegExp(date, "i") }
       : { $exists: true };
+  const freeTextsQuery =
+    freeTexts.length > 0
+      ? { $text: { $search: freeTexts.join(" ") } }
+      : { id: { $exists: true } };
 
   return {
     $and: [
@@ -95,6 +94,8 @@ function makeTextFilter(text?: string) {
       { tags: tagsQuery },
       // find date
       { date: dateQuery },
+      // find free texts
+      freeTextsQuery,
     ],
   };
 }
@@ -130,4 +131,19 @@ function isDate(word: string) {
   if (/^\d{2}-\d{2}$/.test(word)) return true;
 
   return false;
+}
+
+function extractFreeTexts(text: string) {
+  return text
+    .split(" ")
+    .filter((word) => isFreeText(word))
+    .filter((text) => text.trim().length > 0);
+}
+
+function isFreeText(word: string) {
+  if (isDate(word)) return false;
+  if (word.startsWith("#")) return false;
+  if (word.includes("~")) return false;
+
+  return true;
 }

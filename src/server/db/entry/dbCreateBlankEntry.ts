@@ -18,6 +18,7 @@ export async function dbCreateBlankEntry(
       userParmId: entry.userParmId,
       id: entry.id,
       body: encryptEntry(entry.body),
+      decryptedBody: null,
       date: entry.date,
       tags: [],
       draft: true,

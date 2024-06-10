@@ -4,6 +4,7 @@
 
 export type SettingType = {
   theme: string;
+  textSearchEnabled: boolean;
 };
 
 export type SettingSchemaType = SettingType & {

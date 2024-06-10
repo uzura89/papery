@@ -14,6 +14,10 @@ export async function dbFetchSettings(
     const settingToReturn: SettingType = {
       theme:
         setting && setting.theme ? setting.theme : CONS_SETTING_THEME_LIGHT,
+      textSearchEnabled:
+        setting && typeof setting.textSearchEnabled === "boolean"
+          ? setting.textSearchEnabled
+          : false,
     };
 
     // return
