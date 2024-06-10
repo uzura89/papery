@@ -10,37 +10,73 @@ export async function dbFetchRecentEntries(
   const Entry = mongoose.model("Entry");
 
   const options = makeTextFilter(text);
+  const searchQuery = makeSearchQuery(userParmId, text);
 
   const tags = extractTagsFromBody(text || "");
 
   try {
-    // fetch draft entries
-    const draftEntries = await Entry.find({
-      userParmId,
-      draft: true,
-      ...options,
-    }).sort({
-      date: -1,
-      created: -1,
-    });
+    const draftEntries = await Entry.aggregate([
+      searchQuery,
+      {
+        $match: {
+          userParmId,
+          draft: true,
+          ...options,
+        },
+      },
+      {
+        $sort: {
+          date: -1,
+          created: -1,
+        },
+      },
+    ]);
 
-    // fetch pinned entries
-    const pinnedEntries = await Entry.find({
-      userParmId,
-      pinned: tags.length > 0 ? { $exists: false } : true,
-      draft: false,
-      ...options,
-    }).sort({ date: -1 });
+    const pinnedEntries = await Entry.aggregate([
+      searchQuery,
+      {
+        $match: {
+          userParmId,
+          pinned: tags.length > 0 ? { $exists: false } : true,
+          draft: false,
+          ...options,
+        },
+      },
+      {
+        $sort: {
+          date: -1,
+          created: -1,
+        },
+      },
+    ]);
 
     // fetch published entries 50 max
-    const publishedEntries = await Entry.find({
-      userParmId,
-      draft: false,
-      pinned: false,
-      ...options,
-    })
-      .sort({ date: -1, created: -1 })
-      .limit(50);
+    // const publishedEntries = await Entry.find({
+    //   userParmId,
+    //   draft: false,
+    //   pinned: false,
+    //   ...options,
+    // })
+    //   .sort({ date: -1, created: -1 })
+    //   .limit(50);
+
+    const publishedEntries = await Entry.aggregate([
+      searchQuery,
+      {
+        $match: {
+          userParmId,
+          draft: false,
+          pinned: false,
+          ...options,
+        },
+      },
+      {
+        $sort: {
+          date: -1,
+          created: -1,
+        },
+      },
+    ]);
 
     const entriesDecrypted = [
       ...draftEntries,
@@ -48,7 +84,7 @@ export async function dbFetchRecentEntries(
       ...publishedEntries,
     ].map((entry) => {
       return {
-        ...entry.toObject(),
+        ...entry,
         body: decryptEntry(entry.body),
       };
     });
@@ -70,7 +106,6 @@ function makeTextFilter(text?: string) {
   const tags = extractTagsFromBody(text);
   const dateRange = extractDateRange(text);
   const date = extractDate(text);
-  const freeTexts = extractFreeTexts(text);
 
   // prepare query
   const tagsQuery = tags.length > 0 ? { $all: tags } : { $exists: true };
@@ -83,10 +118,6 @@ function makeTextFilter(text?: string) {
       : date
       ? { $regex: new RegExp(date, "i") }
       : { $exists: true };
-  const freeTextsQuery =
-    freeTexts.length > 0
-      ? { $text: { $search: freeTexts.join(" ") } }
-      : { id: { $exists: true } };
 
   return {
     $and: [
@@ -94,10 +125,53 @@ function makeTextFilter(text?: string) {
       { tags: tagsQuery },
       // find date
       { date: dateQuery },
-      // find free texts
-      freeTextsQuery,
     ],
   };
+}
+
+function makeSearchQuery(userParmId: string, text?: string) {
+  const freeTexts = extractFreeTexts(text);
+
+  const freeTextsQuery =
+    freeTexts.length > 0
+      ? {
+          $search: {
+            compound: {
+              must: [
+                {
+                  text: {
+                    path: "decryptedBody",
+                    query: freeTexts.join(" "),
+                  },
+                },
+              ],
+              filter: [
+                {
+                  text: {
+                    path: "userParmId",
+                    query: userParmId,
+                  },
+                },
+              ],
+            },
+          },
+        }
+      : {
+          $search: {
+            compound: {
+              filter: [
+                {
+                  text: {
+                    path: "userParmId",
+                    query: userParmId,
+                  },
+                },
+              ],
+            },
+          },
+        };
+
+  return freeTextsQuery;
 }
 
 /**
@@ -133,7 +207,9 @@ function isDate(word: string) {
   return false;
 }
 
-function extractFreeTexts(text: string) {
+function extractFreeTexts(text?: string) {
+  if (!text || !text.trim()) return [];
+
   return text
     .split(" ")
     .filter((word) => isFreeText(word))
