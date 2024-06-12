@@ -9,6 +9,7 @@ import {
   LuHeading3,
   LuList,
   LuSquare,
+  LuSmile,
 } from "react-icons/lu";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,6 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import useTagSelectionStore from "../../../../store/entry/tagSelectionStore";
 import Textarea from "../../../atoms/input/Textarea";
 import { toggleCheckboxInBody } from "./modules/toggleCheckboxInBody";
+import useEmojiStore from "../../../../store/emoji/emojiStore";
 
 export function EntryCardDraft(props: {
   textareaRef: React.RefObject<HTMLTextAreaElement>;
@@ -30,7 +32,7 @@ export function EntryCardDraft(props: {
   saveToServer: () => void;
 }) {
   const tagSelectionStore = useTagSelectionStore();
-  const scrolledByUserRef = useRef(true);
+  const emojiStore = useEmojiStore();
 
   const onChangeDate = (date: Date) => {
     const YYYY_MM_DD = date.toISOString().split("T")[0];
@@ -152,6 +154,13 @@ export function EntryCardDraft(props: {
     }, 200);
   };
 
+  const onClickAddEmoji = () => {
+    if (!props.textareaRef.current) return;
+    emojiStore.openEmojiModal(props.textareaRef, (newBody: string) => {
+      props.onChangeBody(newBody);
+    });
+  };
+
   return (
     <div>
       {/* Date */}
@@ -188,6 +197,7 @@ export function EntryCardDraft(props: {
           addCheckToBody={addCheckToBody}
           addHeadingToLine={addHeadingToLine}
           addBulletToLine={addBulletToLine}
+          onClickAddEmoji={onClickAddEmoji}
         />
 
         {/* Right section */}
@@ -228,33 +238,32 @@ function TextPallete(props: {
   addCheckToBody: (checked: boolean) => void;
   addHeadingToLine: (heading: string) => void;
   addBulletToLine: () => void;
+  onClickAddEmoji: () => void;
 }) {
   return (
     <div className="flex h-full items-end">
+      {" "}
+      <TextPalleteButton onClick={props.onClickAddEmoji}>
+        <LuSmile />
+      </TextPalleteButton>
       <TextPalleteButton onClick={props.onClickAddTag}>
         <LuHash />
       </TextPalleteButton>
-
       <TextPalleteButton onClick={() => props.addHeadingToLine("# ")}>
         <LuHeading1 />
       </TextPalleteButton>
-
       <TextPalleteButton onClick={() => props.addHeadingToLine("## ")}>
         <LuHeading2 />
       </TextPalleteButton>
-
       <TextPalleteButton onClick={() => props.addHeadingToLine("### ")}>
         <LuHeading3 />
       </TextPalleteButton>
-
       <TextPalleteButton onClick={() => props.addCheckToBody(false)}>
         <LuSquare />
       </TextPalleteButton>
-
       <TextPalleteButton onClick={() => props.addCheckToBody(true)}>
         <LuCheck />
       </TextPalleteButton>
-
       <TextPalleteButton onClick={() => props.addBulletToLine()}>
         <LuList />
       </TextPalleteButton>

@@ -17,6 +17,10 @@ export default function (mongoose: any) {
       type: Boolean,
       default: false,
     },
+    emojiPalette: {
+      type: String,
+      default: "",
+    },
     created: {
       type: Date,
       default: Date.now,

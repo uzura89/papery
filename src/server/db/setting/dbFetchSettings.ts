@@ -18,6 +18,7 @@ export async function dbFetchSettings(
         setting && typeof setting.textSearchEnabled === "boolean"
           ? setting.textSearchEnabled
           : false,
+      emojiPalette: setting && setting.emojiPalette ? setting.emojiPalette : "",
     };
 
     // return

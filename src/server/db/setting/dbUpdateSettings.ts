@@ -7,6 +7,7 @@ export async function dbUpdateSetting(
   newValues: {
     theme?: string;
     textSearchEnabled?: boolean;
+    emojiPalette?: string;
   }
 ): Promise<SettingSchemaType> {
   const Setting = mongoose.model("Setting");
@@ -29,6 +30,9 @@ export async function dbUpdateSetting(
     }
     if (typeof newValues.textSearchEnabled === "boolean") {
       setting.textSearchEnabled = newValues.textSearchEnabled;
+    }
+    if (typeof newValues.emojiPalette === "string") {
+      setting.emojiPalette = newValues.emojiPalette;
     }
 
     // save

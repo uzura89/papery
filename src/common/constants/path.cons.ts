@@ -7,6 +7,7 @@ export const CONS_PATH_TEMPLATES_EDIT = "/templates/edit";
 export const CONS_PATH_REPORT = "/report";
 export const CONS_PATH_TAGS = "/tags";
 export const CONS_PATH_SETTINGS = "/settings";
+export const CONS_PATH_ACCOUNT = "/account";
 export const CONS_PATH_REFLECT = "/reflection";
 export const CONS_PATH_ENTRY = "/entry";
 

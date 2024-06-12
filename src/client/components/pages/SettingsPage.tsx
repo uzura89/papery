@@ -1,13 +1,11 @@
 import clsx from "clsx";
-import { LuCog, LuCrown, LuDownload, LuPalette, LuUser2 } from "react-icons/lu";
+import { LuDownload, LuPalette, LuSmile, LuStickyNote } from "react-icons/lu";
 
 import { Card } from "../atoms/card/Card";
 import { PageSection, PageTitle, PageWrapper } from "../wrappers/PageShell";
 import useSettingStore from "../../store/setting/settingStore";
-import SettingSectionPremium from "../organisms/settings/SettingSectionPremium";
-import SettingSectionAccount from "../organisms/settings/SettingSectionAccount";
 import SettingSectionTheme from "../organisms/settings/SettingSectionTheme";
-import SettingSectionEncryption from "../organisms/settings/SettingSectionEncryption";
+import SettingSectionEntry from "../organisms/settings/SettingSectionEntry";
 
 export default function SettingsPage() {
   const settingStore = useSettingStore();
@@ -23,20 +21,14 @@ export default function SettingsPage() {
 
         <div className="flex flex-col gap-4">
           <SectionCard>
-            <PageSection title="General" icon={<LuCog />}>
-              <SettingSectionEncryption />
+            <PageSection title="Entry" icon={<LuStickyNote />}>
+              <SettingSectionEntry />
             </PageSection>
           </SectionCard>
 
           <SectionCard>
             <PageSection title="Style" icon={<LuPalette />}>
               <SettingSectionTheme />
-            </PageSection>
-          </SectionCard>
-
-          <SectionCard>
-            <PageSection title="Subscription" icon={<LuCrown />}>
-              <SettingSectionPremium />
             </PageSection>
           </SectionCard>
 
@@ -51,12 +43,6 @@ export default function SettingsPage() {
               >
                 Download Entries (CSV)
               </button>
-            </PageSection>
-          </SectionCard>
-
-          <SectionCard>
-            <PageSection title="Account" icon={<LuUser2 />}>
-              <SettingSectionAccount />
             </PageSection>
           </SectionCard>
         </div>

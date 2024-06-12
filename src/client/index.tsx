@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import {
+  CONS_PATH_ACCOUNT,
   CONS_PATH_ENTRY,
   CONS_PATH_REFLECT,
   CONS_PATH_REPORT,
@@ -26,6 +27,7 @@ import NewTemplatePage from "./components/pages/NewTemplatePage";
 import EditTemplatesPage from "./components/pages/EditTemplatePage";
 import ReflectPage from "./components/pages/ReflectPage";
 import EntryPage from "./components/pages/EntryPage";
+import AccountPage from "./components/pages/AccountPage";
 
 /**
  * Loadable Components
@@ -45,6 +47,7 @@ const router = createBrowserRouter(
         <Route path={CONS_PATH_REPORT} element={<ReportPage />} />
         <Route path={CONS_PATH_TAGS} element={<TagsPage />} />
         <Route path={CONS_PATH_SETTINGS} element={<SettingsPage />} />
+        <Route path={CONS_PATH_ACCOUNT} element={<AccountPage />} />
         <Route path={CONS_PATH_REFLECT} element={<ReflectPage />} />
         <Route path={CONS_PATH_REPORT} element={<ReportPage />} />
         <Route path={CONS_PATH_ENTRY + "/:entryId"} element={<EntryPage />} />

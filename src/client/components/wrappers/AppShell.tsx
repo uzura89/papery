@@ -11,6 +11,7 @@ import UpgradeModal from "../organisms/premium/UpgradeModal";
 import useSettingStore from "../../store/setting/settingStore";
 import { createCookie } from "../../modules/cookie/CookieUtils";
 import { CONS_COOKIE_NAME_THEME } from "../../../common/constants/setting.cons";
+import EmojiPaletteModal from "../organisms/emoji/EmojiPaletteModal";
 
 export function AppShell() {
   const userStore = useUserStore();
@@ -57,6 +58,7 @@ export function AppShell() {
       </div>
 
       <UpgradeModal />
+      <EmojiPaletteModal />
     </div>
   );
 }

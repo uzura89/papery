@@ -9,12 +9,14 @@ import {
   LuMoreVertical,
   LuSettings,
   LuTag,
+  LuUser2,
 } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { BrandLogo } from "../atoms/text/Brandlogo";
 import {
   CONS_COMPANY_EMAIL,
+  CONS_PATH_ACCOUNT,
   CONS_PATH_HOME,
   CONS_PATH_LOGIN,
   CONS_PATH_REFLECT,
@@ -113,6 +115,11 @@ export function Header() {
               onClick: () => goToPage(CONS_PATH_SETTINGS),
             },
             {
+              text: "Account",
+              icon: <LuUser2 />,
+              onClick: () => goToPage(CONS_PATH_SETTINGS),
+            },
+            {
               text: "Contact",
               icon: <LuMessagesSquare />,
               onClick: onClickContact,
@@ -175,6 +182,13 @@ function Menu(props: { goToPage: (path: string) => void }) {
         pathname={CONS_PATH_SETTINGS}
         currentPathname={location.pathname}
         title="Settings"
+        paramString={paramString}
+        goToPage={props.goToPage}
+      />
+      <MenuItem
+        pathname={CONS_PATH_ACCOUNT}
+        currentPathname={location.pathname}
+        title="Account"
         paramString={paramString}
         goToPage={props.goToPage}
       />

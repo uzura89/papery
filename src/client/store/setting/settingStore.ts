@@ -9,6 +9,9 @@ import { callUpdateTheme } from "../../api/setting/callUpdateTheme";
 import { CONS_SETTING_THEME_LIGHT } from "../../../common/constants/setting.cons";
 import { callDecryptEntries } from "../../api/setting/callDecryptEntries";
 import { callEncryptEntries } from "../../api/setting/callEncryptEntries";
+import { CONS_EMOJI_PALETTE_DEFAULT } from "../../../common/constants/emoji.cons";
+import { callUpdateEmojiPalette } from "../../api/setting/callUpdateEmojiPalette";
+import { callResetEmojiPalette } from "../../api/setting/callResetEmojiPalette";
 
 const useSettingStore = create<{
   fetchSetting: () => void;
@@ -24,6 +27,10 @@ const useSettingStore = create<{
   // encrypt
   textSearchEnabled: boolean;
   updateTextSearch: (textSearchEnabled: boolean) => void;
+  // emoji palette
+  emojiPalette: string;
+  updateEmojiPalette: (emojiPalette: string) => void;
+  resetEmojiPalette: () => void;
 }>((set, get) => ({
   fetchSetting: async () => {
     const response = await callFetchSetting({});
@@ -33,6 +40,8 @@ const useSettingStore = create<{
     set({
       theme: response.data.setting.theme || CONS_SETTING_THEME_LIGHT,
       textSearchEnabled: response.data.setting.textSearchEnabled || false,
+      emojiPalette:
+        response.data.setting.emojiPalette || CONS_EMOJI_PALETTE_DEFAULT,
     });
   },
   // download entries
@@ -79,6 +88,23 @@ const useSettingStore = create<{
       // encrypt entries
       await callEncryptEntries({});
     }
+  },
+  // emoji palette
+  emojiPalette: CONS_EMOJI_PALETTE_DEFAULT,
+  updateEmojiPalette: async (emojiPalette) => {
+    if (emojiPalette.trim() === "") {
+      get().resetEmojiPalette();
+      return;
+    }
+
+    set({ emojiPalette });
+    // save emoji palette in db
+    await callUpdateEmojiPalette({ emojiPalette });
+  },
+  resetEmojiPalette: async () => {
+    set({ emojiPalette: CONS_EMOJI_PALETTE_DEFAULT });
+    // reset emoji palette in db
+    await callResetEmojiPalette({});
   },
 }));
 

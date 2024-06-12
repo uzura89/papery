@@ -1,4 +1,5 @@
 import {
+  CONS_PATH_ACCOUNT,
   CONS_PATH_COMMERCE,
   CONS_PATH_ENTRY,
   CONS_PATH_HOME,
@@ -65,6 +66,7 @@ export default function (app: any) {
   app.get(CONS_PATH_SETTINGS, renderApp);
   app.get(CONS_PATH_TAGS, renderApp);
   app.get(CONS_PATH_SETTINGS, renderApp);
+  app.get(CONS_PATH_ACCOUNT, renderApp);
   app.get(CONS_PATH_REFLECT, renderApp);
   app.get(CONS_PATH_REPORT, renderApp);
   app.get(CONS_PATH_ENTRY + "/*", renderApp);

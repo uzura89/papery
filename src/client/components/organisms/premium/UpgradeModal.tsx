@@ -108,6 +108,7 @@ function Benefits() {
           <li className="">📔 Save more than 1 template</li>
           <li className="">📊 Save more than 1 report</li>
           <li className="">🔍 Search entries by text</li>
+          <li className="">😊 Customize emoji palette</li>
 
           <li className="">And all the future updates...</li>
         </ul>

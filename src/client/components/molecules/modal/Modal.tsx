@@ -53,7 +53,7 @@ export default function Modal(props: Props) {
       >
         {/* Window */}
         <div
-          className={`bg-card rounded-lg transition-all duration-200 w-full shadow-lg ${
+          className={`bg-card rounded-lg transition-all duration-200 w-full shadow-lg overflow-hidden ${
             props.visible
               ? "opacity-1 translate-y-0"
               : "opacity-0 translate-y-5"
