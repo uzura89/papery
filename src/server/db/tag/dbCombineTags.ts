@@ -1,5 +1,6 @@
 import { dbFetchEntries } from "../entry/dbFetchEntries";
 import { dbUpdateEntries } from "../entry/dbUpdateEntries";
+import { dbFetchSettings } from "../setting/dbFetchSettings";
 
 export async function dbCombineTags(
   mongoose: any,
@@ -10,6 +11,9 @@ export async function dbCombineTags(
   const Tag = mongoose.model("Tag");
 
   try {
+    const settings = await dbFetchSettings(mongoose, userParmId);
+
+    // find tag
     const tag = await Tag.findOne({
       userParmId,
       id,
@@ -36,7 +40,9 @@ export async function dbCombineTags(
     });
 
     // update entries
-    await dbUpdateEntries(mongoose, newEntries);
+    await dbUpdateEntries(mongoose, newEntries, {
+      decryptBody: settings.textSearchEnabled,
+    });
 
     // delte old tag
     await Tag.deleteOne({ userParmId, id });

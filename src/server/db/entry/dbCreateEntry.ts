@@ -13,8 +13,8 @@ export async function dbCreateEntry(
     draft: boolean;
     pinned: boolean;
   },
-  options?: {
-    decrypt?: boolean;
+  options: {
+    decryptBody: boolean;
   }
 ): Promise<EntrySchemaType> {
   const Entry = mongoose.model("Entry");
@@ -32,7 +32,7 @@ export async function dbCreateEntry(
       tags,
       draft: entry.draft,
       primaryEmoji,
-      decryptedBody: options?.decrypt ? entry.body : null,
+      decryptedBody: options.decryptBody ? entry.body : null,
       pinned: entry.pinned,
     };
     const createdEntry = await Entry.create(newEntry);

@@ -3,7 +3,10 @@ import { encryptEntry } from "./modules/EntryEncryption";
 
 export async function dbUpdateEntries(
   mongoose: any,
-  entries: EntrySchemaType[]
+  entries: EntrySchemaType[],
+  options: {
+    decryptBody: boolean;
+  }
 ) {
   const Entry = mongoose.model("Entry");
 
@@ -19,6 +22,7 @@ export async function dbUpdateEntries(
           {
             date: entry.date,
             body: encryptEntry(entry.body),
+            decryptedBody: options.decryptBody ? entry.body : undefined,
             tags: entry.tags,
           },
           { new: true }

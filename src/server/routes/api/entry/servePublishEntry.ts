@@ -1,6 +1,7 @@
 import { CONS_ENTRY_LIMIT_PER_DAY } from "../../../../common/constants";
 import dbFetchEntriesByDate from "../../../db/entry/dbFetchEntriesByDate";
 import { dbPublishEntry } from "../../../db/entry/dbPublishEntry";
+import { dbFetchSettings } from "../../../db/setting/dbFetchSettings";
 import { dbCheckIfPremiumUser } from "../../../db/user/dbCheckIfPremiumUser";
 
 export async function servePublishEntry(req: any, res: any) {
@@ -8,6 +9,8 @@ export async function servePublishEntry(req: any, res: any) {
   const { id, body, date } = req.body;
 
   try {
+    const settings = await dbFetchSettings(req.mongoose, userParmId);
+
     const canPublish = await checkCanPublishEntry(req.mongoose, {
       userParmId,
       date,
@@ -19,12 +22,18 @@ export async function servePublishEntry(req: any, res: any) {
       });
     }
 
-    const entry = await dbPublishEntry(req.mongoose, {
-      userParmId,
-      id,
-      body,
-      date,
-    });
+    const entry = await dbPublishEntry(
+      req.mongoose,
+      {
+        userParmId,
+        id,
+        body,
+        date,
+      },
+      {
+        decryptBody: settings.textSearchEnabled,
+      }
+    );
 
     return res.status(200).json({ entry });
   } catch (error) {

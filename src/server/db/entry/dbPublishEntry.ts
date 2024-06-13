@@ -10,6 +10,9 @@ export async function dbPublishEntry(
     userParmId: string;
     date: string;
     body: string;
+  },
+  options: {
+    decryptBody: boolean;
   }
 ) {
   const Entry = mongoose.model("Entry");
@@ -23,6 +26,7 @@ export async function dbPublishEntry(
       {
         userParmId: entry.userParmId,
         body: encryptEntry(entry.body),
+        decryptedBody: options.decryptBody ? entry.body : undefined,
         date: entry.date,
         tags,
         primaryEmoji,

@@ -12,25 +12,37 @@ export async function dbCreateDefaultEntries(
   try {
     // create pinned entry
     const launchedDay = new Date("2024-05-05");
-    await dbCreateEntry(mongoose, {
-      userParmId,
-      id: v4(),
-      date: convertDateToString(launchedDay),
-      body: ENTRY_BODY_PINNED,
-      draft: false,
-      pinned: true,
-    });
+    await dbCreateEntry(
+      mongoose,
+      {
+        userParmId,
+        id: v4(),
+        date: convertDateToString(launchedDay),
+        body: ENTRY_BODY_PINNED,
+        draft: false,
+        pinned: true,
+      },
+      {
+        decryptBody: false,
+      }
+    );
 
     // create today entry:
     const today = new Date();
-    await dbCreateEntry(mongoose, {
-      userParmId,
-      id: v4(),
-      date: convertDateToString(today),
-      body: ENTRY_BODY_TODAY,
-      draft: false,
-      pinned: false,
-    });
+    await dbCreateEntry(
+      mongoose,
+      {
+        userParmId,
+        id: v4(),
+        date: convertDateToString(today),
+        body: ENTRY_BODY_TODAY,
+        draft: false,
+        pinned: false,
+      },
+      {
+        decryptBody: false,
+      }
+    );
 
     // create default tags
     await dbCreateTag(mongoose, {

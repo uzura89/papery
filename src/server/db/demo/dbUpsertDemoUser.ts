@@ -85,126 +85,198 @@ async function createDemoUser(mongoose: any, userParmId: string) {
 async function createDefaultEntries(mongoose: any, userParmId: string) {
   // create pinned entry
   const launchedDay = new Date("2024-05-05");
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(launchedDay),
-    body: ENTRY_BODY_PINNED,
-    draft: false,
-    pinned: true,
-  });
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(launchedDay),
+      body: ENTRY_BODY_PINNED,
+      draft: false,
+      pinned: true,
+    },
+    {
+      decryptBody: false,
+    }
+  );
 
   // create entry of one day ago
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(yesterday),
-    body: ENTRY_BODY_HABIT_1,
-    draft: false,
-    pinned: false,
-  });
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(yesterday),
-    body: ENTRY_BODY_MOOD_1,
-    draft: false,
-    pinned: false,
-  });
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(yesterday),
-    body: ENTRY_BODY_GOALS_1,
-    draft: false,
-    pinned: false,
-  });
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(yesterday),
+      body: ENTRY_BODY_HABIT_1,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(yesterday),
+      body: ENTRY_BODY_MOOD_1,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(yesterday),
+      body: ENTRY_BODY_GOALS_1,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
 
   // create entry of two days ago
   const twoDaysAgo = new Date();
   twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(twoDaysAgo),
-    body: ENTRY_BODY_HABIT_2,
-    draft: false,
-    pinned: false,
-  });
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(twoDaysAgo),
-    body: ENTRY_BODY_MOOD_2,
-    draft: false,
-    pinned: false,
-  });
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(twoDaysAgo),
-    body: ENTRY_BODY_GOALS_2,
-    draft: false,
-    pinned: false,
-  });
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(twoDaysAgo),
+      body: ENTRY_BODY_HABIT_2,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(twoDaysAgo),
+      body: ENTRY_BODY_MOOD_2,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(twoDaysAgo),
+      body: ENTRY_BODY_GOALS_2,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
 
   // create entry of three days ago
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(threeDaysAgo),
-    body: ENTRY_BODY_HABIT_3,
-    draft: false,
-    pinned: false,
-  });
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(threeDaysAgo),
-    body: ENTRY_BODY_MOOD_3,
-    draft: false,
-    pinned: false,
-  });
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(threeDaysAgo),
+      body: ENTRY_BODY_HABIT_3,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(threeDaysAgo),
+      body: ENTRY_BODY_MOOD_3,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
 
   // create entry of 4 days ago
   const dateDiary2 = new Date();
   dateDiary2.setDate(dateDiary2.getDate() - 5);
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(dateDiary2),
-    body: ENTRY_BODY_DIARY_2,
-    draft: false,
-    pinned: false,
-  });
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(dateDiary2),
+      body: ENTRY_BODY_DIARY_2,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
 
   // create entry
   const dateDiary3 = new Date();
   dateDiary3.setDate(dateDiary3.getDate() - 4);
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(dateDiary3),
-    body: ENTRY_BODY_DIARY_3,
-    draft: false,
-    pinned: false,
-  });
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(dateDiary3),
+      body: ENTRY_BODY_DIARY_3,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
 
   // create year ago entry
   const lastYear = new Date();
   lastYear.setFullYear(lastYear.getFullYear() - 1);
-  await dbCreateEntry(mongoose, {
-    userParmId,
-    id: v4(),
-    date: convertDateToString(lastYear),
-    body: ENTRY_BODY_DIARY_1,
-    draft: false,
-    pinned: false,
-  });
+  await dbCreateEntry(
+    mongoose,
+    {
+      userParmId,
+      id: v4(),
+      date: convertDateToString(lastYear),
+      body: ENTRY_BODY_DIARY_1,
+      draft: false,
+      pinned: false,
+    },
+    {
+      decryptBody: false,
+    }
+  );
 
   // create default tags
   await dbCreateTag(mongoose, {

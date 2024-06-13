@@ -1,17 +1,27 @@
-import mongoose from "mongoose";
-import { dbCreateBlankEntry } from "../../../db/entry/dbCreateBlankEntry";
+import { dbCreateEntry } from "../../../db/entry/dbCreateEntry";
+import { dbFetchSettings } from "../../../db/setting/dbFetchSettings";
 
 export async function serveCreateEntry(req: any, res: any) {
   const { userParmId } = req;
   const { id, body, date } = req.body;
 
   try {
-    const entry = await dbCreateBlankEntry(mongoose, {
-      userParmId,
-      id,
-      body,
-      date,
-    });
+    const settings = await dbFetchSettings(req.mongoose, userParmId);
+
+    const entry = await dbCreateEntry(
+      req.mongoose,
+      {
+        userParmId,
+        id,
+        body,
+        date,
+        draft: true,
+        pinned: false,
+      },
+      {
+        decryptBody: settings.textSearchEnabled,
+      }
+    );
 
     return res.status(200).json({ id: entry.id });
   } catch (error) {

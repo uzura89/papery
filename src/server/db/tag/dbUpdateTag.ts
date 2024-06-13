@@ -1,5 +1,6 @@
 import { dbFetchEntries } from "../entry/dbFetchEntries";
 import { dbUpdateEntry } from "../entry/dbUpdateEntry";
+import { dbFetchSettings } from "../setting/dbFetchSettings";
 
 export async function dbUpdateTag(
   mongoose: any,
@@ -9,8 +10,11 @@ export async function dbUpdateTag(
   newColor: string
 ): Promise<void> {
   const Tag = mongoose.model("Tag");
+  const Setting = mongoose.model("Setting");
 
   try {
+    const setting = await dbFetchSettings(mongoose, userParmId);
+
     if (!newText.trim() || newText.includes(" ")) {
       throw new Error("Invalid tag name");
     }
@@ -41,6 +45,9 @@ export async function dbUpdateTag(
         {
           tags: entry.tags,
           body: entry.body,
+        },
+        {
+          decryptBody: setting.textSearchEnabled,
         }
       );
     }

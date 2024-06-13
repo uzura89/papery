@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
 
 import { dbUpdateEntry } from "../../../db/entry/dbUpdateEntry";
+import { dbFetchSettings } from "../../../db/setting/dbFetchSettings";
 
 export async function serveUpdateEntry(req: any, res: any) {
   const { userParmId } = req;
   const { id, body, date } = req.body;
 
   try {
+    const settings = await dbFetchSettings(req.mongoose, userParmId);
+
     const entry = await dbUpdateEntry(
       mongoose,
       {
@@ -16,6 +19,9 @@ export async function serveUpdateEntry(req: any, res: any) {
       {
         body,
         date,
+      },
+      {
+        decryptBody: settings.textSearchEnabled,
       }
     );
 
