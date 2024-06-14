@@ -1,17 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import useEntryStore from "../../store/entry/entryStore";
 import { EntryType } from "../../../common/types";
 import { callFetchEntryById } from "../../api/entry/callFetchEntryById";
 import BackButton from "../atoms/buttons/BackButton";
-import { CONS_PATH_HOME } from "../../../common/constants";
 import { EntryCard } from "../molecules/entry/EntryCard";
 import { convertDateToString } from "../../../common/modules/date/convertDateToString";
 import { TagSelectionModal } from "../organisms/entry/TagSelectionModal";
 
 export default function EntryPage() {
-  const navigate = useNavigate();
   const { entryId } = useParams();
   // stores
   const entryStore = useEntryStore();
@@ -19,7 +17,6 @@ export default function EntryPage() {
   const [entry, setEntry] = useState<EntryType | null>(null);
   // refs
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const scrolledByUser = useRef(false);
 
   /**
    * Loader
@@ -82,7 +79,7 @@ export default function EntryPage() {
   };
   const onDeleteEntry = (id: string) => {
     entryStore.deleteEntry(id);
-    backToHome();
+    closeWindow();
   };
 
   const onTogglePin = (id: string, pinned: boolean) => {
@@ -100,13 +97,14 @@ export default function EntryPage() {
    * User Actions
    */
 
-  function backToHome() {
-    navigate(CONS_PATH_HOME);
+  function closeWindow() {
+    // close this window
+    window.close();
   }
 
   function onKeydown(e: KeyboardEvent) {
     if (e.key === "Escape") {
-      backToHome();
+      closeWindow();
     }
   }
 
@@ -141,7 +139,7 @@ export default function EntryPage() {
   return (
     <div className="fixed top-0 left-0 w-full h-[100vh] bg-back flex flex-col justify-stretch">
       <div className="container-full h-12 lg:h-16 flex items-center shrink-0">
-        <BackButton onClick={backToHome} />
+        <BackButton onClick={closeWindow} label="Close" />
       </div>
       <div className="container-tiny w-full grow overflow-hidden">
         <div className="h-full relative w-full">

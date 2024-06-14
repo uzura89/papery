@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import {
+  LuAppWindow,
   LuExpand,
   LuFileEdit,
   LuMoreVertical,
   LuPin,
   LuPinOff,
+  LuScaling,
   LuTrash,
 } from "react-icons/lu";
 
@@ -114,7 +116,16 @@ export function EntryCard(props: {
   };
 
   const handleExpand = () => {
-    navigate(`${CONS_PATH_ENTRY}/${props.id}`);
+    // navigate(`${CONS_PATH_ENTRY}/${props.id}`);
+    const width = 700;
+    const height = 700;
+    const left = window.innerWidth / 2 - width / 2;
+    const top = window.innerHeight / 2 - height / 2;
+    window.open(
+      `${CONS_PATH_ENTRY}/${props.id}`,
+      "Papery - Entry",
+      `width=${width},height=${height},top=${top},left=${left}`
+    );
   };
 
   return (
@@ -171,9 +182,9 @@ function CardOptions(props: {
 }) {
   const items = [
     {
-      text: "Expand",
+      text: "Open window",
       onClick: props.onClickExpand,
-      icon: <LuExpand />,
+      icon: <LuScaling />,
       isDanger: false,
     },
     {
@@ -201,7 +212,7 @@ function CardOptions(props: {
 
   return (
     <div className="">
-      <Dropdown items={items} width="130px" top={30}>
+      <Dropdown items={items} width="150px" top={30}>
         <button className="clickable-text rounded-md w-8 h-8 flex justify-center items-center">
           <LuMoreVertical className="text-lg text-foreLighter" />
         </button>

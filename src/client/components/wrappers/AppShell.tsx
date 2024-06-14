@@ -12,6 +12,7 @@ import useSettingStore from "../../store/setting/settingStore";
 import { createCookie } from "../../modules/cookie/CookieUtils";
 import { CONS_COOKIE_NAME_THEME } from "../../../common/constants/setting.cons";
 import EmojiPaletteModal from "../organisms/emoji/EmojiPaletteModal";
+import useEntryHistoryStore from "../../store/entry/entryHistoryStore";
 
 export function AppShell() {
   const userStore = useUserStore();
@@ -20,6 +21,13 @@ export function AppShell() {
   const templateStore = useTemplateStore();
   const reportStore = useReportStore();
   const settingStore = useSettingStore();
+  const entryHistoryStore = useEntryHistoryStore();
+
+  function onWindowFocus() {
+    entryStore.syncToServerEntries();
+    entryHistoryStore.refreshEntryHistories();
+    tagStore.fetchAllTags();
+  }
 
   useEffect(() => {
     if (userStore.data.user.userParmId) {
@@ -34,6 +42,8 @@ export function AppShell() {
     userStore.fetchUser();
     settingStore.fetchPremiumPlans();
     settingStore.fetchSetting();
+
+    window.addEventListener("focus", onWindowFocus);
   }, [null]);
 
   useEffect(() => {

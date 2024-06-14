@@ -19,6 +19,7 @@ import { CONS_ERROR_CODE_FORBIDDEN } from "../../../common/constants/api.cons";
 import useReportStore from "../report/reportStore";
 import useUiStore from "../ui/uiStore";
 import { CONS_MODAL_UPGRADE } from "../../../common/constants";
+import { set } from "mongoose";
 
 const useEntryStore = create<{
   loading: boolean;
@@ -41,6 +42,7 @@ const useEntryStore = create<{
   deleteEntry: (id: string) => Promise<void>;
   // on tag change
   updateTagInEntries: (tagId: string, newText: string) => void;
+  syncToServerEntries: () => void;
 }>((set, get) => ({
   loading: false,
   error: null,
@@ -66,6 +68,7 @@ const useEntryStore = create<{
           changedTS: Date.now(),
         };
       });
+
       set({ loading: false, entries, defaultEntries: entries });
     }
   },
@@ -340,6 +343,60 @@ const useEntryStore = create<{
 
     // report need to be refreshed
     useReportStore.getState().changeNeedRefresh(true);
+  },
+  syncToServerEntries: async () => {
+    const searchText = useEntrySearchStore.getState().searchText;
+    const isSearchTextEmpty = searchText.trim() === "";
+
+    if (!isSearchTextEmpty) {
+      // fetch recent entries
+      const response = await callFetchEntriesByText({ text: searchText });
+
+      if (response.error) {
+        set({ loading: false, error: response.error.message });
+      } else {
+        // add entries to local state
+        const entries = response.data.entries.map((entry, index) => {
+          return {
+            id: entry.id,
+            date: entry.date,
+            body: entry.body,
+            draft: entry.draft,
+            pinned: entry.pinned,
+            changedTS: Date.now(),
+          };
+        });
+        set({
+          loading: false,
+          entries,
+        });
+      }
+    }
+
+    // fetch recent entries
+    const response = await callFetchRecentEntries({});
+
+    if (response.error) {
+      set({ loading: false, error: response.error.message });
+    } else {
+      // add entries to local state
+      const entries = response.data.entries.map((entry, index) => {
+        return {
+          id: entry.id,
+          date: entry.date,
+          body: entry.body,
+          draft: entry.draft,
+          pinned: entry.pinned,
+          changedTS: Date.now(),
+        };
+      });
+
+      if (isSearchTextEmpty) {
+        set({ entries, defaultEntries: entries });
+      } else {
+        set({ defaultEntries: entries });
+      }
+    }
   },
 }));
 
