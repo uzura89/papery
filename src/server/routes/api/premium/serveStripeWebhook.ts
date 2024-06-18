@@ -26,6 +26,8 @@ export async function serveStripeWebhook(req: any, res: any) {
       default:
         return res.status(200).end();
     }
+
+    return res.status(200).end();
   } catch (err) {
     return res.status(500).send(err);
   }
