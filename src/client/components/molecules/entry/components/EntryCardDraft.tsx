@@ -18,6 +18,7 @@ import useTagSelectionStore from "../../../../store/entry/tagSelectionStore";
 import Textarea from "../../../atoms/input/Textarea";
 import { toggleCheckboxInBody } from "./modules/toggleCheckboxInBody";
 import useEmojiStore from "../../../../store/emoji/emojiStore";
+import { convertDateToString } from "../../../../../common/modules/date/convertDateToString";
 
 export function EntryCardDraft(props: {
   textareaRef: React.RefObject<HTMLTextAreaElement>;
@@ -35,7 +36,7 @@ export function EntryCardDraft(props: {
   const emojiStore = useEmojiStore();
 
   const onChangeDate = (date: Date) => {
-    const YYYY_MM_DD = date.toISOString().split("T")[0];
+    const YYYY_MM_DD = convertDateToString(date);
     props.onChangeDate(YYYY_MM_DD);
   };
 
