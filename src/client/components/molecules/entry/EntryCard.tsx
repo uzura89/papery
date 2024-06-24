@@ -75,7 +75,6 @@ export function EntryCard(props: {
   };
 
   const handleChangeDate = (date: string) => {
-    console.log("🚀 ~ handleChangeDate ~ date:", date);
     props.onChangeEntry(props.id, props.body, date);
     entryRef.current.date = date;
     applyChangeAfterDelay();

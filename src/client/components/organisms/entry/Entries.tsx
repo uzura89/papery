@@ -7,6 +7,7 @@ import { convertDateToString } from "../../../../common/modules/date/convertDate
 import useEntryStore from "../../../store/entry/entryStore";
 import { EntryCard } from "../../molecules/entry/EntryCard";
 import { EntryType } from "../../../../common/types/entry.types";
+import { convertDateStringToLocalDate } from "../../../../common/modules/date/convertDateStringToLocalDate";
 
 export function Entries() {
   // store
@@ -65,7 +66,9 @@ export function Entries() {
     if (draft) return { id: "draft", jsx: null, year: "" };
     if (pinned) return { id: "pinned", jsx: <span>📍 Pinned</span>, year: "" };
 
-    const { monthDay, year } = convertDateToReadableString(new Date(date));
+    const { monthDay, year } = convertDateToReadableString(
+      convertDateStringToLocalDate(date)
+    );
     const dateDiff = calcDateDiffs(new Date(), new Date(date));
 
     return {

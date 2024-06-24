@@ -19,6 +19,7 @@ import Textarea from "../../../atoms/input/Textarea";
 import { toggleCheckboxInBody } from "./modules/toggleCheckboxInBody";
 import useEmojiStore from "../../../../store/emoji/emojiStore";
 import { convertDateToString } from "../../../../../common/modules/date/convertDateToString";
+import { convertDateStringToLocalDate } from "../../../../../common/modules/date/convertDateStringToLocalDate";
 
 export function EntryCardDraft(props: {
   textareaRef: React.RefObject<HTMLTextAreaElement>;
@@ -171,7 +172,9 @@ export function EntryCardDraft(props: {
         <DatePicker
           className="text-xs translate-y-[-1.5px] text-foreLight bg-inherit"
           dateFormat="yyyy-MM-dd"
-          selected={props.date ? new Date(props.date) : new Date()}
+          selected={
+            props.date ? convertDateStringToLocalDate(props.date) : new Date()
+          }
           onChange={onChangeDate}
         />
       </div>
