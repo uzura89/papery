@@ -69,7 +69,10 @@ export function Entries() {
     const { monthDay, year } = convertDateToReadableString(
       convertDateStringToLocalDate(date)
     );
-    const dateDiff = calcDateDiffs(new Date(), new Date(date));
+    const dateDiff = calcDateDiffs(
+      new Date(),
+      convertDateStringToLocalDate(date)
+    );
 
     return {
       id: monthDay,
