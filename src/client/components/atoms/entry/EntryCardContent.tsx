@@ -28,7 +28,7 @@ export default function EntryCardContent(props: {
 
   return (
     <div className="" ref={props.divRef}>
-      {props.withDate !== true && <div className="h-3" />}
+      {/* {props.withDate !== true && <div className="h-3" />} */}
       <div
         className="markdown"
         style={{ fontSize: props.smallWindow ? "14.5px" : "16px" }}
