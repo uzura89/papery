@@ -226,7 +226,7 @@ textarea {
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply font-bold mb-[0.5em] mt-[0.2em];
+  @apply font-bold mb-[0.4em] mt-[0.4em];
 }
 
 .markdown h1 {
@@ -250,15 +250,15 @@ textarea {
 }
 
 .markdown ul {
-  @apply list-disc pl-5 mb-3;
+  @apply list-disc pl-5 mb-1;
 }
 
 .markdown ol {
-  @apply list-decimal pl-5 mb-3;
+  @apply list-decimal pl-5 mb-1;
 }
 
 .markdown li {
-  @apply mb-1;
+  @apply mb-0;
 }
 
 .markdown a {
@@ -266,7 +266,7 @@ textarea {
 }
 
 .markdown p {
-  @apply mb-3;
+  @apply mb-1;
 }
 
 .markdown blockquote {
