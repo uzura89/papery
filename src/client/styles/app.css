@@ -226,27 +226,32 @@ textarea {
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply font-bold mb-[0.4em] mt-[0.4em];
+  @apply font-bold mb-[0.4em] mt-[0.4em] leading-tight;
 }
 
 .markdown h1 {
-  @apply text-3xl;
+  /* @apply text-3xl; */
+  font-size: 2em;
 }
 
 .markdown h2 {
-  @apply text-2xl;
+  /* @apply text-2xl; */
+  font-size: 1.5em;
 }
 
 .markdown h3 {
-  @apply text-xl;
+  /* @apply text-xl; */
+  font-size: 1.25em;
 }
 
 .markdown h4 {
-  @apply text-lg;
+  /* @apply text-lg; */
+  font-size: 1.125em;
 }
 
 .markdown h5 {
-  @apply text-base;
+  /* @apply text-base; */
+  font-size: 1em;
 }
 
 .markdown ul {

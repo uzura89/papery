@@ -45,6 +45,9 @@ module.exports = {
       boxShadow: {
         bottom: "0px 0px 10px",
       },
+      maxWidth: {
+        "screen-xl": "1400px",
+      },
     },
   },
   plugins: [],

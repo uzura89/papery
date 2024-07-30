@@ -16,6 +16,7 @@ export default function EntryCardContent(props: {
   divRef: React.RefObject<HTMLDivElement>;
   body: string;
   withDate?: boolean;
+  smallWindow?: boolean;
 }) {
   const tagStore = useTagStore();
 
@@ -30,6 +31,7 @@ export default function EntryCardContent(props: {
       {props.withDate !== true && <div className="h-3" />}
       <div
         className="markdown"
+        style={{ fontSize: props.smallWindow ? "15px" : "16px" }}
         dangerouslySetInnerHTML={{ __html: renderMarkdown(props.body) }}
       ></div>
     </div>
@@ -94,7 +96,7 @@ function addCheckBoxToLine(line: string, lineIndex: number) {
     return `<div class="line-through decoration-[#b5b2ad91] text-[#949289]">
         ${line.replace(
           checkedRegex,
-          `<input type="checkbox" checked class="clickable-checkbox clickable mr-0.5 h-4 w-4" data="${lineIndex}" />`
+          `<input type="checkbox" checked class="clickable-checkbox clickable mr-0.5 h-[1em] w-[1em]" data="${lineIndex}" />`
         )}
       </div>`;
   }
@@ -103,7 +105,7 @@ function addCheckBoxToLine(line: string, lineIndex: number) {
     return `<div class="">
         ${line.replace(
           uncheckedRegex,
-          `<input type="checkbox" class="clickable-checkbox clickable mr-0.5 h-4 w-4" data="${lineIndex}" />`
+          `<input type="checkbox" class="clickable-checkbox clickable mr-0.5 h-[1em] w-[1em]" data="${lineIndex}" />`
         )}
       </div>`;
   }

@@ -31,8 +31,8 @@ export function EntryCard(props: {
   saveToServer: (id: string, body: string, date: string) => void;
   isUnsaved: boolean;
   withDate?: boolean;
+  smallWindow?: boolean;
 }) {
-  const navigate = useNavigate();
   // refs
   const entryRef = useRef<{ id: string; body: string; date: string }>({
     id: props.id,
@@ -162,6 +162,7 @@ export function EntryCard(props: {
           onDraft={handleDraftEntry}
           onUpdateBody={handleUpdateBody}
           withDate={props.withDate}
+          smallWindow={props.smallWindow}
         />
       )}
     </EntryCardWrapper>

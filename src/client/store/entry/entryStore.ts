@@ -19,7 +19,6 @@ import { CONS_ERROR_CODE_FORBIDDEN } from "../../../common/constants/api.cons";
 import useReportStore from "../report/reportStore";
 import useUiStore from "../ui/uiStore";
 import { CONS_MODAL_UPGRADE } from "../../../common/constants";
-import { set } from "mongoose";
 
 const useEntryStore = create<{
   loading: boolean;

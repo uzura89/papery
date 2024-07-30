@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 
 import { calcDateDiffs } from "../../../../common/modules/date/calcDateDiffs";
 import { convertDateToDayOfWeek } from "../../../../common/modules/date/convertDateToDayOfWeek";
@@ -21,6 +21,13 @@ export function Entries() {
   prevDate.current = "";
   const prevEntry = useRef<EntryType | null>(null);
   prevEntry.current = null;
+  // data
+  const pinnedEntries = entryStore.entries.filter(
+    (entry) => entry.pinned && !entry.draft
+  );
+  const regularEntries = entryStore.entries.filter(
+    (entry) => !(entry.pinned && !entry.draft)
+  );
 
   const saveToServer = (id: string, body: string, date: string) => {
     entryStore.updateEntry(id, body, date);
@@ -143,7 +150,31 @@ export function Entries() {
 
   return (
     <div className="flex flex-col gap-4 pb-10">
-      {entryStore.entries.map((entry) => {
+      {pinnedEntries.map((entry) => {
+        return (
+          <div key={entry.draft + entry.id} className="block lg:hidden">
+            {renderDateHeader(entry.draft, entry.date, entry.pinned)}
+            <div className="fadein-up" key={entry.id}>
+              <EntryCard
+                id={entry.id}
+                date={entry.date}
+                body={entry.body}
+                draft={entry.draft}
+                pinned={entry.pinned}
+                isUnsaved={entryStore.unsavedEntryId === entry.id}
+                onChangeEntry={onChangeEntry}
+                onPublishEntry={onPublishEntry}
+                onDraftEntry={onDraftEntry}
+                onDeleteEntry={onDeleteEntry}
+                onTogglePin={onTogglePin}
+                saveToServer={saveToServer}
+              />
+            </div>
+          </div>
+        );
+      })}
+
+      {regularEntries.map((entry) => {
         return (
           <div key={entry.draft + entry.id}>
             {renderDateDiff(entry)}

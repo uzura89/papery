@@ -12,6 +12,7 @@ export function EntryCardPublished(props: {
   onDraft: () => void;
   onUpdateBody: (newBody: string) => void;
   withDate?: boolean;
+  smallWindow?: boolean;
 }) {
   const entryStore = useEntryStore();
   const entrySearchStore = useEntrySearchStore();
@@ -87,6 +88,7 @@ export function EntryCardPublished(props: {
         divRef={divRef}
         body={props.body}
         withDate={props.withDate}
+        smallWindow={props.smallWindow}
       />
     </div>
   );

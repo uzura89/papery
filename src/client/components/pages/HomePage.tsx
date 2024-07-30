@@ -4,6 +4,7 @@ import useUiStore from "../../store/ui/uiStore";
 import { EntriesSection } from "../organisms/entry/EntriesSection";
 import { EntryHistorySection } from "../organisms/entry/EntryHistorySection";
 import { LuCalendar, LuX } from "react-icons/lu";
+import { PinnedEntriesSection } from "../organisms/pinned/PinnedEntriesSection";
 
 export default function HomePage() {
   const uiStore = useUiStore();
@@ -53,7 +54,9 @@ export default function HomePage() {
       </div>
 
       {/* Right Pane */}
-      <div className="w-[200px] hidden shrink-0 lg:block"></div>
+      <div className="lg:w-[300px] hidden xl:block shrink-0 h-full flex-col justify-stretch">
+        <PinnedEntriesSection />
+      </div>
     </div>
   );
 }
