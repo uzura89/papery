@@ -31,7 +31,7 @@ export default function EntryCardContent(props: {
       {props.withDate !== true && <div className="h-3" />}
       <div
         className="markdown"
-        style={{ fontSize: props.smallWindow ? "15px" : "16px" }}
+        style={{ fontSize: props.smallWindow ? "14.5px" : "16px" }}
         dangerouslySetInnerHTML={{ __html: renderMarkdown(props.body) }}
       ></div>
     </div>

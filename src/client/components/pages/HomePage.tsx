@@ -20,9 +20,9 @@ export default function HomePage() {
   };
 
   return (
-    <div className="container-wide flex justify-stretch items-stretch gap-20 h-full">
+    <div className="container-wide flex justify-stretch items-stretch gap-[75px] h-full">
       {/* Left Pane for PC */}
-      <div className={clsx(`w-[230px] shrink-0 md:block pb-5 hidden`)}>
+      <div className={clsx(`w-[240px] shrink-0 md:block pb-5 hidden`)}>
         <EntryHistorySection />
       </div>
 
@@ -54,7 +54,7 @@ export default function HomePage() {
       </div>
 
       {/* Right Pane */}
-      <div className="lg:w-[300px] hidden xl:block shrink-0 h-full flex-col justify-stretch">
+      <div className="lg:w-[320px] hidden xl:block shrink-0 h-full flex-col justify-stretch">
         <PinnedEntriesSection />
       </div>
     </div>
