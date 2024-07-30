@@ -62,7 +62,7 @@ function addStylesToTags(body: string, allTags: TagType[]) {
 
       bodyWithStyles = bodyWithStyles.replace(
         `#${tag}`,
-        `<span class="clickable clickable-tag" data=${tag} style="color: ${color}; background-color: ${color}1c; background-opacity: 0.1; text-decoration:none; font-weight: 500; font-size: 14px; padding: 3px 5px; border-radius: 0.3rem;" href="https://papery.me/s/#${tag}">#${tag}</span>`
+        `<span class="clickable clickable-tag" data=${tag} style="color: ${color}; background-color: ${color}1c; background-opacity: 0.1; text-decoration:none; font-weight: 500; font-size: 14px; padding: 1px 6px; border-radius: 0.3rem;" href="https://papery.me/s/#${tag}">#${tag}</span>`
       );
     }
   });
