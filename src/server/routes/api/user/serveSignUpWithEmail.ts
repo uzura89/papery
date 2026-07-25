@@ -1,4 +1,8 @@
 import { UserSchemaType } from "../../../../common/types";
+import {
+  CONS_SIGNUP_CLOSED,
+  CONS_SIGNUP_CLOSED_MESSAGE,
+} from "../../../../common/constants";
 import { dbSaveVerificationCode } from "../../../db/onetime/dbSaveOnetimeCode";
 import { dbCreateUserEmail } from "../../../db/user/dbCreateUserEmail";
 import { dbGetUserByEmail } from "../../../db/user/dbGetUserByEmail";
@@ -6,6 +10,12 @@ import { sendVerificationCode } from "../../../modules/email/sendVerificationCod
 
 export async function serveSignUpWithEmail(req: any, res: any) {
   const { email, password } = req.body;
+
+  if (CONS_SIGNUP_CLOSED) {
+    return res.status(403).json({
+      message: CONS_SIGNUP_CLOSED_MESSAGE,
+    });
+  }
 
   try {
     // If activated user already exists, return error

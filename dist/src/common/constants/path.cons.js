@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CONS_PATH_COMMERCE = exports.CONS_PATH_TERMS = exports.CONS_PATH_PRIVACY = exports.CONS_PATH_ENTRY = exports.CONS_PATH_REFLECT = exports.CONS_PATH_SETTINGS = exports.CONS_PATH_TAGS = exports.CONS_PATH_REPORT = exports.CONS_PATH_TEMPLATES_EDIT = exports.CONS_PATH_TEMPLATES_NEW = exports.CONS_PATH_TEMPLATES = exports.CONS_PATH_SIGNUP = exports.CONS_PATH_LOGIN = exports.CONS_PATH_HOME = void 0;
+exports.CONS_PATH_COMMERCE = exports.CONS_PATH_TERMS = exports.CONS_PATH_PRIVACY = exports.CONS_PATH_ENTRY = exports.CONS_PATH_REFLECT = exports.CONS_PATH_ACCOUNT = exports.CONS_PATH_SETTINGS = exports.CONS_PATH_TAGS = exports.CONS_PATH_REPORT = exports.CONS_PATH_TEMPLATES_EDIT = exports.CONS_PATH_TEMPLATES_NEW = exports.CONS_PATH_TEMPLATES = exports.CONS_PATH_SIGNUP = exports.CONS_PATH_LOGIN = exports.CONS_PATH_HOME = void 0;
 exports.CONS_PATH_HOME = "/";
 exports.CONS_PATH_LOGIN = "/login";
 exports.CONS_PATH_SIGNUP = "/signup";
@@ -10,6 +10,7 @@ exports.CONS_PATH_TEMPLATES_EDIT = "/templates/edit";
 exports.CONS_PATH_REPORT = "/report";
 exports.CONS_PATH_TAGS = "/tags";
 exports.CONS_PATH_SETTINGS = "/settings";
+exports.CONS_PATH_ACCOUNT = "/account";
 exports.CONS_PATH_REFLECT = "/reflection";
 exports.CONS_PATH_ENTRY = "/entry";
 exports.CONS_PATH_PRIVACY = "/privacy";

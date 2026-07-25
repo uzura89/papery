@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("../../../../common/constants");
+const serveDeleteUser_1 = require("./serveDeleteUser");
 const serveFetchUser_1 = require("./serveFetchUser");
 const serveLoginWithEmail_1 = require("./serveLoginWithEmail");
 const serveLoginWithGoogle_1 = require("./serveLoginWithGoogle");
@@ -12,5 +13,6 @@ function default_1(app) {
     app.post(constants_1.CONS_ENDPOINT_SIGNUP_WITH_EMAIL, serveSignUpWithEmail_1.serveSignUpWithEmail);
     app.post(constants_1.CONS_ENDPOINT_VERIFY_EMAIL, serveVerifyEmail_1.serveVerifyEmail);
     app.post(constants_1.CONS_ENDPOINT_LOGIN_WITH_EMAIL, serveLoginWithEmail_1.serveLoginWithEmail);
+    app.post(constants_1.CONS_ENDPOINT_DELETE_USER, serveDeleteUser_1.serveDeleteUser);
 }
 exports.default = default_1;

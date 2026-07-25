@@ -8,6 +8,10 @@ import {
   errorCheckEmail,
   errorCheckPassword,
 } from "../../../common/modules/form/FormChecker";
+import {
+  CONS_SIGNUP_CLOSED,
+  CONS_SIGNUP_CLOSED_MESSAGE,
+} from "../../../common/constants";
 import useUserStore from "../../store/user/userStore";
 
 export default function SignupPage(props: {}) {
@@ -63,6 +67,23 @@ export default function SignupPage(props: {}) {
   }, [userStore.error]);
 
   function renderContent() {
+    if (CONS_SIGNUP_CLOSED) {
+      return (
+        <LoginCardWrapper>
+          <LoginCard>
+            <div className="w-full">
+              <div className="text-center font-bold font-serif mb-4">
+                Signups are closed.
+              </div>
+              <p className="text-sm text-center">
+                {CONS_SIGNUP_CLOSED_MESSAGE}
+              </p>
+            </div>
+          </LoginCard>
+        </LoginCardWrapper>
+      );
+    }
+
     if (!verificationMailSent) {
       return (
         <LoginCardWrapper>

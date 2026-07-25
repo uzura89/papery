@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.serveSignUpWithEmail = void 0;
+const constants_1 = require("../../../../common/constants");
 const dbSaveOnetimeCode_1 = require("../../../db/onetime/dbSaveOnetimeCode");
 const dbCreateUserEmail_1 = require("../../../db/user/dbCreateUserEmail");
 const dbGetUserByEmail_1 = require("../../../db/user/dbGetUserByEmail");
@@ -17,6 +18,11 @@ const sendVerificationCode_1 = require("../../../modules/email/sendVerificationC
 function serveSignUpWithEmail(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { email, password } = req.body;
+        if (constants_1.CONS_SIGNUP_CLOSED) {
+            return res.status(403).json({
+                message: constants_1.CONS_SIGNUP_CLOSED_MESSAGE,
+            });
+        }
         try {
             // If activated user already exists, return error
             const user = yield (0, dbGetUserByEmail_1.dbGetUserByEmail)(req.mongoose, email);

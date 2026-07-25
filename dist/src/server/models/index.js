@@ -1,12 +1,4 @@
 "use strict";
-// module.exports = function (mongoose: any) {
-//   require("./user.model")(mongoose);
-//   require("./entry.model")(mongoose);
-//   require("./tag.model")(mongoose);
-//   require("./template.model")(mongoose);
-//   require("./report.model")(mongoose);
-//   require("./onetimecode.model")(mongoose);
-// };
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -18,6 +10,7 @@ const tag_model_1 = __importDefault(require("./tag.model"));
 const template_model_1 = __importDefault(require("./template.model"));
 const report_model_1 = __importDefault(require("./report.model"));
 const onetimecode_model_1 = __importDefault(require("./onetimecode.model"));
+const setting_model_1 = __importDefault(require("./setting.model"));
 function default_1(mongoose) {
     (0, user_model_1.default)(mongoose);
     (0, entry_model_1.default)(mongoose);
@@ -25,5 +18,6 @@ function default_1(mongoose) {
     (0, template_model_1.default)(mongoose);
     (0, report_model_1.default)(mongoose);
     (0, onetimecode_model_1.default)(mongoose);
+    (0, setting_model_1.default)(mongoose);
 }
 exports.default = default_1;

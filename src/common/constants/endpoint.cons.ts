@@ -64,6 +64,7 @@ export const CONS_ENDPOINT_CHANGE_ORDER_OF_REPORTS = `${ENDPOINT_REPORT}/change-
 // premium
 export const CONS_ENDPOINT_FETCH_PREMIUM_PLANS = `${ENDPOINT_PREMIUM}/fetch-plans`;
 export const CONS_ENDPOINT_CREATE_CHECKOUT_SESSION = `${ENDPOINT_PREMIUM}/create-checkout-session`;
+export const CONS_ENDPOINT_STRIPE_WEBHOOK = `/stripe-webhook`;
 
 // setting
 export const CONS_ENDPOINT_FETCH_SETTING = `${ENDPOINT_SETTING}/fetch`;
@@ -72,6 +73,3 @@ export const CONS_ENDPOINT_DECRYPT_ENTRIES = `${ENDPOINT_SETTING}/decrypt-entrie
 export const CONS_ENDPOINT_ENCRYPT_ENTRIES = `${ENDPOINT_SETTING}/encrypt-entries`;
 export const CONS_ENDPOINT_UPDATE_EMOJI_PALETTE = `${ENDPOINT_SETTING}/update-emoji-palette`;
 export const CONS_ENDPOINT_RESET_EMOJI_PALETTE = `${ENDPOINT_SETTING}/reset-emoji-palette`;
-
-// webhook
-export const CONS_ENDPOINT_STRIPE_WEBHOOK = `/stripe-webhook`;

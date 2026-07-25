@@ -12,10 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbUpdateTag = void 0;
 const dbFetchEntries_1 = require("../entry/dbFetchEntries");
 const dbUpdateEntry_1 = require("../entry/dbUpdateEntry");
+const dbFetchSettings_1 = require("../setting/dbFetchSettings");
 function dbUpdateTag(mongoose, userParmId, id, newText, newColor) {
     return __awaiter(this, void 0, void 0, function* () {
         const Tag = mongoose.model("Tag");
+        const Setting = mongoose.model("Setting");
         try {
+            const setting = yield (0, dbFetchSettings_1.dbFetchSettings)(mongoose, userParmId);
             if (!newText.trim() || newText.includes(" ")) {
                 throw new Error("Invalid tag name");
             }
@@ -40,6 +43,8 @@ function dbUpdateTag(mongoose, userParmId, id, newText, newColor) {
                 }, {
                     tags: entry.tags,
                     body: entry.body,
+                }, {
+                    decryptBody: setting.textSearchEnabled,
                 });
             }
             // update tag text

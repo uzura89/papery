@@ -22,6 +22,11 @@ function serveLoginWithGoogle(req, res) {
         try {
             const { email, googleId } = yield getGoogleAccountInfo(code);
             const userParmId = yield getOrCreateUser(req.mongoose, email, googleId);
+            if (userParmId === "") {
+                return res.status(403).json({
+                    message: constants_1.CONS_SIGNUP_CLOSED_MESSAGE,
+                });
+            }
             const accessToken = (0, jwt_1.makeAccessToken)({ userParmId });
             return res.status(200).json({ accessToken });
         }
@@ -72,6 +77,10 @@ function getOrCreateUser(mongoose, email, googleId) {
             if (user) {
                 // return accessToken
                 userParmId = user.userParmId;
+            }
+            else if (constants_1.CONS_SIGNUP_CLOSED) {
+                // signups are closed: do not create a new user
+                return "";
             }
             else {
                 // create user and return accessToken

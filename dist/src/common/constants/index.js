@@ -18,3 +18,5 @@ __exportStar(require("./endpoint.cons"), exports);
 __exportStar(require("./path.cons"), exports);
 __exportStar(require("./env.cons"), exports);
 __exportStar(require("./modal.cons"), exports);
+__exportStar(require("./premium.cons"), exports);
+__exportStar(require("./signup.cons"), exports);

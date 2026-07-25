@@ -31,16 +31,16 @@ function generateCheckoutUrl(params) {
                     quantity: 1,
                 },
             ],
-            mode: params.isRecurring ? "subscription" : "payment",
+            mode: "subscription",
             success_url: `${env.APP_URL}${constants_1.CONS_PATH_SETTINGS}`,
             cancel_url: `${env.APP_URL}${constants_1.CONS_PATH_SETTINGS}`,
         };
         // this is needed to create an invoice for one-time payments
-        if (!params.isRecurring) {
-            sessionObject.invoice_creation = {
-                enabled: true,
-            };
-        }
+        // if (!params.isRecurring) {
+        //   sessionObject.invoice_creation = {
+        //     enabled: true,
+        //   };
+        // }
         const session = yield stripe.checkout.sessions.create(sessionObject);
         return session.url;
     });

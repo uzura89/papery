@@ -27,6 +27,8 @@ function dbCreateDefaultEntries(mongoose, userParmId) {
                 body: exports.ENTRY_BODY_PINNED,
                 draft: false,
                 pinned: true,
+            }, {
+                decryptBody: false,
             });
             // create today entry:
             const today = new Date();
@@ -37,6 +39,8 @@ function dbCreateDefaultEntries(mongoose, userParmId) {
                 body: ENTRY_BODY_TODAY,
                 draft: false,
                 pinned: false,
+            }, {
+                decryptBody: false,
             });
             // create default tags
             yield (0, dbCreateTag_1.dbCreateTag)(mongoose, {

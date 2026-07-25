@@ -13,7 +13,7 @@ exports.dbCreateEntry = void 0;
 const extractPrimaryEmoji_1 = require("../../../common/modules/emoji/extractPrimaryEmoji");
 const extractTagsFromBody_1 = require("../../../common/modules/tag/extractTagsFromBody");
 const EntryEncryption_1 = require("./modules/EntryEncryption");
-function dbCreateEntry(mongoose, entry) {
+function dbCreateEntry(mongoose, entry, options) {
     return __awaiter(this, void 0, void 0, function* () {
         const Entry = mongoose.model("Entry");
         const tags = (0, extractTagsFromBody_1.extractTagsFromBody)(entry.body);
@@ -28,6 +28,7 @@ function dbCreateEntry(mongoose, entry) {
                 tags,
                 draft: entry.draft,
                 primaryEmoji,
+                decryptedBody: options.decryptBody ? entry.body : null,
                 pinned: entry.pinned,
             };
             const createdEntry = yield Entry.create(newEntry);

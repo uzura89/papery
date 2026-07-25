@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTagColor = exports.CONS_TAG_COLOR_LIST = exports.CONS_TAG_COLOR_GRAY = exports.CONS_TAG_COLOR_ORANGE = exports.CONS_TAG_COLOR_BROWN = exports.CONS_TAG_COLOR_TEA = exports.CONS_TAG_COLOR_GREEN = exports.CONS_TAG_COLOR_TEAL = exports.CONS_TAG_COLOR_SKY = exports.CONS_TAG_COLOR_BLUE = exports.CONS_TAG_COLOR_PURPLE = exports.CONS_TAG_COLOR_MAGENTA = exports.CONS_TAG_COLOR_PINK = exports.CONS_TAG_COLOR_RED = void 0;
+exports.getTagColor = exports.CONS_TAG_COLOR_LIST = exports.CONS_TAG_COLOR_ORANGE = exports.CONS_TAG_COLOR_BROWN = exports.CONS_TAG_COLOR_TEA = exports.CONS_TAG_COLOR_GREEN = exports.CONS_TAG_COLOR_TEAL = exports.CONS_TAG_COLOR_SKY = exports.CONS_TAG_COLOR_BLUE = exports.CONS_TAG_COLOR_PURPLE = exports.CONS_TAG_COLOR_MAGENTA = exports.CONS_TAG_COLOR_PINK = exports.CONS_TAG_COLOR_RED = void 0;
 const CONST_TAG_COLOR_MAP = {
     red: "#d16060",
     pink: "#d75fb1",
@@ -13,7 +13,7 @@ const CONST_TAG_COLOR_MAP = {
     lime: "#9d9d00",
     brown: "#a7a61b",
     orange: "#d56f0c",
-    gray: "#5d6469",
+    // gray: "#5d6469",
 };
 exports.CONS_TAG_COLOR_RED = "red";
 exports.CONS_TAG_COLOR_PINK = "pink";
@@ -26,7 +26,7 @@ exports.CONS_TAG_COLOR_GREEN = "green";
 exports.CONS_TAG_COLOR_TEA = "lime";
 exports.CONS_TAG_COLOR_BROWN = "brown";
 exports.CONS_TAG_COLOR_ORANGE = "orange";
-exports.CONS_TAG_COLOR_GRAY = "gray";
+// export const CONS_TAG_COLOR_GRAY = "gray";
 exports.CONS_TAG_COLOR_LIST = [
     exports.CONS_TAG_COLOR_RED,
     exports.CONS_TAG_COLOR_BLUE,
@@ -38,7 +38,7 @@ exports.CONS_TAG_COLOR_LIST = [
     exports.CONS_TAG_COLOR_PURPLE,
     exports.CONS_TAG_COLOR_TEAL,
     exports.CONS_TAG_COLOR_TEA,
-    exports.CONS_TAG_COLOR_GRAY,
+    // CONS_TAG_COLOR_GRAY,
     exports.CONS_TAG_COLOR_BROWN,
 ];
 function getTagColor(tagColor) {
@@ -65,8 +65,8 @@ function getTagColor(tagColor) {
             return CONST_TAG_COLOR_MAP.brown;
         case exports.CONS_TAG_COLOR_ORANGE:
             return CONST_TAG_COLOR_MAP.orange;
-        case exports.CONS_TAG_COLOR_GRAY:
-            return CONST_TAG_COLOR_MAP.gray;
+        // case CONS_TAG_COLOR_GRAY:
+        // return CONST_TAG_COLOR_MAP.gray;
         default:
             return CONST_TAG_COLOR_MAP.red;
     }

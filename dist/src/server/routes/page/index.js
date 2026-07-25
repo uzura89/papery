@@ -1,13 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("../../../common/constants");
+const setting_cons_1 = require("../../../common/constants/setting.cons");
 const jwt_1 = require("../../modules/auth/jwt");
 function default_1(app) {
     function renderApp(req, res) {
         // param of demo is true
         const isDemo = req.query.demo === "true";
         if (isDemo || checkIfAuthenticated(req, app)) {
-            return res.render("pages/app");
+            // read cookie and set theme
+            const theme = req.cookies[setting_cons_1.CONS_COOKIE_NAME_THEME] || setting_cons_1.CONS_SETTING_THEME_LIGHT;
+            return res.render("pages/app", {
+                theme,
+            });
         }
         return res.render("pages/landing");
     }
@@ -35,6 +40,7 @@ function default_1(app) {
     app.get(constants_1.CONS_PATH_SETTINGS, renderApp);
     app.get(constants_1.CONS_PATH_TAGS, renderApp);
     app.get(constants_1.CONS_PATH_SETTINGS, renderApp);
+    app.get(constants_1.CONS_PATH_ACCOUNT, renderApp);
     app.get(constants_1.CONS_PATH_REFLECT, renderApp);
     app.get(constants_1.CONS_PATH_REPORT, renderApp);
     app.get(constants_1.CONS_PATH_ENTRY + "/*", renderApp);

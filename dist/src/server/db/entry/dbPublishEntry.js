@@ -13,7 +13,7 @@ exports.dbPublishEntry = void 0;
 const extractPrimaryEmoji_1 = require("../../../common/modules/emoji/extractPrimaryEmoji");
 const extractTagsFromBody_1 = require("../../../common/modules/tag/extractTagsFromBody");
 const EntryEncryption_1 = require("./modules/EntryEncryption");
-function dbPublishEntry(mongoose, entry) {
+function dbPublishEntry(mongoose, entry, options) {
     return __awaiter(this, void 0, void 0, function* () {
         const Entry = mongoose.model("Entry");
         try {
@@ -22,6 +22,7 @@ function dbPublishEntry(mongoose, entry) {
             const updatedEntry = yield Entry.findOneAndUpdate({ id: entry.id, userParmId: entry.userParmId }, {
                 userParmId: entry.userParmId,
                 body: (0, EntryEncryption_1.encryptEntry)(entry.body),
+                decryptedBody: options.decryptBody ? entry.body : undefined,
                 date: entry.date,
                 tags,
                 primaryEmoji,

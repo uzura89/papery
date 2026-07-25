@@ -15,17 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.serveUpdateEntry = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const dbUpdateEntry_1 = require("../../../db/entry/dbUpdateEntry");
+const dbFetchSettings_1 = require("../../../db/setting/dbFetchSettings");
 function serveUpdateEntry(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { userParmId } = req;
         const { id, body, date } = req.body;
         try {
+            const settings = yield (0, dbFetchSettings_1.dbFetchSettings)(req.mongoose, userParmId);
             const entry = yield (0, dbUpdateEntry_1.dbUpdateEntry)(mongoose_1.default, {
                 userParmId,
                 id,
             }, {
                 body,
                 date,
+            }, {
+                decryptBody: settings.textSearchEnabled,
             });
             return res.status(200).json({ entryId: entry.id });
         }

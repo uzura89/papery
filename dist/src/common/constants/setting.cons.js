@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CONS_COOKIE_NAME_THEME = exports.CONS_SETTING_TEXT_SEARCH_DISABLED = exports.CONS_SETTING_TEXT_SEARCH_ENABLED = exports.CONS_SETTING_THEME_MAP = exports.CONS_SETTING_THEME_DARK = exports.CONS_SETTING_THEME_DIM = exports.CONS_SETTING_THEME_LIGHT = exports.CONS_PREMIUM_TYPE_LIFETIME = exports.CONS_PREMIUM_TYPE_YEARLY = exports.CONS_PREMIUM_TYPE_MONTHLY = exports.CONS_SETTING_LANGUAGE_DIRECTION_RTL = exports.CONS_SETTING_LANGUAGE_DIRECTION_LTR = void 0;
+exports.CONS_SETTING_LANGUAGE_DIRECTION_LTR = "LTR";
+exports.CONS_SETTING_LANGUAGE_DIRECTION_RTL = "RTL";
+exports.CONS_PREMIUM_TYPE_MONTHLY = "Monthly";
+exports.CONS_PREMIUM_TYPE_YEARLY = "Yearly";
+exports.CONS_PREMIUM_TYPE_LIFETIME = "Lifetime";
+// theme
+exports.CONS_SETTING_THEME_LIGHT = "light";
+exports.CONS_SETTING_THEME_DIM = "dim";
+exports.CONS_SETTING_THEME_DARK = "dark";
+exports.CONS_SETTING_THEME_MAP = {
+    [exports.CONS_SETTING_THEME_LIGHT]: "Light",
+    [exports.CONS_SETTING_THEME_DIM]: "Dim",
+    [exports.CONS_SETTING_THEME_DARK]: "Dark",
+};
+// encryption
+exports.CONS_SETTING_TEXT_SEARCH_ENABLED = "enabled";
+exports.CONS_SETTING_TEXT_SEARCH_DISABLED = "disabled";
+// cookie
+exports.CONS_COOKIE_NAME_THEME = "theme";

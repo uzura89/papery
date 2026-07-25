@@ -2,7 +2,11 @@ import { OAuth2Client } from "google-auth-library";
 
 import { makeAccessToken } from "../../../modules/auth/jwt";
 import { UserSchemaType } from "../../../../common/types";
-import { CONS_GOOGLE_CLIENT_ID } from "../../../../common/constants";
+import {
+  CONS_GOOGLE_CLIENT_ID,
+  CONS_SIGNUP_CLOSED,
+  CONS_SIGNUP_CLOSED_MESSAGE,
+} from "../../../../common/constants";
 
 import { dbGetUserByEmail } from "../../../db/user/dbGetUserByEmail";
 import { dbCreateUserGoogle } from "../../../db/user/dbCreateUserGoogle";
@@ -20,6 +24,12 @@ export async function serveLoginWithGoogle(req: any, res: any) {
     const { email, googleId } = await getGoogleAccountInfo(code);
 
     const userParmId = await getOrCreateUser(req.mongoose, email, googleId);
+
+    if (userParmId === "") {
+      return res.status(403).json({
+        message: CONS_SIGNUP_CLOSED_MESSAGE,
+      });
+    }
 
     const accessToken = makeAccessToken({ userParmId });
 
@@ -80,6 +90,9 @@ async function getOrCreateUser(
     if (user) {
       // return accessToken
       userParmId = user.userParmId;
+    } else if (CONS_SIGNUP_CLOSED) {
+      // signups are closed: do not create a new user
+      return "";
     } else {
       // create user and return accessToken
       const user = await dbCreateUserGoogle(mongoose, {

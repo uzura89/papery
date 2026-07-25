@@ -27,6 +27,7 @@ exports.DEMO_ALLOWED_URLS = [
     endpoint_cons_1.CONS_ENDPOINT_FETCH_ALL_REPORTS,
     endpoint_cons_1.CONS_ENDPOINT_FETCH_REPORT_DATA,
     endpoint_cons_1.CONS_ENDPOINT_FETCH_PREMIUM_PLANS,
+    endpoint_cons_1.CONS_ENDPOINT_FETCH_SETTING,
 ];
 /**
  * Payment

@@ -13,6 +13,8 @@ const serveFetchEntriesByText_1 = require("./serveFetchEntriesByText");
 const serveFetchEntriesCsv_1 = require("./serveFetchEntriesCsv");
 const serveFetchReflections_1 = require("./serveFetchReflections");
 const serveFetchEntryById_1 = require("./serveFetchEntryById");
+const serveEncryptEntries_1 = require("./serveEncryptEntries");
+const serveDecryptEntries_1 = require("./serveDecryptEntries");
 function default_1(app) {
     app.post(constants_1.CONS_ENDPOINT_CREATE_ENTRY, serveCreateEntry_1.serveCreateEntry);
     app.post(constants_1.CONS_ENDPOINT_UPDATE_ENTRY, serveUpdateEntry_1.serveUpdateEntry);
@@ -26,5 +28,7 @@ function default_1(app) {
     app.get(constants_1.CONS_ENDPOINT_FETCH_ENTRIES_CSV, serveFetchEntriesCsv_1.serveFetchEntriesCsv);
     app.get(constants_1.CONS_ENDPOINT_FETCH_REFLECTIONS, serveFetchReflections_1.serveFetchReflections);
     app.get(constants_1.CONS_ENDPOINT_FETCH_ENTRY_BY_ID, serveFetchEntryById_1.serveFetchEntryById);
+    app.post(constants_1.CONS_ENDPOINT_DECRYPT_ENTRIES, serveDecryptEntries_1.serveDecryptEntries);
+    app.post(constants_1.CONS_ENDPOINT_ENCRYPT_ENTRIES, serveEncryptEntries_1.serveEncryptEntries);
 }
 exports.default = default_1;

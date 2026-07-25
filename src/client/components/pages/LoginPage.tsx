@@ -36,6 +36,12 @@ export default function LoginPage(props: {}) {
     }
   }, [googleLogin.succeeded]);
 
+  useEffect(() => {
+    if (userStore.error) {
+      window.alert(userStore.error);
+    }
+  }, [userStore.error]);
+
   return (
     <LoginCardWrapper login>
       <LoginCard>

@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbUpdateEntries = void 0;
 const EntryEncryption_1 = require("./modules/EntryEncryption");
-function dbUpdateEntries(mongoose, entries) {
+function dbUpdateEntries(mongoose, entries, options) {
     return __awaiter(this, void 0, void 0, function* () {
         const Entry = mongoose.model("Entry");
         try {
@@ -23,6 +23,7 @@ function dbUpdateEntries(mongoose, entries) {
                 }, {
                     date: entry.date,
                     body: (0, EntryEncryption_1.encryptEntry)(entry.body),
+                    decryptedBody: options.decryptBody ? entry.body : undefined,
                     tags: entry.tags,
                 }, { new: true });
                 return updatedEntry;

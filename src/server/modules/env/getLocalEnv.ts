@@ -17,4 +17,3 @@ export function getLocalEnv() {
     STRIPE_ENDPOINT_SECRET: process.env.STRIPE_ENDPOINT_SECRET as string,
   };
 }
-//

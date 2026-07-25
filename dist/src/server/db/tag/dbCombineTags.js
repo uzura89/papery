@@ -12,10 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbCombineTags = void 0;
 const dbFetchEntries_1 = require("../entry/dbFetchEntries");
 const dbUpdateEntries_1 = require("../entry/dbUpdateEntries");
+const dbFetchSettings_1 = require("../setting/dbFetchSettings");
 function dbCombineTags(mongoose, userParmId, id, newText) {
     return __awaiter(this, void 0, void 0, function* () {
         const Tag = mongoose.model("Tag");
         try {
+            const settings = yield (0, dbFetchSettings_1.dbFetchSettings)(mongoose, userParmId);
+            // find tag
             const tag = yield Tag.findOne({
                 userParmId,
                 id,
@@ -40,7 +43,9 @@ function dbCombineTags(mongoose, userParmId, id, newText) {
                 return entry;
             });
             // update entries
-            yield (0, dbUpdateEntries_1.dbUpdateEntries)(mongoose, newEntries);
+            yield (0, dbUpdateEntries_1.dbUpdateEntries)(mongoose, newEntries, {
+                decryptBody: settings.textSearchEnabled,
+            });
             // delte old tag
             yield Tag.deleteOne({ userParmId, id });
             return;

@@ -31,7 +31,6 @@ function serveCreateCheckoutSession(req, res) {
             const checkoutUrl = yield StripeHandler_1.default.generateCheckoutUrl({
                 priceId,
                 customerEmail: user.email,
-                isRecurring: priceItem.isRecurring,
             });
             return res.status(200).send({ checkoutUrl });
         }

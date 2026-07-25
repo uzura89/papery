@@ -8,23 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.serveCreateEntry = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
-const dbCreateBlankEntry_1 = require("../../../db/entry/dbCreateBlankEntry");
+const dbCreateEntry_1 = require("../../../db/entry/dbCreateEntry");
+const dbFetchSettings_1 = require("../../../db/setting/dbFetchSettings");
 function serveCreateEntry(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { userParmId } = req;
         const { id, body, date } = req.body;
         try {
-            const entry = yield (0, dbCreateBlankEntry_1.dbCreateBlankEntry)(mongoose_1.default, {
+            const settings = yield (0, dbFetchSettings_1.dbFetchSettings)(req.mongoose, userParmId);
+            const entry = yield (0, dbCreateEntry_1.dbCreateEntry)(req.mongoose, {
                 userParmId,
                 id,
                 body,
                 date,
+                draft: true,
+                pinned: false,
+            }, {
+                decryptBody: settings.textSearchEnabled,
             });
             return res.status(200).json({ id: entry.id });
         }

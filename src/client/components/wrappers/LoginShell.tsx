@@ -1,6 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
 import { BrandLogo } from "../atoms/text/Brandlogo";
-import { CONS_PATH_LOGIN, CONS_PATH_SIGNUP } from "../../../common/constants";
+import {
+  CONS_PATH_LOGIN,
+  CONS_PATH_SIGNUP,
+  CONS_SIGNUP_CLOSED,
+} from "../../../common/constants";
 
 export function LoginShell() {
   return (
@@ -52,12 +56,18 @@ export function LoginCardWrapper(props: {
 
       {props.login ? (
         <div className="text-center text-foreLight text-sm mt-3">
-          Don't have an account?
-          <Link to={CONS_PATH_SIGNUP}>
-            <span className="clickable-opacity font-bold ml-2 text-sm">
-              Sign up
+          {CONS_SIGNUP_CLOSED ? (
+            <span>New signups are temporarily closed.</span>
+          ) : (
+            <span>
+              Don't have an account?
+              <Link to={CONS_PATH_SIGNUP}>
+                <span className="clickable-opacity font-bold ml-2 text-sm">
+                  Sign up
+                </span>
+              </Link>
             </span>
-          </Link>
+          )}
         </div>
       ) : (
         <div className="text-center text-foreLight text-sm mt-3">
